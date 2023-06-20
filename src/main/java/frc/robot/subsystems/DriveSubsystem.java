@@ -222,7 +222,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Zeroes the heading of the robot. */
   public void zeroHeading() {
-    m_gyro.reset();
+    m_gyro.setYaw(0);
+    //resets heading, m_gyro does not have a "reset" funciton
   }
 
   /**
@@ -240,6 +241,8 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The turn rate of the robot, in degrees per second
    */
   public double getTurnRate() {
-    return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return m_gyro.getRawGyro(m_gyro.getRoll(), m_gyro.getPitch(), m_gyro.getYaw()) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    //this is something close, xyz to roll pitch and yaw, see link below
+    //.getrate replaced with .getrawgyro (https://www.chiefdelphi.com/t/does-pigeon-imu-have-an-equivalent-to-navx-getrate/375640)
   }
 }
