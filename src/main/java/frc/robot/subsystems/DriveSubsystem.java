@@ -18,6 +18,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.sensors.Pigeon2;
+import com.ctre.phoenix.sensors.WPI_Pigeon2;
 
 public class DriveSubsystem extends SubsystemBase {
   // Create MAXSwerveModules
@@ -42,7 +43,7 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
-  private final Pigeon2 m_gyro = new Pigeon2(0);
+  private final WPI_Pigeon2 m_gyro = new WPI_Pigeon2(0);
  // private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
 
   // Slew rate filter variables for controlling lateral acceleration
@@ -241,7 +242,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The turn rate of the robot, in degrees per second
    */
   public double getTurnRate() {
-    return m_gyro.getRawGyro(m_gyro.getRoll(), m_gyro.getPitch(), m_gyro.getYaw()) * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return m_gyro.getRate();
     //this is something close, xyz to roll pitch and yaw, see link below
     //.getrate replaced with .getrawgyro (https://www.chiefdelphi.com/t/does-pigeon-imu-have-an-equivalent-to-navx-getrate/375640)
   }
