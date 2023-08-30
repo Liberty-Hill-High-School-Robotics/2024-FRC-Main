@@ -92,6 +92,11 @@ public class rightSnap extends CommandBase {
     public void end(boolean interrupted) {
         super.end(interrupted);
     }
+
+    @Override
+    public boolean isFinished(){
+        return m_robotDrive.isright();
+    }
    
 
     @Override

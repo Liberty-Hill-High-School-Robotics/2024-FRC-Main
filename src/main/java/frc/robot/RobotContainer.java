@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.OIConstants;
@@ -45,6 +44,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     m_chooser.addOption("sDrive", new sDrive(m_robotDrive));
 
     SmartDashboard.putData("AutonMode", m_chooser);
+    SmartDashboard.putData("rightSnap", new rightSnap(m_robotDrive));
+    SmartDashboard.putData("Drive", m_robotDrive);
+    
+   
     
     // Configure default commands
     m_robotDrive.setDefaultCommand(

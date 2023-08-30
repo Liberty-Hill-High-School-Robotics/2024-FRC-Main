@@ -55,7 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
-  private final WPI_Pigeon2 m_gyro = new WPI_Pigeon2(9);
+  public final WPI_Pigeon2 m_gyro = new WPI_Pigeon2(9);
  // private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
 
  
@@ -88,7 +88,6 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-    SmartDashboard.getNumber("CurrentRotation", m_currentRotation);
     
 
 
@@ -102,6 +101,9 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+
+        SmartDashboard.putNumber("CurrentRotation", m_currentRotation);
+      SmartDashboard.putNumber("Degree", Rotation2d.fromDegrees(m_gyro.getYaw()).getDegrees());
   }
 
   /**
@@ -269,8 +271,26 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void rightSnap(DriveSubsystem m_robotDrive){
-    new Pose2d(0,0, Rotation2d.fromDegrees(90));
+    double degree = getHeading();
+   
+    
+    if(degree >= .75 && degree < .4 ){
+        drive(0,0, .3, true, true);
+    }if(degree < 0){
+      drive(0,0, .3, true, true);
+    }
+    
   }
+
+  public boolean isright(){
+    double degree = getHeading();
+    
+    if(degree < .6 && degree > .4){
+      return true;
+    }
+    return false;
+  }
+  
  
 
 
