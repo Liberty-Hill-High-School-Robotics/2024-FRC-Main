@@ -267,6 +267,10 @@ public class DriveSubsystem extends SubsystemBase {
     //this is something close, xyz to roll pitch and yaw, see link below
     //.getrate replaced with .getrawgyro (https://www.chiefdelphi.com/t/does-pigeon-imu-have-an-equivalent-to-navx-getrate/375640)
   }
+
+  public void rightSnap(DriveSubsystem m_robotDrive){
+    new Pose2d(0,0, Rotation2d.fromDegrees(90));
+  }
  
 
 

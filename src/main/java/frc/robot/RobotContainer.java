@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.OIConstants;
-
+import frc.robot.commands.rightSnap;
 import frc.robot.commands.sDrive;
 
 import frc.robot.subsystems.DriveSubsystem;
@@ -42,7 +42,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     // Configure the button bindings
     configureButtonBindings();
 
-    m_chooser.addOption("EXTrjectory", new sDrive(m_robotDrive));
+    m_chooser.addOption("sDrive", new sDrive(m_robotDrive));
 
     SmartDashboard.putData("AutonMode", m_chooser);
     
@@ -72,6 +72,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   private void configureButtonBindings() {
 
     final POVButton snapFront = new POVButton(m_driverController, 0, 1);
+    snapFront.onTrue(new rightSnap(m_robotDrive));
 
     new JoystickButton(m_driverController, Button.kR1.value)
         .whileTrue(new RunCommand(
