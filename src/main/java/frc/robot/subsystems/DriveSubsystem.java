@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-
 import com.ctre.phoenix.sensors.WPI_Pigeon2;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -37,6 +36,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.controller.PIDController;
+import javax.swing.plaf.TreeUI;
 
  */
 
@@ -299,9 +299,22 @@ public class DriveSubsystem extends SubsystemBase {
     }
     return false;
   }
-  
- 
 
+
+  public void controlScheme(DriveSubsystem m_robotDrive){
+    //switches drive control system, works bi-directional
+
+    if(DriveConstants.driveScheme = true){
+      DriveConstants.driveScheme = false;    
+      //if field centric is on then turn it off
+    }
+    else if(DriveConstants.driveScheme = false){
+      DriveConstants.driveScheme = true;
+      //if field centric is off then turn it on
+    }
+
+  }
+ 
 
 
 

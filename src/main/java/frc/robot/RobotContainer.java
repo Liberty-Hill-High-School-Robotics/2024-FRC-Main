@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.rightSnap;
 import frc.robot.commands.sDrive;
@@ -58,7 +59,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
                 -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true),
+                DriveConstants.driveScheme, true), //drivescheme sets either field centric or not
             m_robotDrive));
 
   }
@@ -81,7 +82,12 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
+
+    new JoystickButton(m_driverController, Button.kR1.value) //value needs to be changed
+        .onTrue(new RunCommand(m_robotDrive.controlScheme(m_robotDrive)));
+    }
   }
+    
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
