@@ -30,7 +30,7 @@ public final class Constants {
     public static final double kMaxSpeedMetersPerSecond = 4.8;
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
 
-    public static final double kDirectionSlewRate = 2.6; // radians per second // 1.2 
+    public static final double kDirectionSlewRate = 2.4; // radians per second // 1.2 
     public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%) 
     public static final double kRotationalSlewRate = 1.8; // percent per second (1 = 100%) //2
 
