@@ -83,10 +83,12 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     //the implementation below is kind of weird, it calls a function directly from a subsystem, and 
     //the buttons don't seem to work, or aren't tuned properly.
-    new JoystickButton(m_driverController, Button.kR1.value)
-        .whileTrue(new RunCommand(
-            () -> m_robotDrive.setX(),
-            m_robotDrive));
+
+  //  new JoystickButton(m_driverController, Button.kR1.value)
+  //      .whileTrue(new RunCommand(
+  //          () -> m_robotDrive.setX(),
+  //          m_robotDrive));
+  
     //here is an implementation as I see it should be
     final Trigger xPatternButton = new JoystickButton(m_driverController, Button.kL2.value);
     xPatternButton.whileTrue(new xPattern(m_robotDrive));
