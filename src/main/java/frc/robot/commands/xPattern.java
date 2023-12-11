@@ -24,12 +24,12 @@ import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
-public class controlScheme extends CommandBase {
+public class xPattern extends CommandBase {
    
      private final DriveSubsystem m_robotDrive;
 
 
-    public controlScheme( DriveSubsystem subsystem
+    public xPattern( DriveSubsystem subsystem
 
     ) {
 
@@ -57,7 +57,9 @@ public class controlScheme extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.controlScheme();
+        //potentially add a if statement that does not activate while joysticks have value?
+        //robot will have conflicting commands if drivers drive and hold the set X button at the same time
+      m_robotDrive.setX();
     }
 
 

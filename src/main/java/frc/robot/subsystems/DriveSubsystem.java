@@ -301,7 +301,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
 
-  public void controlScheme(DriveSubsystem m_robotDrive){
+  public void controlScheme() {
     //switches drive control system, works bi-directional
 
     if(DriveConstants.driveScheme = true){

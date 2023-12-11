@@ -16,9 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.rightSnap;
-import frc.robot.commands.sDrive;
-import frc.robot.commands.controlScheme;
+import frc.robot.commands.*;
 
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -83,10 +81,15 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final POVButton snapFront = new POVButton(m_driverController, 0, 1);
     snapFront.onTrue(new rightSnap(m_robotDrive));
 
+    //the implementation below is kind of weird, it calls a function directly from a subsystem, and 
+    //the buttons don't seem to work, or aren't tuned properly.
     new JoystickButton(m_driverController, Button.kR1.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
+    //here is an implementation as I see it should be
+    final Trigger xPatternButton = new JoystickButton(m_driverController, Button.kL2.value);
+    xPatternButton.whileTrue(new xPattern(m_robotDrive));
 
   }
   /* Example Button Binding from 2023 Main code
