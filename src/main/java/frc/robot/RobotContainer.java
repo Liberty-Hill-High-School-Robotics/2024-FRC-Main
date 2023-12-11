@@ -78,8 +78,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger controlSchemeButton = new JoystickButton(m_driverController, 0); //need button number!
     controlSchemeButton.onTrue(new controlScheme(m_robotDrive));
 
-    final POVButton snapFront = new POVButton(m_driverController, 0, 1);
-    snapFront.onTrue(new rightSnap(m_robotDrive));
+    final Trigger resetHeadingButton = new JoystickButton(m_driverController, 0); //need button number!
+    resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
+
+    final POVButton snapFrontButton = new POVButton(m_driverController, 0, 1);
+    snapFrontButton.onTrue(new rightSnap(m_robotDrive));
 
     //the implementation below is kind of weird, it calls a function directly from a subsystem, and 
     //the buttons don't seem to work, or aren't tuned properly.
