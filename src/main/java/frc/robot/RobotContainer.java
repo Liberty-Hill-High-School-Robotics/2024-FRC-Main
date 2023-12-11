@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.rightSnap;
 import frc.robot.commands.sDrive;
+import frc.robot.commands.controlScheme;
 
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -75,6 +77,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    */
   private void configureButtonBindings() {
 
+    final Trigger controlSchemeButton = new JoystickButton(m_driverController, 0); //need button number!
+    controlSchemeButton.onTrue(new controlScheme(m_robotDrive));
+
     final POVButton snapFront = new POVButton(m_driverController, 0, 1);
     snapFront.onTrue(new rightSnap(m_robotDrive));
 
@@ -83,11 +88,15 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
             () -> m_robotDrive.setX(),
             m_robotDrive));
 
-    new JoystickButton(m_driverController, Button.kR1.value) //value needs to be changed
-        .onTrue(new RunCommand(m_robotDrive.controlScheme(m_robotDrive)));
-    }
   }
-    
+  /* Example Button Binding from 2023 Main code
+  starts by defining a trigger, can be replaced with other button types like POVButton, but only when necessary
+  assigns the button to joystick and button # 
+  calls button name, then .ontrue, .onfalse, etc. will run a command, from a file, not a function from a subsystem
+
+    final Trigger buttonResetIAccum = new JoystickButton(driverJoystick, 8);
+    buttonResetIAccum.onTrue(new ResetIAccum(m_drive));
+   */
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
