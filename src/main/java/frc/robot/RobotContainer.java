@@ -3,8 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+//import edu.wpi.first.wpilibj.PS4Controller.Button;
 
-import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -75,10 +75,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    */
   private void configureButtonBindings() {
 
-    final Trigger controlSchemeButton = new JoystickButton(m_driverController, 0); //need button number!
+    final Trigger controlSchemeButton = new JoystickButton(m_driverController, 1); //need button number!
     controlSchemeButton.onTrue(new controlScheme(m_robotDrive));
 
-    final Trigger resetHeadingButton = new JoystickButton(m_driverController, 0); //need button number!
+    final Trigger resetHeadingButton = new JoystickButton(m_driverController, 2); //need button number!
     resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
 
     final POVButton snapFrontButton = new POVButton(m_driverController, 0, 1);
@@ -93,7 +93,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   //          m_robotDrive));
   
     //here is an implementation as I see it should be
-    final Trigger xPatternButton = new JoystickButton(m_driverController, Button.kL2.value);
+    final Trigger xPatternButton = new JoystickButton(m_driverController, 6);
     xPatternButton.whileTrue(new xPattern(m_robotDrive));
 
   }
