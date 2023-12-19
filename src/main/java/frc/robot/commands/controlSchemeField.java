@@ -24,12 +24,12 @@ import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
-public class controlSchemeRobot extends CommandBase {
+public class controlSchemeField extends CommandBase {
    
      private final DriveSubsystem m_robotDrive;
 
 
-    public controlSchemeRobot( DriveSubsystem subsystem
+    public controlSchemeField( DriveSubsystem subsystem
 
     ) {
 
@@ -51,13 +51,12 @@ public class controlSchemeRobot extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        m_robotDrive.controlSchemeField();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.controlSchemeRobot();
+      m_robotDrive.controlSchemeField();
     }
 
 

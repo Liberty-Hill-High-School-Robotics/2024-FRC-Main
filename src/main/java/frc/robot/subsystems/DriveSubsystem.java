@@ -303,12 +303,12 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void controlSchemeRobot() {
     //sets controlscheme to true when button held
-    Constants.DriveConstants.driveScheme = true;
+    Constants.DriveConstants.driveScheme = false;
   }
 
   public void controlSchemeField() {
     //sets controscheme to false when not held
-    Constants.DriveConstants.driveScheme = false; 
+    Constants.DriveConstants.driveScheme = true; 
   }
  
 

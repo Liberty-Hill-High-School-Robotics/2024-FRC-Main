@@ -47,9 +47,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("AutonMode", m_chooser);
     SmartDashboard.putData("rightSnap", new rightSnap(m_robotDrive));
     SmartDashboard.putData("Drive", m_robotDrive);
-    //doing some branch testing
-    //contin.
-    
+    SmartDashboard.putBoolean("DriveState", Constants.DriveConstants.driveScheme);
+
    
     
     // Configure default commands
@@ -79,6 +78,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     final Trigger controlSchemeButton = new JoystickButton(m_driverController, 6);
     controlSchemeButton.whileTrue(new controlSchemeRobot(m_robotDrive));
+
+    final Trigger controlSchemeButtonOff = new JoystickButton(m_driverController, 6);
+    controlSchemeButtonOff.whileFalse(new controlSchemeField(m_robotDrive));
 
     final Trigger resetHeadingButton = new JoystickButton(m_driverController, 5);
     resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
