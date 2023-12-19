@@ -77,10 +77,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    */
   private void configureButtonBindings() {
 
-    final Trigger controlSchemeButton = new JoystickButton(m_driverController, 1); //need button number!
+    final Trigger controlSchemeButton = new JoystickButton(m_driverController, 6); //need button number!
     controlSchemeButton.onTrue(new controlScheme(m_robotDrive));
 
-    final Trigger resetHeadingButton = new JoystickButton(m_driverController, 2); //need button number!
+    final Trigger resetHeadingButton = new JoystickButton(m_driverController, 5); //need button number!
     resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
 
     final POVButton snapFrontButton = new POVButton(m_driverController, 0, 1);
@@ -95,7 +95,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   //          m_robotDrive));
   
     //here is an implementation as I see it should be
-    final Trigger xPatternButton = new JoystickButton(m_driverController, 6);
+    final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
     xPatternButton.whileTrue(new xPattern(m_robotDrive));
 
   }
