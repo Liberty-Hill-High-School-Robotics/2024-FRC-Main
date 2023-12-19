@@ -17,6 +17,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 
@@ -147,8 +148,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param xSpeed        Speed of the robot in the x direction (forward).
    * @param ySpeed        Speed of the robot in the y direction (sideways).
    * @param rot           Angular rate of the robot.
-   * @param fieldRelative Whether the provided x and y speeds are relative to the
-   *                      field.
+   * @param fieldRelative Whether the provided x and y speeds are relative to the field.
    * @param rateLimit     Whether to enable rate limiting for smoother control.
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean rateLimit) {
@@ -301,18 +301,14 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
 
-  public void controlScheme() {
-    //switches drive control system, works bi-directional
+  public void controlSchemeRobot() {
+    //sets controlscheme to true when button held
+    Constants.DriveConstants.driveScheme = true;
+  }
 
-    if(DriveConstants.driveScheme = true){
-      DriveConstants.driveScheme = false;    
-      //if field centric is on then turn it off
-    }
-    else if(DriveConstants.driveScheme = false){
-      DriveConstants.driveScheme = true;
-      //if field centric is off then turn it on
-    }
-
+  public void controlSchemeField() {
+    //sets controscheme to false when not held
+    Constants.DriveConstants.driveScheme = false; 
   }
  
 
