@@ -5,13 +5,10 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
-
-import com.pathplanner.lib.auto.*;
-import com.pathplanner.lib.commands.*;
-import com.pathplanner.lib.controllers.*;
-import com.pathplanner.lib.path.*;
-import com.pathplanner.lib.pathfinding.*;
-import com.pathplanner.lib.util.*;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -106,9 +103,11 @@ public class DriveSubsystem extends SubsystemBase {
     //autobuilder needs to be configured last, add anything before this
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
-                this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
+                this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
                 this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+                //^These commands need to be created
+
                 new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
                         new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
                         new PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
@@ -186,6 +185,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @param rot           Angular rate of the robot.
    * @param fieldRelative Whether the provided x and y speeds are relative to the field.
    * @param rateLimit     Whether to enable rate limiting for smoother control.
+   * @param speeds        Chassis speed from vx, vy, and omega
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean rateLimit) {
     
@@ -255,6 +255,8 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setDesiredState(swerveModuleStates[1]);
     m_rearLeft.setDesiredState(swerveModuleStates[2]);
     m_rearRight.setDesiredState(swerveModuleStates[3]);
+    
+    var speeds = new ChassisSpeeds(xSpeed, ySpeed, rot);
   }
 
   /**
@@ -347,14 +349,5 @@ public class DriveSubsystem extends SubsystemBase {
     Constants.DriveConstants.driveScheme = true; 
   }
  
-
-
-
-
-
-
-
-
-
 
 }
