@@ -100,7 +100,7 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
 
-    
+    /* 
     autobuilder needs to be configured last, add anything before this
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
@@ -130,6 +130,7 @@ public class DriveSubsystem extends SubsystemBase {
                 this // Reference to this subsystem to set requirements
                 
       );
+      */
       
   }
 
@@ -352,10 +353,11 @@ public class DriveSubsystem extends SubsystemBase {
     Constants.DriveConstants.driveScheme = true; 
   }
   
+  /* 
   public ChassisSpeeds getChassisSpeeds() {
    return chassisSpeeds;
   }
-  
+  */
  
 
 }
