@@ -104,7 +104,7 @@ public class DriveSubsystem extends SubsystemBase {
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
                 this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
-                this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+                this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
                 //^These commands need to be created
 
@@ -135,7 +135,8 @@ public class DriveSubsystem extends SubsystemBase {
 
     
 
-
+    final ChassisSpeeds desiredSpeeds = new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rot);
+ 
 
     // Update the odometry in the periodic block
     m_odometry.update(
@@ -256,7 +257,6 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearLeft.setDesiredState(swerveModuleStates[2]);
     m_rearRight.setDesiredState(swerveModuleStates[3]);
     
-    var speeds = new ChassisSpeeds(xSpeed, ySpeed, rot);
   }
 
   /**
@@ -347,6 +347,10 @@ public class DriveSubsystem extends SubsystemBase {
   public void controlSchemeField() {
     //sets controscheme to false when not held
     Constants.DriveConstants.driveScheme = true; 
+  }
+
+  public ChassisSpeeds getChassisSpeeds() {
+    return chassisSpeeds;
   }
  
 
