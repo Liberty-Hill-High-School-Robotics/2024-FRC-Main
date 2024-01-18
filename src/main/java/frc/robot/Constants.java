@@ -53,6 +53,7 @@ public final class Constants {
         new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
+        //creates an array to be used by the swervedrivekinematics.class
     public static final Translation2d[] Module_Info = {
       new Translation2d(kWheelBase / 2, kTrackWidth / 2),
       new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
@@ -60,7 +61,7 @@ public final class Constants {
       new Translation2d(-kWheelBase / 2, -kTrackWidth / 2)
     };
       public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(Module_Info);
-
+      //creates the location for the drivesubsystem to run a command to set drivestates
 
     // Angular offsets of the modules relative to the chassis in radians
     public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;

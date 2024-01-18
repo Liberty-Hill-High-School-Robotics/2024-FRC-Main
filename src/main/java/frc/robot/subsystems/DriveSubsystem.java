@@ -377,6 +377,7 @@ public class DriveSubsystem extends SubsystemBase {
     return desiredSpeeds;
   }
 
+  //see drive constants for details
   public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
     setModuleStates(
       DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
