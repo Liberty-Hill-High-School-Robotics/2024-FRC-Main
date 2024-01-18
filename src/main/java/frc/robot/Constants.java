@@ -26,6 +26,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static final class DriveConstants {
 
+
     public static boolean driveScheme = true;
     //whether the robot is field centric or not, used to change control with a button
 
@@ -51,6 +52,15 @@ public final class Constants {
         new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
         new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+
+    public static final Translation2d[] Module_Info = {
+      new Translation2d(kWheelBase / 2, kTrackWidth / 2),
+      new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
+      new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
+      new Translation2d(-kWheelBase / 2, -kTrackWidth / 2)
+    };
+      public static final SwerveDriveKinematics KINEMATICS = new SwerveDriveKinematics(Module_Info);
+
 
     // Angular offsets of the modules relative to the chassis in radians
     public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;

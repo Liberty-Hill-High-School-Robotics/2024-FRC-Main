@@ -5,6 +5,11 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
+//imports for Pathplanner follow commmands/stuff below
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -15,11 +20,14 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
+ 
+
 
 /*
 Unused imports below
@@ -96,13 +104,13 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem() {
    
     
-    /* 
-    autobuilder needs to be configured last, add anything before this
+     
+    //autobuilder needs to be configured last, add anything before this
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
                 this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
                 this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-                //this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+                this::setChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
                 //^These commands need to be created
 
                 new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
@@ -126,7 +134,7 @@ public class DriveSubsystem extends SubsystemBase {
                 this // Reference to this subsystem to set requirements
                 
       );
-      */
+      
       
   }
 
@@ -296,6 +304,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearRight.setDesiredState(desiredStates[3]);
   }
 
+
   /** Resets the drive encoders to currently read a position of 0. */
   public void resetEncoders() {
     m_frontLeft.resetEncoders();
@@ -367,6 +376,10 @@ public class DriveSubsystem extends SubsystemBase {
     final ChassisSpeeds desiredSpeeds = new ChassisSpeeds(DriveConstants.globalxSpeed, DriveConstants.globalySpeed, DriveConstants.globalRot);
     return desiredSpeeds;
   }
- 
+
+  public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
+    setModuleStates(
+      DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
+  }
 
 }
