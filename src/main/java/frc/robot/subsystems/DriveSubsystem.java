@@ -5,10 +5,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
-import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -19,7 +15,6 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -138,10 +133,7 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-    
-
-    //final ChassisSpeeds desiredSpeeds = new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rot);
- 
+   
 
     // Update the odometry in the periodic block
     m_odometry.update(
@@ -272,6 +264,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setDesiredState(swerveModuleStates[1]);
     m_rearLeft.setDesiredState(swerveModuleStates[2]);
     m_rearRight.setDesiredState(swerveModuleStates[3]);
+
+    //global variables/stuff
+    DriveConstants.globalxSpeed = xSpeedDelivered;
+    DriveConstants.globalySpeed = ySpeedDelivered;
+    DriveConstants.globalRot = rotDelivered;
     
   }
 
@@ -364,12 +361,12 @@ public class DriveSubsystem extends SubsystemBase {
     //sets controscheme to false when not held
     Constants.DriveConstants.driveScheme = true; 
   }
+
   
-  /* 
   public ChassisSpeeds getChassisSpeeds() {
-   return chassisSpeeds;
+    final ChassisSpeeds desiredSpeeds = new ChassisSpeeds(DriveConstants.globalxSpeed, DriveConstants.globalySpeed, DriveConstants.globalRot);
+    return desiredSpeeds;
   }
-  */
  
 
 }

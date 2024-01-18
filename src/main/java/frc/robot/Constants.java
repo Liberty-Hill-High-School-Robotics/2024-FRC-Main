@@ -29,6 +29,9 @@ public final class Constants {
     public static boolean driveScheme = true;
     //whether the robot is field centric or not, used to change control with a button
 
+    public static double globalxSpeed;
+    public static double globalySpeed;
+    public static double globalRot;
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;
