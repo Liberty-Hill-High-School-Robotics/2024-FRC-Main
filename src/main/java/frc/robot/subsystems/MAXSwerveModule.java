@@ -20,10 +20,10 @@ import com.revrobotics.CANSparkFlex;
 import frc.robot.Constants.ModuleConstants;
 
 public class MAXSwerveModule {
-  private final CANSparkFlex m_drivingSparkFlex;
+  final CANSparkFlex m_drivingSparkFlex;
   private final CANSparkMax m_turningSparkMax;
 
-  private final RelativeEncoder m_drivingEncoder;
+  public final RelativeEncoder m_drivingEncoder;
   private final AbsoluteEncoder m_turningEncoder;
 
   private final SparkPIDController m_drivingPIDController;
@@ -32,6 +32,8 @@ public class MAXSwerveModule {
   private double m_chassisAngularOffset = 0;
   private SwerveModuleState m_desiredState = new SwerveModuleState(0.0, new Rotation2d());
 
+
+ 
   /**
    * Constructs a MAXSwerveModule and configures the driving and turning motor,
    * encoder, and PID controller. This configuration is specific to the REV

@@ -99,7 +99,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
-
+   
+    
     /* 
     autobuilder needs to be configured last, add anything before this
     AutoBuilder.configureHolonomic(
@@ -154,6 +155,17 @@ public class DriveSubsystem extends SubsystemBase {
 
         SmartDashboard.putNumber("CurrentRotation", m_currentRotation);
       SmartDashboard.putNumber("Degree", Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees());
+
+      SmartDashboard.putNumber("FrontLeftDriveVoltage", m_frontLeft.m_drivingSparkFlex.getBusVoltage());
+    SmartDashboard.putNumber("FrontRightDriveVoltage", m_frontRight.m_drivingSparkFlex.getBusVoltage());
+    SmartDashboard.putNumber("RearLeftDriveVoltage", m_rearLeft.m_drivingSparkFlex.getBusVoltage());
+    SmartDashboard.putNumber("RearRightDriveVoltage", m_rearRight.m_drivingSparkFlex.getBusVoltage());
+
+     SmartDashboard.putNumber("FrontLeftDriveEncoder", m_frontLeft.m_drivingEncoder.getPosition());
+    SmartDashboard.putNumber("FrontRightDriveEncoder", m_frontRight.m_drivingEncoder.getPosition());
+    SmartDashboard.putNumber("RearLeftDriveEncoder", m_rearLeft.m_drivingEncoder.getPosition());
+    SmartDashboard.putNumber("RearRightDriveEncoder", m_rearRight.m_drivingEncoder.getPosition());
+     
   }
 
   /**
