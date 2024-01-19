@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 //imports here
-
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Bar extends SubsystemBase {
 

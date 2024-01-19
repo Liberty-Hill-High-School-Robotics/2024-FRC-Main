@@ -24,8 +24,20 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static final class DriveConstants {
+  public static final class OtherConstants {
+    //Motor IDs
+    public static final int elevatorMotorID = 999;
+    public static final int pivotIntakeID = 999;
+    public static final int groundRollerID = 999;
+    public static final int transferRollerID = 999;
+    public static final int pivotMotorID = 999;
+    public static final int flywheelMotor = 999;
+    public static final int storageRollerMotorID = 999;
+    public static final int barRotatorID = 999;
 
+  }
+
+  public static final class DriveConstants {
 
     public static boolean driveScheme = true;
     //whether the robot is field centric or not, used to change control with a button
