@@ -5,6 +5,9 @@
 package frc.robot;
 //import edu.wpi.first.wpilibj.PS4Controller.Button;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,6 +32,7 @@ import frc.robot.subsystems.DriveSubsystem;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final SendableChooser<Command> autoChooser;
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -39,8 +43,17 @@ public class RobotContainer {
 SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
+
+    // Build an auto chooser. This will use Commands.none() as the default option.
+    autoChooser = AutoBuilder.buildAutoChooser();
+    // Another option that allows you to specify the default auto by its name
+    // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
+    SmartDashboard.putData("Auto Chooser", autoChooser);
+
+    
     // Configure the button bindings
     configureButtonBindings();
+    
 
     m_chooser.addOption("sDrive", new sDrive(m_robotDrive));
 
@@ -116,6 +129,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-     return m_chooser.getSelected();
+    return new PathPlannerAuto("test auto");
   }
 }
