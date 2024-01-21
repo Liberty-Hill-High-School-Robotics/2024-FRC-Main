@@ -26,14 +26,17 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
   public static final class OtherConstants {
     //Motor IDs
-    public static final int elevatorMotorID = 999;
-    public static final int pivotIntakeID = 999;
-    public static final int groundRollerID = 999;
-    public static final int transferRollerID = 999;
-    public static final int pivotMotorID = 999;
-    public static final int flywheelMotor = 999;
-    public static final int storageRollerMotorID = 999;
-    public static final int barRotatorID = 999;
+    public static final int elevatorMotorID = 10;
+    public static final int elevatorMotor2ID = 11;
+    public static final int pivotIntakeID = 12;
+    public static final int groundRollerID = 13;
+    public static final int transferRollerID = 14;
+    public static final int pivotMotorID = 15;
+    public static final int pivotMotor2ID = 16;
+    public static final int flywheelMotorID = 17;
+    public static final int flywheelMotor2ID = 18;
+    public static final int storageRollerMotorID = 19;
+    public static final int barRotatorID = 20;
 
   }
 
@@ -42,9 +45,7 @@ public final class Constants {
     public static boolean driveScheme = true;
     //whether the robot is field centric or not, used to change control with a button
 
-    public static double globalxSpeed;
-    public static double globalySpeed;
-    public static double globalRot;
+    
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;
@@ -55,9 +56,9 @@ public final class Constants {
     public static final double kRotationalSlewRate = 1.8; // percent per second (1 = 100%) //2
 
     // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(19.5);
+    public static final double kTrackWidth = Units.inchesToMeters(23);
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(19.5);
+    public static final double kWheelBase = Units.inchesToMeters(23);
     // Distance between front and back wheels on robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2),

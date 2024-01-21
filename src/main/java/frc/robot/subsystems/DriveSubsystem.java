@@ -272,11 +272,6 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setDesiredState(swerveModuleStates[1]);
     m_rearLeft.setDesiredState(swerveModuleStates[2]);
     m_rearRight.setDesiredState(swerveModuleStates[3]);
-
-    //global variables/stuff
-    DriveConstants.globalxSpeed = xSpeedDelivered;
-    DriveConstants.globalySpeed = ySpeedDelivered;
-    DriveConstants.globalRot = rotDelivered;
     
   }
 
@@ -303,6 +298,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearLeft.setDesiredState(desiredStates[2]);
     m_rearRight.setDesiredState(desiredStates[3]);
   }
+
 
 
   /** Resets the drive encoders to currently read a position of 0. */
@@ -373,8 +369,13 @@ public class DriveSubsystem extends SubsystemBase {
 
   
   public ChassisSpeeds getChassisSpeeds() {
-    final ChassisSpeeds desiredSpeeds = new ChassisSpeeds(DriveConstants.globalxSpeed, DriveConstants.globalySpeed, DriveConstants.globalRot);
-    return desiredSpeeds;
+    return DriveConstants.KINEMATICS.toChassisSpeeds(
+      // supplier for chassisSpeed, order of motors need to be the same as the consumer of ChassisSpeed
+      m_frontLeft.getState(), 
+      m_frontRight.getState(),
+      m_rearLeft.getState(),
+      m_rearRight.getState()
+      );
   }
 
   //see drive constants for details
