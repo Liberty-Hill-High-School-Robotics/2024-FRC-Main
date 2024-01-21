@@ -372,8 +372,8 @@ public class DriveSubsystem extends SubsystemBase {
     return DriveConstants.KINEMATICS.toChassisSpeeds(
       // supplier for chassisSpeed, order of motors need to be the same as the consumer of ChassisSpeed
       m_frontLeft.getState(), 
-      m_frontRight.getState(),
       m_rearLeft.getState(),
+      m_frontRight.getState(),
       m_rearRight.getState()
       );
   }
