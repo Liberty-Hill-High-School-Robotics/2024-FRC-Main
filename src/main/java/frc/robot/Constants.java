@@ -38,6 +38,9 @@ public final class Constants {
     public static final int storageRollerMotorID = 19;
     public static final int barRotatorID = 20;
 
+    public static double limelightAdjust;
+
+
   }
 
   public static final class DriveConstants {
