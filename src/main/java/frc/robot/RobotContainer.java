@@ -7,6 +7,9 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.path.PathConstraints;
+import com.pathplanner.lib.auto.*;
+import com.pathplanner.lib.path.*;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
@@ -20,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.*;
+
 
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -49,6 +53,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     // Another option that allows you to specify the default auto by its name
     // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
     SmartDashboard.putData("Auto Chooser", autoChooser);
+    AutoBuilder.followPath(PathPlannerPath.fromPathFile("tAuto"));
+
+
 
     
     // Configure the button bindings
@@ -129,6 +136,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new PathPlannerAuto("test auto");
+    return new PathPlannerAuto("tAuto");
   }
 }

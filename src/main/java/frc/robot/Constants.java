@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -20,11 +16,25 @@ import edu.wpi.first.math.util.Units;
  *
  * <p>
  * It is advised to statically import this class (or one of its inner classes)
- * wherever the
- * constants are needed, to reduce verbosity.
+ * wherever the constants are needed, to reduce verbosity.
  */
+
+
 public final class Constants {
-  public static final class OtherConstants {
+  public static final class MotorSpeeds{
+    //all speeds should be a double
+    public static final double elevatorSpeed = .5;
+    public static final double pivotIntakeSpeed = .5;
+    public static final double groundRollerSpeed = .5;
+    public static final double transferRollerSpeed = .5;
+    public static final double pivotSpeed = .5;
+    public static final double flywheelSpeed = .5;
+    public static final double storageRollerSpeed = .5;
+    public static final double barRotatorSpeed = .5;
+
+    
+  }
+  public static final class CanIDs{
     //Motor IDs
     public static final int elevatorMotorID = 10;
     public static final int elevatorMotor2ID = 11;

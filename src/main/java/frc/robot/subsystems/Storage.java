@@ -1,10 +1,31 @@
 package frc.robot.subsystems;
 
+
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.*;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
+
 
 public class Storage extends SubsystemBase {
 
+    //motors & variables here
+    private CANSparkMax storageRollerSparkMax;
+
+
+
+    public Storage(){
+        //config motor settings here
+        storageRollerSparkMax = new CANSparkMax(CanIDs.storageRollerMotorID, MotorType.kBrushless);
+        storageRollerSparkMax.restoreFactoryDefaults();
+        storageRollerSparkMax.setInverted(false);
+        storageRollerSparkMax.setIdleMode(IdleMode.kCoast);
+    }
+
+  
 
     @Override
     public void periodic() {
@@ -19,5 +40,17 @@ public class Storage extends SubsystemBase {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+
+    public void storageRollerFeed(){
+        storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
+    }
+
+    public void storageRollerBackFeed(){
+        storageRollerSparkMax.set(-MotorSpeeds.storageRollerSpeed);
+    }
+
+    public void storageRollerStop(){
+        storageRollerSparkMax.set(0);
+    }
 
 }
