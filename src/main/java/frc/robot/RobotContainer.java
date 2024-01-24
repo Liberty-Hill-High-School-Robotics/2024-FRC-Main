@@ -53,6 +53,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     // Another option that allows you to specify the default auto by its name
     // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
     SmartDashboard.putData("tAuto", new PathPlannerAuto("tAuto"));
+    SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
+
 
 
     
