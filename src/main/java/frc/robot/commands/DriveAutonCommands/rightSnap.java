@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.DriveAutonCommands;
 
 /*
 unused imports
@@ -24,12 +24,12 @@ import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 
-public class controlSchemeRobot extends Command {
+public class rightSnap extends Command {
    
      private final DriveSubsystem m_robotDrive;
 
 
-    public controlSchemeRobot( DriveSubsystem subsystem
+    public rightSnap( DriveSubsystem subsystem
 
     ) {
 
@@ -51,25 +51,26 @@ public class controlSchemeRobot extends Command {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        m_robotDrive.controlSchemeField();
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.controlSchemeRobot();
+      m_robotDrive.rightSnap(m_robotDrive);
     }
 
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
+        super.end(interrupted);
     }
 
 
     @Override
     public boolean isFinished(){
-        return false;
+        return m_robotDrive.isright();
     }
    
 

@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.DriveAutonCommands;
 
 /*
 unused imports
@@ -24,12 +24,12 @@ import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 
-public class xPattern extends Command {
+public class controlSchemeField extends Command {
    
      private final DriveSubsystem m_robotDrive;
 
 
-    public xPattern( DriveSubsystem subsystem
+    public controlSchemeField( DriveSubsystem subsystem
 
     ) {
 
@@ -51,22 +51,18 @@ public class xPattern extends Command {
     // Called just before this Command runs the first time
     @Override
     public void initialize() {
-        
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-        //potentially add a if statement that does not activate while joysticks have value?
-        //robot will have conflicting commands if drivers drive and hold the set X button at the same time
-      m_robotDrive.setX();
+      m_robotDrive.controlSchemeField();
     }
 
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        super.end(interrupted);
     }
 
 

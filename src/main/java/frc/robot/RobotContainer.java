@@ -19,10 +19,20 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.*;
 
 
-import frc.robot.subsystems.DriveSubsystem;
+//subsystem and command imports
+import frc.robot.subsystems.*;
+import frc.robot.commands.DriveAutonCommands.*;
+
+//leave these imports here, we will need them later...
+import frc.robot.commands.ElevatorCommands.*;
+import frc.robot.commands.IntakeCommands.*;
+import frc.robot.commands.PivotCommmands.*;
+import frc.robot.commands.ShooterCommands.*;
+import frc.robot.commands.StorageCommands.*;
+import frc.robot.commands.BarCommands.*;
+
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -30,38 +40,33 @@ import frc.robot.subsystems.DriveSubsystem;
  * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
  * (including subsystems, commands, and button mappings) should be declared here.
  */
+
+
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final SendableChooser<Command> autoChooser;
   
-
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 
-  /**
-   * The container for the robot. Contains subsystems, OI devices, and commands.
-   */
+
+
+  //The container for the robot. Contains subsystems, OI devices, and commands.
 SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
+    configureButtonBindings();
 
-    // Build an auto chooser. This will use Commands.none() as the default option.
+    //Pathplanner auto chooser
     autoChooser = AutoBuilder.buildAutoChooser();
-    // Another option that allows you to specify the default auto by its name
-    // autoChooser = AutoBuilder.buildAutoChooser("My Default Auto");
+
+    //Autons
     SmartDashboard.putData("tAuto", new PathPlannerAuto("tAuto"));
     SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
 
-
-
-    
-    // Configure the button bindings
-    configureButtonBindings();
-    
-
+    //
     m_chooser.addOption("sDrive", new sDrive(m_robotDrive));
-
     SmartDashboard.putData("AutonMode", m_chooser);
     SmartDashboard.putData("rightSnap", new rightSnap(m_robotDrive));
     SmartDashboard.putData("Drive", m_robotDrive);
