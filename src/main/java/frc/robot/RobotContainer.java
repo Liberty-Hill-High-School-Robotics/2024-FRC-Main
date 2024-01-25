@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 
 
@@ -70,7 +69,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("AutonMode", m_chooser);
     SmartDashboard.putData("rightSnap", new rightSnap(m_robotDrive));
     SmartDashboard.putData("Drive", m_robotDrive);
-    SmartDashboard.putBoolean("DriveState", Constants.DriveConstants.driveScheme);
+    SmartDashboard.putBoolean("DriveState", true);
 
    
     
@@ -83,7 +82,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
                 -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                DriveConstants.driveScheme, true), //drivescheme sets either field centric or not
+                true, true), //drivescheme sets either field centric or not
             m_robotDrive));
 
   }
@@ -98,12 +97,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-
-    final Trigger controlSchemeButton = new JoystickButton(m_driverController, 6);
-    controlSchemeButton.whileTrue(new controlSchemeRobot(m_robotDrive));
-
-    final Trigger controlSchemeButtonOff = new JoystickButton(m_driverController, 6);
-    controlSchemeButtonOff.whileFalse(new controlSchemeField(m_robotDrive));
 
     final Trigger resetHeadingButton = new JoystickButton(m_driverController, 5);
     resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
