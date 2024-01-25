@@ -90,7 +90,7 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kDriveKinematics,
 
       //we are using .getangle because it returns the correct boolean, it SHOULD be the same as .getyaw, it was replaced for all instances
-      Rotation2d.fromDegrees(m_gyro.getAngle()),
+      Rotation2d.fromDegrees(m_gyro.getYaw().getValue()),
       new SwerveModulePosition[] {
           m_frontLeft.getPosition(),
           m_frontRight.getPosition(),
@@ -139,11 +139,9 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
 
-   
-
     // Update the odometry in the periodic block
     m_odometry.update(
-        Rotation2d.fromDegrees(m_gyro.getAngle()),
+        Rotation2d.fromDegrees(m_gyro.getYaw().getValue()),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -151,19 +149,20 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-        SmartDashboard.putNumber("CurrentRotation", m_currentRotation);
-      SmartDashboard.putNumber("Degree", Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees());
+    SmartDashboard.putNumber("CurrentRotation", m_currentRotation);
+    SmartDashboard.putNumber("Degree", Rotation2d.fromDegrees(m_gyro.getYaw().getValue()).getDegrees());
 
-      SmartDashboard.putNumber("FrontLeftDriveVoltage", m_frontLeft.m_drivingSparkFlex.getBusVoltage());
+    SmartDashboard.putNumber("FrontLeftDriveVoltage", m_frontLeft.m_drivingSparkFlex.getBusVoltage());
     SmartDashboard.putNumber("FrontRightDriveVoltage", m_frontRight.m_drivingSparkFlex.getBusVoltage());
     SmartDashboard.putNumber("RearLeftDriveVoltage", m_rearLeft.m_drivingSparkFlex.getBusVoltage());
     SmartDashboard.putNumber("RearRightDriveVoltage", m_rearRight.m_drivingSparkFlex.getBusVoltage());
 
-     SmartDashboard.putNumber("FrontLeftDriveEncoder", m_frontLeft.m_drivingEncoder.getPosition());
+    SmartDashboard.putNumber("FrontLeftDriveEncoder", m_frontLeft.m_drivingEncoder.getPosition());
     SmartDashboard.putNumber("FrontRightDriveEncoder", m_frontRight.m_drivingEncoder.getPosition());
     SmartDashboard.putNumber("RearLeftDriveEncoder", m_rearLeft.m_drivingEncoder.getPosition());
     SmartDashboard.putNumber("RearRightDriveEncoder", m_rearRight.m_drivingEncoder.getPosition());
-     
+
+    SmartDashboard.putNumber("rot", m_currentRotation);
   }
 
   /**
@@ -182,7 +181,7 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
-        Rotation2d.fromDegrees(m_gyro.getAngle()),
+        Rotation2d.fromDegrees(m_gyro.getYaw().getValue()),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -261,7 +260,7 @@ public class DriveSubsystem extends SubsystemBase {
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates( fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds
-    (xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_gyro.getAngle())) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
+    (xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_gyro.getYaw().getValue())) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
     m_frontLeft.setDesiredState(swerveModuleStates[0]);
     m_frontRight.setDesiredState(swerveModuleStates[1]);
@@ -316,7 +315,7 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the robot's heading in degrees, from -180 to 180
    */
   public double getHeading() {
-    return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
+    return Rotation2d.fromDegrees(m_gyro.getYaw().getValue()).getDegrees();
   }
 
   /**

@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;

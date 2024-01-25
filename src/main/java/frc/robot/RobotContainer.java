@@ -25,12 +25,12 @@ import frc.robot.subsystems.*;
 import frc.robot.commands.DriveAutonCommands.*;
 
 //leave these imports here, we will need them later...
-import frc.robot.commands.ElevatorCommands.*;
-import frc.robot.commands.IntakeCommands.*;
-import frc.robot.commands.PivotCommmands.*;
-import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.StorageCommands.*;
-import frc.robot.commands.BarCommands.*;
+//import frc.robot.commands.ElevatorCommands.*;
+//import frc.robot.commands.IntakeCommands.*;
+//import frc.robot.commands.PivotCommmands.*;
+//import frc.robot.commands.ShooterCommands.*;
+//import frc.robot.commands.StorageCommands.*;
+//import frc.robot.commands.BarCommands.*;
 
 
 /*
