@@ -53,12 +53,12 @@ public class Pivot extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void pivotForward(){
+    public void pivotUp(){
         pivotSparkMax.set(MotorSpeeds.pivotSpeed);
         pivotSparkMax2.set(MotorSpeeds.pivotSpeed);
     }
 
-    public void pivotBackwards(){
+    public void pivotDown(){
         pivotSparkMax.set(-MotorSpeeds.pivotSpeed);
         pivotSparkMax2.set(-MotorSpeeds.pivotSpeed);
     }
