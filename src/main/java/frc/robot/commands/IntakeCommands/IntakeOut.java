@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class IntakeIn extends Command {
+public class IntakeOut extends Command {
   // The subsystem the command runs on
   private final Intake m_intake;
 
-  public IntakeIn(Intake subsystem) {
+  public IntakeOut(Intake subsystem) {
     m_intake = subsystem;
     addRequirements(m_intake);
   }
@@ -24,7 +24,7 @@ public class IntakeIn extends Command {
 
   @Override
   public void execute() {
-     m_intake.intakeIn();
+     m_intake.intakeOut();
   }
 
   @Override
