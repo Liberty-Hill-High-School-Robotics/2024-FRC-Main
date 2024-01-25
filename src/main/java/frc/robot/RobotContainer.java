@@ -63,6 +63,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //Autons
     SmartDashboard.putData("tAuto", new PathPlannerAuto("tAuto"));
     SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
+    SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
+
 
     //
     m_chooser.addOption("sDrive", new sDrive(m_robotDrive));
