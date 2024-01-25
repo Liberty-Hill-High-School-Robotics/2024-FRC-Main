@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -47,9 +48,11 @@ public class Intake extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    
     public void intakeIn(){
         groundRollerSparkMax.set(MotorSpeeds.groundRollerSpeed);
     }
+   
 
     public void intakeOut(){
         groundRollerSparkMax.set(-MotorSpeeds.groundRollerSpeed);
@@ -59,4 +62,17 @@ public class Intake extends SubsystemBase {
         groundRollerSparkMax.set(0);
     }
 
+
+  
+
+
+
+   
+
 }
+
+
+
+
+
+
