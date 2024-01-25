@@ -19,6 +19,11 @@ public class IntakeStop extends Command {
 
   @Override
   public void initialize() {
+   
+  }
+
+  @Override
+  public void execute(){
     m_intake.intakeStop();
   }
 

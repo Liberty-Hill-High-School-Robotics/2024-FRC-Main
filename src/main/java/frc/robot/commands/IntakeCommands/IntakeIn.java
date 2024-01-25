@@ -23,14 +23,17 @@ public class IntakeIn extends Command {
   }
 
   @Override
-
   public void execute() {
      m_intake.intakeIn();
   }
 
   @Override
-  public boolean isFinished() {
+  public void end(boolean interrupted){
     m_intake.intakeStop();
+  }
+
+  @Override
+  public boolean isFinished() {
     return true;
   }
 
