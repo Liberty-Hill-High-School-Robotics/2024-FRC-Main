@@ -221,19 +221,6 @@
               "_showGlyph": false
             }
           },
-          "3,2": {
-            "size": [
-              3,
-              2
-            ],
-            "content": {
-              "_type": "Network Table Tree",
-              "_source0": "network_table:///PathPlanner",
-              "_title": "PathPlanner",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "1,3": {
             "size": [
               1,
@@ -290,6 +277,45 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
+          "4,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Degree",
+              "_title": "/SmartDashboard/Degree",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/rot",
+              "_title": "rot",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "6,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/testAuto",
+              "_title": "testAuto",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
           "0,2": {
             "size": [
               1,
@@ -297,8 +323,8 @@
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/4NoteAuto",
-              "_title": "SmartDashboard/4NoteAuto",
+              "_source0": "network_table:///SmartDashboard/testAuto",
+              "_title": "/SmartDashboard/testAuto",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -310,8 +336,8 @@
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/4NoteAuto/running",
-              "_title": "SmartDashboard/4NoteAuto/running",
+              "_source0": "network_table:///SmartDashboard/testAuto/running",
+              "_title": "/SmartDashboard/testAuto/running",
               "_glyph": 148,
               "_showGlyph": false,
               "Colors/Color when true": "#7CFC00FF",
@@ -337,8 +363,8 @@
   ],
   "windowGeometry": {
     "x": 953.0,
-    "y": 224.0,
+    "y": 225.0,
     "width": 974.0,
-    "height": 815.0
+    "height": 814.0
   }
 }
