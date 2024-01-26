@@ -47,20 +47,31 @@ public class Intake extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    
-    public void intakeIn(){
+    //intake rollers
+    public void intakeRollerFeed(){
         groundRollerSparkMax.set(MotorSpeeds.groundRollerSpeed);
     }
    
 
-    public void intakeOut(){
+    public void intakeRollerBackFeed(){
         groundRollerSparkMax.set(-MotorSpeeds.groundRollerSpeed);
     }
 
-    public void intakeStop(){
+    public void intakeRollerStop(){
         groundRollerSparkMax.set(0);
     }
 
+
+    //intakePivot
+    public void intakePivotUp(){
+        pivotIntakeSparkMax.set(MotorSpeeds.pivotIntakeSpeed);
+    }
+    public void intakePivotDown(){
+        pivotIntakeSparkMax.set(-MotorSpeeds.pivotIntakeSpeed);
+    }
+    public void intakePivotStop(){
+        pivotIntakeSparkMax.set(0);
+    }
 
   
 

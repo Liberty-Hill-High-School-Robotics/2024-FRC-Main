@@ -1,4 +1,4 @@
-package frc.robot.commands.IntakeCommands;
+package frc.robot.commands.IntakeCommands.IntakeRoller.Roller;
 
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class IntakeIn extends Command {
+public class IntakeRollerBackFeed extends Command {
   // The subsystem the command runs on
   private final Intake m_intake;
 
-  public IntakeIn(Intake subsystem) {
+  public IntakeRollerBackFeed(Intake subsystem) {
     m_intake = subsystem;
     addRequirements(m_intake);
   }
@@ -24,12 +24,12 @@ public class IntakeIn extends Command {
 
   @Override
   public void execute() {
-     m_intake.intakeIn();
+     m_intake.intakeRollerBackFeed();
   }
 
   @Override
   public void end(boolean interrupted){
-    m_intake.intakeStop();
+    m_intake.intakeRollerStop();
   }
 
   @Override

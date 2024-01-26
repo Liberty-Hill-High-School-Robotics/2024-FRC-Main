@@ -69,11 +69,11 @@ public class Pivot extends SubsystemBase {
     }
 
     //transfer roller
-    public void tRollerForward(){
+    public void tRollerFeed(){
         transferRollerSparkMax.set(MotorSpeeds.transferRollerSpeed);
     }
 
-    public void tRollerBackward(){
+    public void tRollerBackFeed(){
         transferRollerSparkMax.set(-MotorSpeeds.transferRollerSpeed);
     }
 
