@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class PivotUp extends Command {
+public class PivotDown extends Command {
   // The subsystem the command runs on
   private final Pivot m_pivot;
 
-  public PivotUp(Pivot subsystem) {
+  public PivotDown(Pivot subsystem) {
     m_pivot = subsystem;
     addRequirements(m_pivot);
   }
@@ -24,7 +24,7 @@ public class PivotUp extends Command {
 
   @Override
   public void execute(){
-    m_pivot.pivotUp();
+    m_pivot.pivotDown();
   }
 
   @Override
