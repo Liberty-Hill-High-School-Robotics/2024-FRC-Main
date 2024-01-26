@@ -1,6 +1,7 @@
-package frc.robot.commands.IntakeCommands;
+package frc.robot.commands.StorageCommands;
 
-import frc.robot.subsystems.Intake;
+
+import frc.robot.subsystems.Storage;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -8,13 +9,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class IntakeStop extends Command {
+public class StorageRollersStop extends Command {
   // The subsystem the command runs on
-  private final Intake m_intake;
+  private final Storage m_storage;
 
-  public IntakeStop(Intake subsystem) {
-    m_intake = subsystem;
-    addRequirements(m_intake);
+  public StorageRollersStop(Storage subsystem) {
+    m_storage = subsystem;
+    addRequirements(m_storage);
   }
 
   @Override
@@ -24,8 +25,10 @@ public class IntakeStop extends Command {
 
   @Override
   public void execute(){
-    m_intake.intakeStop();
+    m_storage.storageRollerStop();
   }
+
+ 
 
   @Override
   public boolean isFinished() {
