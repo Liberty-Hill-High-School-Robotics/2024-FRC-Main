@@ -1,4 +1,4 @@
-package frc.robot.commands.PivotCommmands;
+package frc.robot.commands.PivotCommmands.TRollers;
 
 import frc.robot.subsystems.Pivot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class PivotStop extends Command {
+public class TRollerFeed extends Command {
   // The subsystem the command runs on
   private final Pivot m_pivot;
 
-  public PivotStop(Pivot subsystem) {
+  public TRollerFeed(Pivot subsystem) {
     m_pivot = subsystem;
     addRequirements(m_pivot);
   }
@@ -24,7 +24,12 @@ public class PivotStop extends Command {
 
   @Override
   public void execute(){
-    m_pivot.pivotStop();
+    m_pivot.tRollerFeed();
+  }
+
+  @Override
+  public void end(boolean interrupted){
+   m_pivot.tRollerStop();
   }
 
   @Override

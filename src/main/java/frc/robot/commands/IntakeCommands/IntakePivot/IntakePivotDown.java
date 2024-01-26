@@ -1,6 +1,6 @@
-package frc.robot.commands.PivotCommmands;
+package frc.robot.commands.IntakeCommands.IntakePivot;
 
-import frc.robot.subsystems.Pivot;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class PivotDown extends Command {
+public class IntakePivotDown extends Command {
   // The subsystem the command runs on
-  private final Pivot m_pivot;
+  private final Intake m_intake;
 
-  public PivotDown(Pivot subsystem) {
-    m_pivot = subsystem;
-    addRequirements(m_pivot);
+  public IntakePivotDown(Intake subsystem) {
+    m_intake = subsystem;
+    addRequirements(m_intake);
   }
 
   @Override
@@ -24,12 +24,12 @@ public class PivotDown extends Command {
 
   @Override
   public void execute(){
-    m_pivot.pivotDown();
+    m_intake.intakePivotDown();
   }
 
   @Override
   public void end(boolean interrupted){
-   m_pivot.pivotStop();
+    m_intake.intakePivotStop();
   }
 
   @Override
