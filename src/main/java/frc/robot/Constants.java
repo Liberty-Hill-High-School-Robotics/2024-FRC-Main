@@ -28,7 +28,7 @@ public final class Constants {
     public static final double groundRollerSpeed = .5;
     public static final double transferRollerSpeed = .5;
     public static final double pivotSpeed = .5;
-    public static final double flywheelSpeed = .5;
+    public static final double shooterSpeed = .5;
     public static final double storageRollerSpeed = .5;
     public static final double barRotatorSpeed = .5;
 
@@ -43,8 +43,8 @@ public final class Constants {
     public static final int transferRollerID = 14;
     public static final int pivotMotorID = 15;
     public static final int pivotMotor2ID = 16;
-    public static final int flywheelMotorID = 17;
-    public static final int flywheelMotor2ID = 18;
+    public static final int shooterMotorID = 17;
+    public static final int shooterMotor2ID = 18;
     public static final int storageRollerMotorID = 19;
     public static final int barRotatorID = 20;
 

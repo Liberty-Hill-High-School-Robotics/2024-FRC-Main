@@ -3,33 +3,32 @@ package frc.robot.subsystems;
 
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
-
 import frc.robot.Constants.*;
-
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 
 
 public class Shooter extends SubsystemBase {
 
     //motors & variables here
-    private TalonFX flywheelTalonFX;
-    private TalonFX flywheelTalonFX2;
-
+    private CANSparkMax shooterSparkMax;
+    private CANSparkMax shooterSparkMax2;
 
 
 
     public Shooter(){
         //config motor settings here
-        flywheelTalonFX = new TalonFX(CanIDs.flywheelMotorID);
-        flywheelTalonFX.setInverted(false);
-        flywheelTalonFX.setNeutralMode(NeutralModeValue.Coast);
+        shooterSparkMax = new CANSparkMax(CanIDs.shooterMotorID, MotorType.kBrushless);
+        shooterSparkMax.restoreFactoryDefaults();
+        shooterSparkMax.setInverted(false);
+        shooterSparkMax.setIdleMode(IdleMode.kCoast);
 
-        flywheelTalonFX2 = new TalonFX(CanIDs.flywheelMotor2ID);
-        flywheelTalonFX2.setInverted(false);
-        flywheelTalonFX2.setNeutralMode(NeutralModeValue.Coast);
+        shooterSparkMax2 = new CANSparkMax(CanIDs.shooterMotor2ID, MotorType.kBrushless);
+        shooterSparkMax2.restoreFactoryDefaults();
+        shooterSparkMax2.setInverted(false);
+        shooterSparkMax2.setIdleMode(IdleMode.kCoast);
     }
 
   
@@ -48,19 +47,19 @@ public class Shooter extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void shooterForward(){
-        flywheelTalonFX.set(MotorSpeeds.flywheelSpeed);
-        flywheelTalonFX2.set(MotorSpeeds.flywheelSpeed);
+    public void shooterFeed(){
+        shooterSparkMax.set(MotorSpeeds.shooterSpeed);
+        shooterSparkMax2.set(MotorSpeeds.shooterSpeed);
     }
 
-    public void shooterBackward(){
-        flywheelTalonFX.set(-MotorSpeeds.flywheelSpeed);
-        flywheelTalonFX2.set(-MotorSpeeds.flywheelSpeed);
+    public void shooterBackfeed(){
+        shooterSparkMax.set(-MotorSpeeds.shooterSpeed);
+        shooterSparkMax2.set(-MotorSpeeds.shooterSpeed);
     }
 
     public void shooterStop(){
-        flywheelTalonFX.set(0);
-        flywheelTalonFX2.set(0);
+        shooterSparkMax.set(0);
+        shooterSparkMax2.set(0);
     }
 
 }

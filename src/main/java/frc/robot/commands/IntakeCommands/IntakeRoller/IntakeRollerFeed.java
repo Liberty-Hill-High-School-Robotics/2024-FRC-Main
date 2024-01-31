@@ -1,4 +1,4 @@
-package frc.robot.commands.IntakeCommands.IntakeRoller.Roller;
+package frc.robot.commands.IntakeCommands.IntakeRoller;
 
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
