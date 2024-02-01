@@ -18,6 +18,13 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.*;
 
+//ADDED LIMELIGHT CODE
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+//ADDED LIMELIGHT CODE
+
 import frc.robot.subsystems.DriveSubsystem;
 
 /*
@@ -62,6 +69,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 DriveConstants.driveScheme, true), //drivescheme sets either field centric or not
             m_robotDrive));
+    
 
   }
 
@@ -115,6 +123,31 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    *
    * @return the command to run in autonomous
    */
+
+
+   
+   static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+
+   public static double getTx() {
+   NetworkTableEntry tx = table.getEntry("tx");
+   return tx.getDouble(0.0);
+   }
+
+   public static double getTy() {
+   NetworkTableEntry ty = table.getEntry("ty");
+   return ty.getDouble(0.0);
+   }
+
+   public static double getTa() {
+   NetworkTableEntry ta = table.getEntry("ta");
+   return ta.getDouble(0.0);
+   }
+   
+   //read values periodically
+   
+
+
+
   public Command getAutonomousCommand() {
      return m_chooser.getSelected();
   }
