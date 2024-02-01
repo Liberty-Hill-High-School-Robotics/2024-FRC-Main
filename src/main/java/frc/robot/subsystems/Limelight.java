@@ -37,12 +37,12 @@ public class Limelight extends SubsystemBase {
         //read values periodically
         double x = RobotContainer.getTx();
         double y = RobotContainer.getTy();
-        double area = RobotContainer.getTa();
+        double angle = RobotContainer.getTa();
 
         //post to smart dashboard periodically
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
-        SmartDashboard.putNumber("LimelightArea", area);
+        SmartDashboard.putNumber("LimelightArea", angle);
     }
     
 

@@ -32,6 +32,11 @@ import frc.robot.commands.DriveAutonCommands.*;
 //import frc.robot.commands.StorageCommands.*;
 //import frc.robot.commands.BarCommands.*;
 
+//limelight imports
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -128,6 +133,22 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     buttonResetIAccum.onTrue(new ResetIAccum(m_drive));
    */
 
+   static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+
+   public static double getTx() {
+   NetworkTableEntry tx = table.getEntry("tx");
+   return tx.getDouble(0.0);
+   }
+
+   public static double getTy() {
+   NetworkTableEntry ty = table.getEntry("ty");
+   return ty.getDouble(0.0);
+   }
+
+   public static double getTa() {
+   NetworkTableEntry ta = table.getEntry("ta");
+   return ta.getDouble(0.0);
+   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
