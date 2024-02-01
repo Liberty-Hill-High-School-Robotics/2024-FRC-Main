@@ -2,9 +2,6 @@ package frc.robot.subsystems;
 
 
 //imports here
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
@@ -13,7 +10,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 
 
-public class Shooter extends PIDsubsystem {
+public class Shooter extends SubsystemBase {
 
     //motors & variables here
     private CANSparkMax shooterSparkMax;
@@ -32,12 +29,6 @@ public class Shooter extends PIDsubsystem {
         shooterSparkMax2.restoreFactoryDefaults();
         shooterSparkMax2.setInverted(false);
         shooterSparkMax2.setIdleMode(IdleMode.kCoast);
-
-        //shooter PID
-        super(new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD));
-        getController().setTolerance(ShooterConstants.kShooterToleranceRPS);
-        m_shooterEncoder.setDistancePerPulse(ShooterConstants.kEncoderDistancePerPulse);
-        setSetpoint(ShooterConstants.kShooterTargetRPS);
     }
 
   

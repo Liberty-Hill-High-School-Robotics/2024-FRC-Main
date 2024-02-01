@@ -21,16 +21,6 @@ import edu.wpi.first.math.util.Units;
 
 
 public final class Constants {
-  public static final class OtherConstants{
-    public static double limelightAdjust;
-  }
-  public static final class ShooterConstants{
-    public static final double sP;
-    public static final double sI;
-    public static final double sD;
-    
-
-  }
   public static final class MotorSpeeds{
     //all speeds should be a double
     public static final double elevatorSpeed = .5;
@@ -57,6 +47,9 @@ public final class Constants {
     public static final int shooterMotor2ID = 18;
     public static final int storageRollerMotorID = 19;
     public static final int barRotatorID = 20;
+
+    public static double limelightAdjust;
+
 
   }
 
