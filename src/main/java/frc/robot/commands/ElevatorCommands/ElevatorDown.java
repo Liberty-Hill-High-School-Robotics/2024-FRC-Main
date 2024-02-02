@@ -1,4 +1,4 @@
-package frc.robot.commands.ElevatorCommands.Elevator;
+package frc.robot.commands.ElevatorCommands;
 
 import frc.robot.subsystems.Elevator;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class ElevatorUp extends Command {
+public class ElevatorDown extends Command {
   // The subsystem the command runs on
   private final Elevator m_elevator;
 
-  public ElevatorUp(Elevator subsystem) {
+  public ElevatorDown(Elevator subsystem) {
     m_elevator = subsystem;
     addRequirements(m_elevator);
   }
