@@ -99,6 +99,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
     SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
 
+    
+    double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
+    SmartDashboard.putData("revShooter", m_shooter.revFlyhweel(shooterSetSetPoint));
+
 
 
    
@@ -128,11 +132,14 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    */
   private void configureButtonBindings() {
 
+
+    /* 
     final Trigger resetHeadingButton = new JoystickButton(m_driverController, 5);
     resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
 
     final POVButton snapFrontButton = new POVButton(m_driverController, 0, 1);
     snapFrontButton.onTrue(new rightSnap(m_robotDrive));
+    */
 
     //the implementation below is kind of weird, it calls a function directly from a subsystem, and 
     //the buttons don't seem to work, or aren't tuned properly.
