@@ -23,13 +23,14 @@ import frc.robot.Constants.OIConstants;
 //subsystem and command imports
 import frc.robot.subsystems.*;
 import frc.robot.commands.DriveAutonCommands.*;
+import frc.robot.commands.ShooterCommands.*;
+import frc.robot.commands.StorageCommands.StorageRollersFeed;
+import frc.robot.commands.StorageCommands.*;
 
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
 //import frc.robot.commands.IntakeCommands.*;
 //import frc.robot.commands.PivotCommmands.*;
-//import frc.robot.commands.ShooterCommands.*;
-//import frc.robot.commands.StorageCommands.*;
 //import frc.robot.commands.BarCommands.*;
 
 //limelight imports
@@ -47,6 +48,18 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 
 public class RobotContainer {
+
+// The robot's subsystems
+    public final Bar m_bar = new Bar();
+    public final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
+    public final Elevator m_elevator = new Elevator();
+    public final Intake m_intake = new Intake();
+    public final Limelight m_limelight = new Limelight();
+    public final Pivot m_pivot = new Pivot();
+    public final Shooter m_shooter = new Shooter();
+    public final Storage m_storage = new Storage();   
+
+
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final SendableChooser<Command> autoChooser;
@@ -77,6 +90,16 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("rightSnap", new rightSnap(m_robotDrive));
     SmartDashboard.putData("Drive", m_robotDrive);
     SmartDashboard.putBoolean("DriveState", true);
+
+    SmartDashboard.putData("shooterOut", new ShooterFeed(m_shooter));
+    SmartDashboard.putData("shooterIn", new ShooterBackFeed(m_shooter));
+    SmartDashboard.putData("shooterStop", new ShooterStop(m_shooter));
+
+    SmartDashboard.putData("storageRollersFeed", new StorageRollersFeed(m_storage));
+    SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
+    SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
+
+
 
    
     
