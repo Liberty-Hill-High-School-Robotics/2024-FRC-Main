@@ -28,6 +28,13 @@ public final class Constants {
 
 
   }
+  public static final class PivotConstants{
+    public static final double pP = 0.01;
+    public static final double pI = 0;
+    public static final double pD = 0;
+
+
+  }
   public static final class MotorSpeeds{
     //all speeds should be a double
     public static final double elevatorSpeed = .5;

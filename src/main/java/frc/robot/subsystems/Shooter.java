@@ -17,6 +17,7 @@ public class Shooter extends SubsystemBase {
     private CANSparkMax shooterSparkMax;
     private CANSparkMax shooterSparkMax2;
     PIDController shooterPID = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
+    
 
 
 
