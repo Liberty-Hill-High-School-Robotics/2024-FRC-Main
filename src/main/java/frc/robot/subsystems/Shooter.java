@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -41,18 +42,22 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+
     }
 
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
 
+        SmartDashboard.putNumber("shooterSparkMax.get()", shooterSparkMax.get());
+        SmartDashboard.putNumber("shooterSparkMax2.get()", shooterSparkMax2.get());
+
     }
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public Sendable revFlyhweel(double setpoint){
+    public void revFlyhweel(double setpoint){
         shooterSparkMax.set(shooterPID.calculate(shooterSparkMax.get(), setpoint));
         shooterSparkMax2.set(shooterPID.calculate(shooterSparkMax2.get(), setpoint));
     }
