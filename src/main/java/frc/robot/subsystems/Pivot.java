@@ -1,12 +1,17 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.math.controller.PIDController;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
+
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.SparkAbsoluteEncoder.Type;
+import java.lang.Math.*;
 
 
 
@@ -16,8 +21,9 @@ public class Pivot extends SubsystemBase {
     private CANSparkMax pivotSparkMax;
     private CANSparkMax pivotSparkMax2;
     private CANSparkMax transferRollerSparkMax;
+    private final AbsoluteEncoder pivotAbsoluteEncoder;
 
-
+     PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
 
     public Pivot(){
         //config motor settings here
@@ -35,6 +41,10 @@ public class Pivot extends SubsystemBase {
         transferRollerSparkMax.restoreFactoryDefaults();
         transferRollerSparkMax.setInverted(false);
         transferRollerSparkMax.setIdleMode(IdleMode.kCoast);
+
+        pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle);
+        pivotAbsoluteEncoder.setVelocityConversionFactor(180/(Math.PI));
+
     }
 
   
@@ -52,6 +62,11 @@ public class Pivot extends SubsystemBase {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+
+    public void anglePivot(double degree){
+        pivotSparkMax.set(pivotPID.calculate(pivotAbsoluteEncoder.getPositionConversionFactor(), degree));
+        pivotSparkMax2.set(pivotPID.calculate(pivotAbsoluteEncoder.getPositionConversionFactor(), degree));
+    }
 
     public void pivotUp(){
         pivotSparkMax.set(MotorSpeeds.pivotSpeed);
