@@ -24,7 +24,7 @@ public class ElevatorUp extends Command {
 
   @Override
   public void execute(){
-    m_elevator.elevatorUp();
+    m_elevator.elevatorDown();
   }
 
   @Override 
