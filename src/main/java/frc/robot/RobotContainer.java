@@ -100,8 +100,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
 
     
-    double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
-    SmartDashboard.putData("revShooter", m_shooter.revFlyhweel(shooterSetSetPoint));
+    //double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
+    //SmartDashboard.putData("revShooter", new revShooter(m_shooter));
 
 
 

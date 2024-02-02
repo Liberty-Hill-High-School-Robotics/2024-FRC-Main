@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.util.sendable.Sendable;
+//import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -57,7 +57,7 @@ public class Shooter extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void revFlyhweel(double setpoint){
+    public void revShooter(double setpoint){
         shooterSparkMax.set(shooterPID.calculate(shooterSparkMax.get(), setpoint));
         shooterSparkMax2.set(shooterPID.calculate(shooterSparkMax2.get(), setpoint));
     }
