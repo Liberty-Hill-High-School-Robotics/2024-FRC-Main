@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.math.controller.PIDController;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -15,6 +16,7 @@ public class Shooter extends SubsystemBase {
     //motors & variables here
     private CANSparkMax shooterSparkMax;
     private CANSparkMax shooterSparkMax2;
+    PIDController shooterPID = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
 
 
 
@@ -29,6 +31,7 @@ public class Shooter extends SubsystemBase {
         shooterSparkMax2.restoreFactoryDefaults();
         shooterSparkMax2.setInverted(false);
         shooterSparkMax2.setIdleMode(IdleMode.kCoast);
+
     }
 
   
@@ -47,6 +50,12 @@ public class Shooter extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    public void revFlyhweel(double setpoint){
+        shooterSparkMax.set(shooterPID.calculate(shooterSparkMax.get(), setpoint));
+        shooterSparkMax2.set(shooterPID.calculate(shooterSparkMax2.get(), setpoint));
+    }
+
+    
     public void shooterFeed(){
         shooterSparkMax.set(MotorSpeeds.shooterSpeed);
         shooterSparkMax2.set(MotorSpeeds.shooterSpeed);

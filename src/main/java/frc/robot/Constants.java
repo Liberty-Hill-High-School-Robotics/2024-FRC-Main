@@ -21,6 +21,13 @@ import edu.wpi.first.math.util.Units;
 
 
 public final class Constants {
+  public static final class ShooterConstants{
+    public static final double sP = 0.01;
+    public static final double sI = 0;
+    public static final double sD = 0;
+
+
+  }
   public static final class MotorSpeeds{
     //all speeds should be a double
     public static final double elevatorSpeed = .5;

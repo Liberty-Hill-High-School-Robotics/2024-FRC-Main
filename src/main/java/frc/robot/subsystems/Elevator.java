@@ -47,17 +47,17 @@ public class Elevator extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void barRotateForward(){
+    public void elevatorUp(){
         elevatorSparkMax.set(MotorSpeeds.elevatorSpeed);
         elevatorSparkMax2.set(MotorSpeeds.elevatorSpeed);
     }
 
-    public void barRotateBackwards(){
+    public void elevatorDown(){
         elevatorSparkMax.set(-MotorSpeeds.elevatorSpeed);
         elevatorSparkMax2.set(-MotorSpeeds.elevatorSpeed);
     }
 
-    public void barRotateStop(){
+    public void elevatorStop(){
         elevatorSparkMax.set(0);
         elevatorSparkMax2.set(0);
     }
