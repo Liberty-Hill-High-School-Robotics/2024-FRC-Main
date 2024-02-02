@@ -21,7 +21,7 @@ public class Bar extends SubsystemBase {
         //config motor settings here
         barRotatorSparkMax = new CANSparkMax(CanIDs.barRotatorID, MotorType.kBrushless);
         barRotatorSparkMax.restoreFactoryDefaults();
-        barRotatorSparkMax.setInverted(false);
+        barRotatorSparkMax.setInverted(true);
         barRotatorSparkMax.setIdleMode(IdleMode.kBrake);
     }
 

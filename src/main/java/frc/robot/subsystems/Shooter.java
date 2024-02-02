@@ -27,12 +27,12 @@ public class Shooter extends SubsystemBase {
         //config motor settings here
         shooterSparkMax = new CANSparkMax(CanIDs.shooterMotorID, MotorType.kBrushless);
         shooterSparkMax.restoreFactoryDefaults();
-        shooterSparkMax.setInverted(false);
+        shooterSparkMax.setInverted(true);
         shooterSparkMax.setIdleMode(IdleMode.kCoast);
 
         shooterSparkMax2 = new CANSparkMax(CanIDs.shooterMotor2ID, MotorType.kBrushless);
         shooterSparkMax2.restoreFactoryDefaults();
-        shooterSparkMax2.setInverted(false);
+        shooterSparkMax2.setInverted(true);
         shooterSparkMax2.setIdleMode(IdleMode.kCoast);
 
     }
