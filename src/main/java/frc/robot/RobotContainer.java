@@ -77,9 +77,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     autoChooser = AutoBuilder.buildAutoChooser();
 
     //Autons
-    SmartDashboard.putData("tAuto", new PathPlannerAuto("tAuto"));
-    SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
-    SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
+    //SmartDashboard.putData("tAuto", new PathPlannerAuto("tAuto"));
+    //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
+    //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
 
 
     //
