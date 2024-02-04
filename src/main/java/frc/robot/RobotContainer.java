@@ -23,7 +23,6 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.*;
 import frc.robot.commands.DriveAutonCommands.*;
 import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.commands.StorageCommands.*;
 
 //leave these imports here, we will need them later...
@@ -81,9 +80,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
     //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
 
-
-    //
-    m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
     SmartDashboard.putData("AutonMode", m_chooser);
     SmartDashboard.putData("rightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
@@ -96,6 +92,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("storageRollersFeed", new StorageRollersFeed(m_storage));
     SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
     SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
+    //
+    m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
+
 
     
     //double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
@@ -118,6 +117,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
             m_drivesubsystem));
 
   }
+
 
   /**
    * Use this method to define your button->command mappings. Buttons can be
