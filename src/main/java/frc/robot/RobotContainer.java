@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 
@@ -51,17 +50,16 @@ public class RobotContainer {
 
 // The robot's subsystems
     public final Bar m_bar = new Bar();
-    public final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
     public final Elevator m_elevator = new Elevator();
     public final Intake m_intake = new Intake();
     public final Limelight m_limelight = new Limelight();
+    public final Storage m_storage = new Storage();
     public final Pivot m_pivot = new Pivot();
     public final Shooter m_shooter = new Shooter();
-    public final Storage m_storage = new Storage();   
 
 
   // The robot's subsystems
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   private final SendableChooser<Command> autoChooser;
   
   // The driver's controller
@@ -85,10 +83,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 
     //
-    m_chooser.addOption("sDrive", new sDrive(m_robotDrive));
+    m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
     SmartDashboard.putData("AutonMode", m_chooser);
-    SmartDashboard.putData("rightSnap", new rightSnap(m_robotDrive));
-    SmartDashboard.putData("Drive", m_robotDrive);
+    SmartDashboard.putData("rightSnap", new rightSnap(m_drivesubsystem));
+    SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
 
     SmartDashboard.putData("shooterOut", new ShooterFeed(m_shooter));
@@ -108,16 +106,16 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    
     
     // Configure default commands
-    m_robotDrive.setDefaultCommand(
+    m_drivesubsystem.setDefaultCommand(
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
-            () -> m_robotDrive.drive(
+            () -> m_drivesubsystem.drive(
                 -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true, true), //drivescheme sets either field centric or not
-            m_robotDrive));
+            m_drivesubsystem));
 
   }
 
@@ -135,10 +133,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     /* 
     final Trigger resetHeadingButton = new JoystickButton(m_driverController, 5);
-    resetHeadingButton.onTrue(new resetHeading(m_robotDrive));
+    resetHeadingButton.onTrue(new resetHeading(m_drivesubsystem));
 
     final POVButton snapFrontButton = new POVButton(m_driverController, 0, 1);
-    snapFrontButton.onTrue(new rightSnap(m_robotDrive));
+    snapFrontButton.onTrue(new rightSnap(m_drivesubsystem));
     */
 
     //the implementation below is kind of weird, it calls a function directly from a subsystem, and 
@@ -146,12 +144,12 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   //  new JoystickButton(m_driverController, Button.kR1.value)
   //      .whileTrue(new RunCommand(
-  //          () -> m_robotDrive.setX(),
-  //          m_robotDrive));
+  //          () -> m_drivesubsystem.setX(),
+  //          m_drivesubsystem));
   
     //here is an implementation as I see it should be
     final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
-    xPatternButton.whileTrue(new xPattern(m_robotDrive));
+    xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
 
   }
   /* Example Button Binding from 2023 Main code
