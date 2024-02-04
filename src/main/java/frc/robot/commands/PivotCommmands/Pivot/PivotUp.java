@@ -34,6 +34,6 @@ public class PivotUp extends Command {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

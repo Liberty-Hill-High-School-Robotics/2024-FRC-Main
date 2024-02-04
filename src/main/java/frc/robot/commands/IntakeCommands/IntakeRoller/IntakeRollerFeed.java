@@ -34,7 +34,7 @@ public class IntakeRollerFeed extends Command {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 
   

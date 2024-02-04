@@ -34,6 +34,6 @@ public class ElevatorUp extends Command {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
