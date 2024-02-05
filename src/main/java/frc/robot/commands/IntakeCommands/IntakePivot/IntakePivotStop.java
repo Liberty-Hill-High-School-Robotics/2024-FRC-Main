@@ -25,10 +25,12 @@ public class IntakePivotStop extends Command {
   @Override
   public void execute(){
     m_intake.intakeRollerStop();
+
   }
 
   @Override
   public boolean isFinished() {
     return false;
+    
   }
 }
