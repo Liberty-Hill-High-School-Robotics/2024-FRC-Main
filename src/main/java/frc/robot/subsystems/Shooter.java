@@ -64,6 +64,15 @@ public class Shooter extends SubsystemBase {
     }
 
     
+    //TODO: tune these values for the commands below and replace .getTa with a .getDistance command
+    public double calculateSpeed(){
+        //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
+        //speed is on a scale from -1 -> 1
+        double speed = .2; //starting speed @ 0 ft
+        speed = speed - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        return speed;
+    }
+    
     public void shooterFeed(){
         shooterSparkMax.set(MotorSpeeds.shooterSpeed);
         shooterSparkMax2.set(MotorSpeeds.shooterSpeed);
@@ -81,20 +90,5 @@ public class Shooter extends SubsystemBase {
 
 
 
-    //TODO: tune these values for the commands below and replace .getTa with a .getDistance command
-    public double calculateAngle(){
-        //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        double angle = 50; //starting angle @ 0 ft
-        angle = angle - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
-        return angle;
-    }
-
-    public double calculateSpeed(){
-        //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
-        //speed is on a scale from -1 -> 1
-        double speed = .2; //starting speed @ 0 ft
-        speed = speed - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
-        return speed;
-    }
 
 }

@@ -68,6 +68,13 @@ public class Pivot extends SubsystemBase {
         pivotSparkMax2.set(pivotPID.calculate(pivotAbsoluteEncoder.getPositionConversionFactor(), degree));
     }
 
+    public double calculateAngle(){
+        //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
+        double angle = 50; //starting angle @ 0 ft
+        angle = angle - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        return angle;
+    }
+
     public void pivotUp(){
         pivotSparkMax.set(MotorSpeeds.pivotSpeed);
         pivotSparkMax2.set(MotorSpeeds.pivotSpeed);
