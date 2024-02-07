@@ -6,7 +6,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotContainer;
+//import frc.robot.RobotContainer;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
@@ -85,7 +85,7 @@ public class Shooter extends SubsystemBase {
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
         double angle = 50; //starting angle @ 0 ft
-        angle = angle - ((RobotContainer.getTa()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        angle = angle - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
         return angle;
     }
 
@@ -93,7 +93,7 @@ public class Shooter extends SubsystemBase {
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
         double speed = .2; //starting speed @ 0 ft
-        speed = speed - ((RobotContainer.getTa()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        speed = speed - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
         return speed;
     }
 

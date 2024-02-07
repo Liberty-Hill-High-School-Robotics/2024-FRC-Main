@@ -53,9 +53,9 @@ public class Limelight extends SubsystemBase {
         
     }
 
-    public int getDistance(){
+    public static int roundDistance(){
         //takes distance (currently subed for .getTa), and rounds it to the nearest whole number (casted to an int because round returns long)
-        int distance =  (int) round(RobotContainer.getTa());
+        int distance = (int) round(RobotContainer.getDistance());
         return distance;
     }
 
