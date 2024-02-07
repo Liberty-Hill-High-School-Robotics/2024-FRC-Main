@@ -150,6 +150,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
     xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
 
+    final Trigger autoAimButton = new JoystickButton(m_driverController, 6);
+
   }
   /* Example Button Binding from 2023 Main code
   starts by defining a trigger, can be replaced with other button types like POVButton, but only when necessary
