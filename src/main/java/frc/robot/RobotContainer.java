@@ -17,8 +17,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
-
-
+import frc.robot.Constants.ShooterConstants;
 //subsystem and command imports
 import frc.robot.subsystems.*;
 import frc.robot.commands.DriveAutonCommands.*;
@@ -177,6 +176,16 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    NetworkTableEntry ta = table.getEntry("ta");
    return ta.getDouble(0.0);
    }
+
+   public static double getDistance(){
+    //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
+    //uses this equation ^
+    //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
+    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight)
+                    / Math.tan(ShooterConstants.CamAngle + getTy());
+    return distance;
+   }
+
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

@@ -21,7 +21,17 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
 
-  public static final class ShootingConstants {
+  public static final class ShooterConstants{
+    public static final double sP = 0.01;
+    public static final double sI = 0;
+    public static final double sD = 0;
+
+    public static final double Slope = .05;
+
+    public static final double ApTagHeight = 36.875; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
+    public static final double CamHeight = 7; //in inches
+    public static final double CamAngle = 30; //in degrees
+
     public enum ShootingPosition {
       //create an enum list of shooting posistions (one every foot until 20 feet away)
       F0       (0), 
@@ -124,19 +134,13 @@ public final class Constants {
     }
   }
 
-  //-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-  public static final class ShooterConstants{
-    public static final double sP = 0.01;
-    public static final double sI = 0;
-    public static final double sD = 0;
-
-
-  }
   public static final class PivotConstants{
     public static final double pP = 0.01;
     public static final double pI = 0;
     public static final double pD = 0;
+
+    public static final double Slope = 0; //angle subtracted with each foot the robot is away from the sub
+
 
 
   }

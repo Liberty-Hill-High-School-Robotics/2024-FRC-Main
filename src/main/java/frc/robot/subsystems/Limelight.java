@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 //import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.RobotContainer;
+import static java.lang.Math.*;
 /*
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
@@ -50,6 +51,12 @@ public class Limelight extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         
+    }
+
+    public int getDistance(){
+        //takes distance (currently subed for .getTa), and rounds it to the nearest whole number (casted to an int because round returns long)
+        int distance =  (int) round(RobotContainer.getTa());
+        return distance;
     }
 
 }
