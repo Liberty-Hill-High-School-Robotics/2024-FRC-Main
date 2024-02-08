@@ -11,6 +11,7 @@ import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -21,10 +22,12 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.OIConstants;
 import frc.utils.SwerveUtils;
  
 
@@ -74,6 +77,9 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   public final Pigeon2 m_gyro = new Pigeon2(9);
+
+  public XboxController m_driverControllerLocal = new XboxController(OIConstants.kDriverControllerPort);
+
 
 
   // Slew rate filter variables for controlling lateral acceleration
@@ -377,8 +383,11 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
   }
 
-  public void aimWhileMoving(){
-    //yippee!
+  public void aimWhileMoving(double PIDValue){
+    //runs default drive command with driver joystick values but the PID value for rotation
+    drive(-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband),
+    -MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband),
+    PIDValue, true, true);
   }
 
 }
