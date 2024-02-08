@@ -5,6 +5,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
@@ -18,7 +19,7 @@ public class Bar extends SubsystemBase {
     //motors & variables here
     private CANSparkMax barRotatorSparkMax;
     private SparkLimitSwitch barReverseLimitSwitch;
-   
+    private RelativeEncoder barRotatorRealtiveEncoder;
 
 
 
@@ -33,6 +34,8 @@ public class Bar extends SubsystemBase {
 
         barRotatorSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
         barRotatorSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
+
+        barRotatorRealtiveEncoder = barRotatorSparkMax.getEncoder();
     }
 
   
@@ -45,6 +48,7 @@ public class Bar extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
+        
 
     }
 
@@ -64,11 +68,15 @@ public class Bar extends SubsystemBase {
     }
 
     public boolean barAtReverseLimit(){
+        if (true) {barRotatorRealtiveEncoder.setPosition(0);}
+
         return barReverseLimitSwitch.isPressed();
     }
 
     public boolean barAtRotateForwardLimit(){
         return barRotatorSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
     }
+
+
 
 }
