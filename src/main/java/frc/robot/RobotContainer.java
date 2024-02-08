@@ -61,7 +61,7 @@ public class RobotContainer {
   private final SendableChooser<Command> autoChooser;
   
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  public XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 
 
 
@@ -196,4 +196,17 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   public Command getAutonomousCommand() {
     return new PathPlannerAuto("tAuto");
   }
+
+  public double getDriverJoystickX(){
+    double XValue = 0;
+    XValue = -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband);
+    return XValue;
+  }
+
+  public double getDriverJoystickY(){
+    double YValue = 0;
+    YValue = -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband);
+    return YValue;
+  }
+
 }
