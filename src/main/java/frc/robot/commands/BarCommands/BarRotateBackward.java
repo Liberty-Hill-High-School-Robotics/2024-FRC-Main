@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class BarRotateBackward extends Command {
   // The subsystem the command runs on
   private final Bar m_bar;
-
+ 
   public BarRotateBackward(Bar subsystem) {
     m_bar = subsystem;
     addRequirements(m_bar);
@@ -33,7 +33,7 @@ public class BarRotateBackward extends Command {
     
     m_bar.barRotateStop();
     m_bar.barRotateRestRelativeEncoder();
-    SmartDashboard.
+    SmartDashboard.putBoolean("barRotateBackEnds", true);
   }
 
   @Override

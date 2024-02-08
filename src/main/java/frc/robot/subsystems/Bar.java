@@ -20,7 +20,7 @@ public class Bar extends SubsystemBase {
     //motors & variables here
     private CANSparkMax barRotatorSparkMax;
     private SparkLimitSwitch barReverseLimitSwitch;
-    private RelativeEncoder barRotatorRelativeEncoder;
+    public RelativeEncoder barRotatorRelativeEncoder;
 
 
 
@@ -45,6 +45,11 @@ public class Bar extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("barRotatorRelativeEncoder", barRotatorRelativeEncoder.getPosition());
+
+        if(barAtReverseLimit() == true){
+            barRotateRestRelativeEncoder();
+        }
+
     }
 
     @Override
