@@ -20,6 +20,10 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterConstants;
 //subsystem and command imports
 import frc.robot.subsystems.*;
+import frc.robot.commands.BarCommands.BarRotateBackward;
+import frc.robot.commands.BarCommands.BarRotateForward;
+import frc.robot.commands.BarCommands.BarRotateRestRelativeEncoder;
+import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.*;
 import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
@@ -91,6 +95,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("storageRollersFeed", new StorageRollersFeed(m_storage));
     SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
     SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
+
+    SmartDashboard.putData("barRotatorForward", new BarRotateForward(m_bar));
+    SmartDashboard.putData("barRotatorBackward", new BarRotateBackward(m_bar));
+    SmartDashboard.putData("barRotatorStop", new BarRotateStop(m_bar));
+    SmartDashboard.putData("BarRotateRestRelativeEncoder", new BarRotateRestRelativeEncoder(m_bar));
     //
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
