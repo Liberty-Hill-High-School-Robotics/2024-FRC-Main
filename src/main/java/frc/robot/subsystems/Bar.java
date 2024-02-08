@@ -5,8 +5,11 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.SparkLimitSwitch.Type;
 
 
 
@@ -14,6 +17,8 @@ public class Bar extends SubsystemBase {
 
     //motors & variables here
     private CANSparkMax barRotatorSparkMax;
+    private SparkLimitSwitch barReverseLimitSwitch;
+   
 
 
 
@@ -23,6 +28,11 @@ public class Bar extends SubsystemBase {
         barRotatorSparkMax.restoreFactoryDefaults();
         barRotatorSparkMax.setInverted(true);
         barRotatorSparkMax.setIdleMode(IdleMode.kBrake);
+
+        barReverseLimitSwitch = barRotatorSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
+
+        barRotatorSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
+        barRotatorSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
     }
 
   
@@ -51,6 +61,14 @@ public class Bar extends SubsystemBase {
 
     public void barRotateStop(){
         barRotatorSparkMax.set(0);
+    }
+
+    public boolean barAtReverseLimit(){
+        return barReverseLimitSwitch.isPressed();
+    }
+
+    public boolean barAtRotateForwardLimit(){
+        return barRotatorSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
     }
 
 }
