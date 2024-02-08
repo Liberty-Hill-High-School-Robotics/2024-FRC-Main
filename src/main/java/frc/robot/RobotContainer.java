@@ -20,17 +20,13 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterConstants;
 //subsystem and command imports
 import frc.robot.subsystems.*;
-import frc.robot.commands.BarCommands.BarRotateBackward;
-import frc.robot.commands.BarCommands.BarRotateForward;
-import frc.robot.commands.BarCommands.BarRotateRestRelativeEncoder;
-import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.*;
 import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
 
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
-//import frc.robot.commands.IntakeCommands.*;
+import frc.robot.commands.IntakeCommands.*;
 //import frc.robot.commands.PivotCommmands.*;
 //import frc.robot.commands.BarCommands.*;
 
@@ -65,7 +61,7 @@ public class RobotContainer {
   private final SendableChooser<Command> autoChooser;
   
   // The driver's controller
-  public XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 
 
 
@@ -95,11 +91,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("storageRollersFeed", new StorageRollersFeed(m_storage));
     SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
     SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
-
-    SmartDashboard.putData("barRotatorForward", new BarRotateForward(m_bar));
-    SmartDashboard.putData("barRotatorBackward", new BarRotateBackward(m_bar));
-    SmartDashboard.putData("barRotatorStop", new BarRotateStop(m_bar));
-    SmartDashboard.putData("BarRotateRestRelativeEncoder", new BarRotateRestRelativeEncoder(m_bar));
     //
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
@@ -159,7 +150,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
     xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
 
-    final Trigger autoAimButton = new JoystickButton(m_driverController, 6);
+    final Trigger AutoIntake = new JoystickButton(m_driverController, 1);
+    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot));
 
   }
   /* Example Button Binding from 2023 Main code
@@ -187,7 +179,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    NetworkTableEntry ta = table.getEntry("ta");
    return ta.getDouble(0.0);
    }
-
+   
    public static double getDistance(){
     //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
     //uses this equation ^
@@ -205,17 +197,4 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   public Command getAutonomousCommand() {
     return new PathPlannerAuto("tAuto");
   }
-
-  public double getDriverJoystickX(){
-    double XValue = 0;
-    XValue = -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband);
-    return XValue;
-  }
-
-  public double getDriverJoystickY(){
-    double YValue = 0;
-    YValue = -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband);
-    return YValue;
-  }
-
 }

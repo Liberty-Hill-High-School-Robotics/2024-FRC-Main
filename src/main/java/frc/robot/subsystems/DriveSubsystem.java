@@ -12,6 +12,7 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -26,6 +27,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.utils.SwerveUtils;
@@ -79,6 +81,8 @@ public class DriveSubsystem extends SubsystemBase {
   public final Pigeon2 m_gyro = new Pigeon2(9);
 
   public XboxController m_driverControllerLocal = new XboxController(OIConstants.kDriverControllerPort);
+  PIDController turningPID = new PIDController(DriveConstants.tP, DriveConstants.tI, DriveConstants.tD);
+
 
 
 
@@ -382,6 +386,12 @@ public class DriveSubsystem extends SubsystemBase {
     setModuleStates(
       DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
   }
+
+  public double turnPID(){
+    double output = (turningPID.calculate(-RobotContainer.getTx(), 0));
+    return output;
+}
+
 
   public void aimWhileMoving(double PIDValue){
     //runs default drive command with driver joystick values but the PID value for rotation
