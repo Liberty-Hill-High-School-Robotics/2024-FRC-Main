@@ -19,7 +19,7 @@ public class Bar extends SubsystemBase {
     //motors & variables here
     private CANSparkMax barRotatorSparkMax;
     private SparkLimitSwitch barReverseLimitSwitch;
-    private RelativeEncoder barRotatorRealtiveEncoder;
+    private RelativeEncoder barRotatorRelativeEncoder;
 
 
 
@@ -35,7 +35,7 @@ public class Bar extends SubsystemBase {
         barRotatorSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
         barRotatorSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
 
-        barRotatorRealtiveEncoder = barRotatorSparkMax.getEncoder();
+        barRotatorRelativeEncoder = barRotatorSparkMax.getEncoder();
     }
 
   
@@ -68,7 +68,7 @@ public class Bar extends SubsystemBase {
     }
 
     public boolean barAtReverseLimit(){
-        if (true) {barRotatorRealtiveEncoder.setPosition(0);}
+        if (true) {barRotatorRelativeEncoder.setPosition(0);}
 
         return barReverseLimitSwitch.isPressed();
     }
