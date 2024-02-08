@@ -34,6 +34,6 @@ public class BarRotateBackwards extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return m_bar.barAtReverseLimit();
   }
 }
