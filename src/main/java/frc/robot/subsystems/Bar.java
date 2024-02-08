@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -43,11 +44,13 @@ public class Bar extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putNumber("barRotatorRelativeEncoder", barRotatorRelativeEncoder.getPosition());
     }
 
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
+        
         
 
     }
@@ -59,7 +62,7 @@ public class Bar extends SubsystemBase {
         barRotatorSparkMax.set(MotorSpeeds.barRotatorSpeed);
     }
 
-    public void barRotateBackwards(){
+    public void barRotateBackward(){
         barRotatorSparkMax.set(-MotorSpeeds.barRotatorSpeed);
     }
 
@@ -68,13 +71,16 @@ public class Bar extends SubsystemBase {
     }
 
     public boolean barAtReverseLimit(){
-        if (true) {barRotatorRelativeEncoder.setPosition(0);}
-
+    
         return barReverseLimitSwitch.isPressed();
     }
 
     public boolean barAtRotateForwardLimit(){
         return barRotatorSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
+    }
+
+    public void barRotateRestRelativeEncoder(){
+        barRotatorRelativeEncoder.setPosition(0);
     }
 
 
