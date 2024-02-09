@@ -6,9 +6,11 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 //import frc.robot.RobotContainer;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
@@ -19,6 +21,9 @@ public class Shooter extends SubsystemBase {
     //motors & variables here
     private CANSparkMax shooterSparkMax;
     private CANSparkMax shooterSparkMax2;
+    private RelativeEncoder shooterSparkMaxRelativeEncoder;
+    private RelativeEncoder shooterSparkMax2RelativeEncoder;
+
     PIDController shooterPID = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
     
 
@@ -28,13 +33,16 @@ public class Shooter extends SubsystemBase {
         //config motor settings here
         shooterSparkMax = new CANSparkMax(CanIDs.shooterMotorID, MotorType.kBrushless);
         shooterSparkMax.restoreFactoryDefaults();
-        shooterSparkMax.setInverted(true);
+        shooterSparkMax.setInverted(false);
         shooterSparkMax.setIdleMode(IdleMode.kCoast);
 
         shooterSparkMax2 = new CANSparkMax(CanIDs.shooterMotor2ID, MotorType.kBrushless);
         shooterSparkMax2.restoreFactoryDefaults();
-        shooterSparkMax2.setInverted(true);
+        shooterSparkMax2.setInverted(false);
         shooterSparkMax2.setIdleMode(IdleMode.kCoast);
+
+        shooterSparkMaxRelativeEncoder = shooterSparkMax.getEncoder();
+        shooterSparkMax2RelativeEncoder = shooterSparkMax2.getEncoder();
 
     }
 
@@ -53,23 +61,33 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("shooterSparkMax.get()", shooterSparkMax.get());
         SmartDashboard.putNumber("shooterSparkMax2.get()", shooterSparkMax2.get());
 
+        SmartDashboard.putNumber("shooterSparkMaxRelativeEncoder.getVelocity()", shooterSparkMaxRelativeEncoder.getVelocity());
+        SmartDashboard.putNumber("shooterSparkMax2RelativeEncoder.getVelocity()", shooterSparkMax2RelativeEncoder.getVelocity());
+        
+        SmartDashboard.putNumber("calculateSpeed", calculateSpeed());
+        
+        
+
+
     }
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    
     public void revShooter(double setpoint){
-        shooterSparkMax.set(shooterPID.calculate(shooterSparkMax.get(), setpoint));
-        shooterSparkMax2.set(shooterPID.calculate(shooterSparkMax2.get(), setpoint));
+       
+        shooterSparkMax.set(setpoint);
+        shooterSparkMax2.set(setpoint);
     }
 
     
     //TODO: tune these values for the commands below and replace .getTa with a .getDistance command
+
     public double calculateSpeed(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
         double speed = .2; //starting speed @ 0 ft
-        speed = speed - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        speed = speed - ((getDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
         return speed;
     }
     
@@ -87,6 +105,14 @@ public class Shooter extends SubsystemBase {
         shooterSparkMax.set(0);
         shooterSparkMax2.set(0);
     }
+
+    public double getDistance(){
+        //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
+        //uses this equation ^
+        //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
+        double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan(ShooterConstants.CamAngle + RobotContainer.getTy());
+        return distance;
+       }
 
 
 

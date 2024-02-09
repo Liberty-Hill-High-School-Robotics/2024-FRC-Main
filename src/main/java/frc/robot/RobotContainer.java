@@ -20,13 +20,15 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterConstants;
 //subsystem and command imports
 import frc.robot.subsystems.*;
+import frc.robot.commands.AutoIntake;
 import frc.robot.commands.DriveAutonCommands.*;
 import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
 
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
-import frc.robot.commands.IntakeCommands.*;
+import frc.robot.commands.IntakeCommands.IntakePivot.*;
+import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 //import frc.robot.commands.PivotCommmands.*;
 //import frc.robot.commands.BarCommands.*;
 
@@ -87,12 +89,21 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("shooterOut", new ShooterFeed(m_shooter));
     SmartDashboard.putData("shooterIn", new ShooterBackFeed(m_shooter));
     SmartDashboard.putData("shooterStop", new ShooterStop(m_shooter));
+    SmartDashboard.putData("revShooter", new RevShooter(m_shooter, m_shooter.calculateSpeed()));
+    
+    SmartDashboard.putNumber("getDistance", getDistance());
 
     SmartDashboard.putData("storageRollersFeed", new StorageRollersFeed(m_storage));
     SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
     SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
+
+    
+
+
     //
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
+
+
 
 
     
@@ -180,14 +191,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    return ta.getDouble(0.0);
    }
    
-   public static double getDistance(){
-    //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
-    //uses this equation ^
-    //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
-    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight)
-                    / Math.tan(ShooterConstants.CamAngle + getTy());
-    return distance;
-   }
+  
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
