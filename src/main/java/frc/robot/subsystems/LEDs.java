@@ -1,11 +1,11 @@
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ColorConstants;
-
 //CANdle has yet to be ported to Phoenix6, so for now use the Phoenix5 imports and libraries
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.RainbowAnimation;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ColorConstants;
 
 
 public class LEDs extends SubsystemBase {
@@ -48,9 +48,48 @@ public class LEDs extends SubsystemBase {
     public void candleSetColor(String color){
         //set brightness
         candle.configBrightnessScalar(100);
+        int r;
+        int g;
+        int b;
 
-        //set color
-        candle.setLEDs(ColorConstants.color[0], ColorConstants.color[1], ColorConstants.color[2]);
+        //switch statement
+        switch (color) {
+            case ("purple"): r = ColorConstants.purple[0]; 
+            g = ColorConstants.purple[1]; 
+            b = ColorConstants.purple[2]; 
+            break;
+
+            case ("gold"): r = ColorConstants.gold[0]; 
+            g = ColorConstants.gold[1]; 
+            b = ColorConstants.gold[2]; 
+            break;
+
+            case ("orange"): r = ColorConstants.orange[0]; 
+            g = ColorConstants.orange[1]; 
+            b = ColorConstants.orange[2]; 
+            break;
+
+            case ("blue"): r = ColorConstants.blue[0]; 
+            g = ColorConstants.blue[1]; 
+            b = ColorConstants.blue[2]; 
+            break;
+
+            case ("red"): r = ColorConstants.red[0]; 
+            g = ColorConstants.red[1]; 
+            b = ColorConstants.red[2]; 
+            break;
+
+            case ("green"): r = ColorConstants.green[0]; 
+            g = ColorConstants.green[1]; 
+            b = ColorConstants.green[2]; 
+            break;
+
+            default: r = 255;
+            g = 255;
+            b = 255;
+        }
+     //set color
+        candle.setLEDs(r, g, b);
     }
 
 
