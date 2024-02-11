@@ -105,8 +105,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
     SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 25));
 
-
-    //
+    SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
+    SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
+    SmartDashboard.putData("IntakePivotStop", new IntakePivotStop(m_intake));
+    
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
 
