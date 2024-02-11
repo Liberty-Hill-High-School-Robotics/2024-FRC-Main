@@ -21,6 +21,15 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
 
+  public static final class ColorConstants{
+    public static int[] purple = new int[]{80, 45, 127}; 
+    public static int[] gold   = new int[]{255, 145, 0}; 
+    public static int[] orange = new int[]{255, 145, 0}; 
+    public static int[] blue   = new int[]{0, 0, 255}; 
+    public static int[] red    = new int[]{255, 0, 0}; 
+    public static int[] green  = new int[]{0, 255, 0};
+  }
+
   public static final class ShooterConstants{
     public static final double sP = 0.01;
     public static final double sI = 0;
@@ -29,8 +38,8 @@ public final class Constants {
     public static final double Slope = .05;
 
     public static final double ApTagHeight = 36.875; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
-    public static final double CamHeight = 7; //in inches
-    public static final double CamAngle = 30; //in degrees
+    public static final double CamHeight = 7.00; //in inches
+    public static final double CamAngle = 30.00; //in degrees
   }
 
   public static final class PivotConstants{

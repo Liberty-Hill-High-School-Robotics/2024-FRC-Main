@@ -87,7 +87,7 @@ public class Shooter extends SubsystemBase {
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
         double speed = .2; //starting speed @ 0 ft
-        speed = speed - ((getDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        speed = speed - ((RobotContainer.getDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
         return speed;
     }
     
@@ -105,16 +105,4 @@ public class Shooter extends SubsystemBase {
         shooterSparkMax.set(0);
         shooterSparkMax2.set(0);
     }
-
-    public double getDistance(){
-        //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
-        //uses this equation ^
-        //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
-        double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan(ShooterConstants.CamAngle + RobotContainer.getTy());
-        return distance;
-       }
-
-
-
-
 }

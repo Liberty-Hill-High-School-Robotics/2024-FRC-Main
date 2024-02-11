@@ -195,7 +195,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
     //uses this equation ^
     //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
-    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan(ShooterConstants.CamAngle + getTy());
+    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + getTy()) * (Math.PI/180));
     return distance;
    }
 
