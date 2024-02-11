@@ -29,9 +29,12 @@ import frc.robot.commands.StorageCommands.*;
 //import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
 import frc.robot.commands.IntakeCommands.IntakeRoller.*;
+import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
+import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
 //import frc.robot.commands.PivotCommmands.*;
 //import frc.robot.commands.BarCommands.*;
-
+import frc.robot.commands.PivotCommmands.Pivot.PivotUp;
+import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 //limelight imports
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -82,22 +85,25 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
 
     SmartDashboard.putData("AutonMode", m_chooser);
-    SmartDashboard.putData("rightSnap", new rightSnap(m_drivesubsystem));
+    SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
 
-    SmartDashboard.putData("shooterOut", new ShooterFeed(m_shooter));
-    SmartDashboard.putData("shooterIn", new ShooterBackFeed(m_shooter));
-    SmartDashboard.putData("shooterStop", new ShooterStop(m_shooter));
-    SmartDashboard.putData("revShooter", new RevShooter(m_shooter, m_shooter.calculateSpeed()));
+    SmartDashboard.putData("ShooterOut", new ShooterFeed(m_shooter));
+    SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
+    SmartDashboard.putData("ShooterStop", new ShooterStop(m_shooter));
+    SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, m_shooter.calculateSpeed()));
     
-    SmartDashboard.putNumber("getDistance", getDistance());
+    SmartDashboard.putNumber("GetDistance", getDistance());
 
-    SmartDashboard.putData("storageRollersFeed", new StorageRollersFeed(m_storage));
-    SmartDashboard.putData("storageRollersBackFeed", new StorageRollersBackFeed(m_storage));
-    SmartDashboard.putData("storageRollersStop", new StorageRollersStop(m_storage));
+    SmartDashboard.putData("StorageRollersFeed", new StorageRollersFeed(m_storage));
+    SmartDashboard.putData("StorageRollersBackFeed", new StorageRollersBackFeed(m_storage));
+    SmartDashboard.putData("StorageRollersStop", new StorageRollersStop(m_storage));
 
-    
+    SmartDashboard.putData("PivotUp", new PivotUp(m_pivot));
+    SmartDashboard.putData("PivotDown", new PivotDown(m_pivot));
+    SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
+    SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 25));
 
 
     //

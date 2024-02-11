@@ -1,4 +1,4 @@
-package frc.robot.commands.PivotCommmands.Pivot;
+package frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 
 import frc.robot.subsystems.Pivot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class anglePivot extends Command {
+public class AnglePivot extends Command {
   // The subsystem the command runs on
   private final Pivot m_pivot;
   private final double m_degree;
 
-  public anglePivot(Pivot subsystem, double degree) {
+  public AnglePivot(Pivot subsystem, double degree) {
     m_pivot = subsystem;
     addRequirements(m_pivot);
     m_degree = degree;
