@@ -191,7 +191,13 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    return ta.getDouble(0.0);
    }
    
-  
+  public static double getDistance(){
+    //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
+    //uses this equation ^
+    //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
+    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan(ShooterConstants.CamAngle + getTy());
+    return distance;
+   }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
