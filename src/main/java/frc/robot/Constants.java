@@ -52,8 +52,12 @@ public final class Constants {
 
 
   }
-  public static final class IntakeConstants{
+  public static final class BarConstants{
     public final static float fLimit = 22;
+
+  }
+  public static final class IntakeConstants{
+    public final static float fLimit = 5;
 
   }
   public static final class MotorSpeeds{

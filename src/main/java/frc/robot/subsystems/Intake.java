@@ -1,12 +1,18 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkLimitSwitch;
+
 import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.SparkLimitSwitch.Type;
 
 
 
@@ -15,6 +21,9 @@ public class Intake extends SubsystemBase {
     //motors & variables here
     private CANSparkMax pivotIntakeSparkMax;
     private CANSparkMax groundRollerSparkMax;
+    
+    private SparkLimitSwitch pivotInakeReverseLimitSwitch;
+    public RelativeEncoder pivotIntakeRelativeEncoder;
 
 
 
@@ -24,6 +33,12 @@ public class Intake extends SubsystemBase {
         pivotIntakeSparkMax.restoreFactoryDefaults();
         pivotIntakeSparkMax.setInverted(false);
         pivotIntakeSparkMax.setIdleMode(IdleMode.kBrake);
+
+        pivotInakeReverseLimitSwitch = pivotIntakeSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
+        pivotIntakeRelativeEncoder = pivotIntakeSparkMax.getEncoder();
+
+        pivotIntakeSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
+        pivotIntakeSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
 
         groundRollerSparkMax = new CANSparkMax(CanIDs.groundRollerID, MotorType.kBrushless);
         groundRollerSparkMax.restoreFactoryDefaults();
@@ -41,6 +56,13 @@ public class Intake extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
+
+        SmartDashboard.putNumber("pivotIntakeRelativeEncoder", pivotIntakeRelativeEncoder.getPosition());
+
+        if(pivotInakeAtReverseLimit() == true){
+            pivotIntakeResetRelativeEncoder();
+        }
+
 
     }
 
@@ -71,6 +93,19 @@ public class Intake extends SubsystemBase {
     }
     public void intakePivotStop(){
         pivotIntakeSparkMax.set(0);
+    }
+
+    public boolean pivotInakeAtReverseLimit(){
+    
+        return pivotInakeReverseLimitSwitch.isPressed();
+    }
+
+    public boolean pivotInakeAtForwardLimit(){
+        return pivotIntakeSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
+    }
+
+    public void pivotIntakeResetRelativeEncoder(){
+        pivotIntakeRelativeEncoder.setPosition(0);
     }
 
   

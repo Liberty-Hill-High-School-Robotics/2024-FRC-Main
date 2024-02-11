@@ -34,7 +34,7 @@ public class Bar extends SubsystemBase {
         barReverseLimitSwitch = barRotatorSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
 
         barRotatorSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
-        barRotatorSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
+        barRotatorSparkMax.setSoftLimit(SoftLimitDirection.kForward, BarConstants.fLimit);
 
         barRotatorRelativeEncoder = barRotatorSparkMax.getEncoder();
     }

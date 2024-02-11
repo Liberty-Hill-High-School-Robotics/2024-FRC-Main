@@ -34,6 +34,6 @@ public class IntakePivotUp extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return m_intake.pivotInakeAtReverseLimit();
   }
 }
