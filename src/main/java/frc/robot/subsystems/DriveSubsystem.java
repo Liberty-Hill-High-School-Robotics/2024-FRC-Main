@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+
 import com.ctre.phoenix6.hardware.Pigeon2;
 //imports for Pathplanner follow commmands/stuff below
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -21,6 +22,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+//import edu.wpi.first.math.proto.Kinematics;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
@@ -31,6 +33,7 @@ import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.utils.SwerveUtils;
+
  
 
 
@@ -400,9 +403,13 @@ public class DriveSubsystem extends SubsystemBase {
     PIDValue, true, true);
   }
 
-  public void aimWhileMovingv2(ChassisSpeeds chassisSpeeds) {
-    setModuleStates(
-      DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
+  public void aimWhileMovingv2(double PIDValue) {
+    //TODO: test this, make sure that the command is fine with the joystick values when it wants translation in m/s
+    var speeds = new ChassisSpeeds(-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband),
+      -MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband),PIDValue);
+
+    //apply swerve module states
+    setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
 
 }
