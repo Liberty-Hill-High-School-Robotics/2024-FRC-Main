@@ -24,9 +24,9 @@ public class AutoIntake extends SequentialCommandGroup {
         Storage m_storage,
         Pivot m_pivot,
         Shooter m_shooter
-    ){
+    ){}
     
-    
+        /* 
         new ParallelCommandGroup(
             //want to change this to a parallel deadline group, which ends once a certain command ends, but cant figure out the syntax for it yet
             //run all commands in parallel until the throughbeam == true
@@ -35,7 +35,7 @@ public class AutoIntake extends SequentialCommandGroup {
             new TRollerFeed(m_pivot),
             new StorageRollersFeed(m_storage));
         }
-    
+        */
 
     @Override
     public boolean runsWhenDisabled() {

@@ -34,7 +34,7 @@ public class Pivot extends SubsystemBase {
 
         pivotSparkMax2 = new CANSparkMax(CanIDs.pivotMotor2ID, MotorType.kBrushless);
         pivotSparkMax2.restoreFactoryDefaults();
-        pivotSparkMax2.setInverted(false);
+        pivotSparkMax2.setInverted(true);
         pivotSparkMax2.setIdleMode(IdleMode.kBrake);
 
         transferRollerSparkMax = new CANSparkMax(CanIDs.transferRollerID, MotorType.kBrushless);
