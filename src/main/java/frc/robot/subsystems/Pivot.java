@@ -39,7 +39,7 @@ public class Pivot extends SubsystemBase {
 
         transferRollerSparkMax = new CANSparkMax(CanIDs.transferRollerID, MotorType.kBrushless);
         transferRollerSparkMax.restoreFactoryDefaults();
-        transferRollerSparkMax.setInverted(false);
+        transferRollerSparkMax.setInverted(true);
         transferRollerSparkMax.setIdleMode(IdleMode.kCoast);
 
         pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle);
