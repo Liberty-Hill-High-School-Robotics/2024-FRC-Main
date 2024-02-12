@@ -9,6 +9,10 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.math.MathUtil;
+//limelight imports
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,16 +22,16 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterConstants;
-//subsystem and command imports
-import frc.robot.subsystems.*;
+import frc.robot.commands.AmpPrep;
 import frc.robot.commands.AutoIntake;
-import frc.robot.commands.DriveAutonCommands.*;
-import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.StorageCommands.*;
-
+import frc.robot.commands.DriveAutonCommands.rightSnap;
+import frc.robot.commands.DriveAutonCommands.sDrive;
+import frc.robot.commands.DriveAutonCommands.xPattern;
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
-import frc.robot.commands.IntakeCommands.IntakePivot.*;
+import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotDown;
+import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotStop;
+import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotUp;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeed;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerStop;
@@ -37,6 +41,7 @@ import frc.robot.commands.LEDCommands.CandleGreen;
 import frc.robot.commands.LEDCommands.CandleOrange;
 import frc.robot.commands.LEDCommands.CandlePurple;
 import frc.robot.commands.LEDCommands.CandleRed;
+import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 //import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
 import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
@@ -46,11 +51,23 @@ import frc.robot.commands.PivotCommmands.Pivot.PivotUp;
 import frc.robot.commands.PivotCommmands.TRollers.TRollerBackFeed;
 import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
 import frc.robot.commands.PivotCommmands.TRollers.TRollerStop;
-import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
-//limelight imports
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.commands.ShooterCommands.RevShooter;
+import frc.robot.commands.ShooterCommands.ShooterBackFeed;
+import frc.robot.commands.ShooterCommands.ShooterFeed;
+import frc.robot.commands.ShooterCommands.ShooterStop;
+import frc.robot.commands.StorageCommands.StorageRollersBackFeed;
+import frc.robot.commands.StorageCommands.StorageRollersFeed;
+import frc.robot.commands.StorageCommands.StorageRollersStop;
+//subsystem and command imports
+import frc.robot.subsystems.Bar;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LEDs;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Pivot;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Storage;
 
 
 /*
@@ -80,7 +97,8 @@ public class RobotContainer {
   
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
-
+  // The operator's controller
+  XboxController m_operatorController = new XboxController(OIConstants.kOperatorControllerPort);
 
 
   //The container for the robot. Contains subsystems, OI devices, and commands.
@@ -199,9 +217,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
     xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
 
-    final Trigger AutoIntake = new JoystickButton(m_driverController, 1);
+    final Trigger AutoIntake = new JoystickButton(m_operatorController, 1);
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
 
+    final Trigger AmpPrep = new JoystickButton(m_operatorController, 3);
+    AmpPrep.whileTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
   }
   /* Example Button Binding from 2023 Main code
   starts by defining a trigger, can be replaced with other button types like POVButton, but only when necessary
