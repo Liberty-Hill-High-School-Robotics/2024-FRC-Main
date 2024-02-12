@@ -28,12 +28,18 @@ import frc.robot.commands.StorageCommands.*;
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeed;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerStop;
 //import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
 import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
 //import frc.robot.commands.PivotCommmands.*;
 //import frc.robot.commands.BarCommands.*;
 import frc.robot.commands.PivotCommmands.Pivot.PivotUp;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerBackFeed;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerStop;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 //limelight imports
 import edu.wpi.first.networktables.NetworkTable;
@@ -100,6 +106,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("StorageRollersBackFeed", new StorageRollersBackFeed(m_storage));
     SmartDashboard.putData("StorageRollersStop", new StorageRollersStop(m_storage));
 
+    SmartDashboard.putData("TRollerFeed", new TRollerFeed(m_pivot));
+    SmartDashboard.putData("TRollerBackFeed", new TRollerBackFeed(m_pivot));
+    SmartDashboard.putData("TRollerStop", new TRollerStop(m_pivot));
+
     SmartDashboard.putData("PivotUp", new PivotUp(m_pivot));
     SmartDashboard.putData("PivotDown", new PivotDown(m_pivot));
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
@@ -108,6 +118,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
     SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
     SmartDashboard.putData("IntakePivotStop", new IntakePivotStop(m_intake));
+
+    SmartDashboard.putData("IntakeRollerFeed", new IntakeRollerFeed(m_intake));
+    SmartDashboard.putData("IntakeRollerBackFeed", new IntakeRollerBackFeed(m_intake));
+    SmartDashboard.putData("IntakeRollerStop", new IntakeRollerStop(m_intake));
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 

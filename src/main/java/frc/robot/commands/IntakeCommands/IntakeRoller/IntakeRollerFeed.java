@@ -35,7 +35,8 @@ public class IntakeRollerFeed extends Command {
 
   @Override
   public boolean isFinished() {
-    return Storage.throughSensor.get();
+    return false;
+    //return Storage.throughSensor.get();
   }
 
   
