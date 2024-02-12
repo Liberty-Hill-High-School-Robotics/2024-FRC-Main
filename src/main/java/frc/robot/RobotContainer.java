@@ -28,6 +28,12 @@ import frc.robot.commands.StorageCommands.*;
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
+import frc.robot.commands.LEDCommands.CandleBlue;
+import frc.robot.commands.LEDCommands.CandleGold;
+import frc.robot.commands.LEDCommands.CandleGreen;
+import frc.robot.commands.LEDCommands.CandleOrange;
+import frc.robot.commands.LEDCommands.CandlePurple;
+import frc.robot.commands.LEDCommands.CandleRed;
 //import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
 import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
@@ -59,6 +65,7 @@ public class RobotContainer {
     public final Storage m_storage = new Storage();
     public final Pivot m_pivot = new Pivot();
     public final Shooter m_shooter = new Shooter();
+    public final LEDs m_leds = new LEDs();
 
 
   // The robot's subsystems
@@ -108,6 +115,15 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
     SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
     SmartDashboard.putData("IntakePivotStop", new IntakePivotStop(m_intake));
+
+    SmartDashboard.putData("LEDgold", new CandleGold(m_leds));
+    SmartDashboard.putData("LEDorange", new CandleOrange(m_leds));
+    SmartDashboard.putData("LEDbule", new CandleBlue(m_leds));
+    SmartDashboard.putData("LEDred", new CandleRed(m_leds));
+    SmartDashboard.putData("LEDpurple", new CandlePurple(m_leds));
+    SmartDashboard.putData("LEDgrreeeeen", new CandleGreen(m_leds));
+
+
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
