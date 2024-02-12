@@ -1,6 +1,7 @@
 package frc.robot.commands.PivotCommmands.TRollers;
 
 import frc.robot.subsystems.Pivot;
+import frc.robot.subsystems.Storage;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -34,6 +35,6 @@ public class TRollerFeed extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return Storage.throughSensor.get();
   }
 }

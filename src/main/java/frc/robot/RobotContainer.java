@@ -28,7 +28,7 @@ import frc.robot.commands.StorageCommands.*;
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
-import frc.robot.commands.IntakeCommands.IntakeRoller.*;
+//import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
 import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
 //import frc.robot.commands.PivotCommmands.*;
@@ -63,7 +63,7 @@ public class RobotContainer {
 
   // The robot's subsystems
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
-  private final SendableChooser<Command> autoChooser;
+  public final SendableChooser<Command> autoChooser;
   
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -170,7 +170,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
 
     final Trigger AutoIntake = new JoystickButton(m_driverController, 1);
-    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot));
+    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
 
   }
   /* Example Button Binding from 2023 Main code

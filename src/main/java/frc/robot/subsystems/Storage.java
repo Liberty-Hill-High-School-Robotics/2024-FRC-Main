@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.DigitalInput;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -14,7 +15,7 @@ public class Storage extends SubsystemBase {
 
     //motors & variables here
     private CANSparkMax storageRollerSparkMax;
-
+    public static DigitalInput throughSensor = new DigitalInput(1);
 
 
     public Storage(){
@@ -23,6 +24,7 @@ public class Storage extends SubsystemBase {
         storageRollerSparkMax.restoreFactoryDefaults();
         storageRollerSparkMax.setInverted(true);
         storageRollerSparkMax.setIdleMode(IdleMode.kCoast);
+
     }
 
   

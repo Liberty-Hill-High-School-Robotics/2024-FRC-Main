@@ -1,6 +1,7 @@
 package frc.robot.commands.IntakeCommands.IntakeRoller;
 
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Storage;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -34,7 +35,7 @@ public class IntakeRollerFeed extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return Storage.throughSensor.get();
   }
 
   

@@ -400,4 +400,9 @@ public class DriveSubsystem extends SubsystemBase {
     PIDValue, true, true);
   }
 
+  public void aimWhileMovingv2(ChassisSpeeds chassisSpeeds) {
+    setModuleStates(
+      DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
+  }
+
 }
