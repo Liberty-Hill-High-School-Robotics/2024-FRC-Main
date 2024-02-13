@@ -35,6 +35,6 @@ public class StorageRollersFeed extends Command {
 
   @Override
   public boolean isFinished() {
-    return Storage.throughSensor.get();
+    return Storage.throughSensorBroke();
   }
 }

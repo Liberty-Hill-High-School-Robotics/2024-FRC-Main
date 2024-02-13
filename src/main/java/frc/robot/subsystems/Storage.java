@@ -16,7 +16,7 @@ public class Storage extends SubsystemBase {
 
     //motors & variables here
     private CANSparkMax storageRollerSparkMax;
-    public static DigitalInput throughSensor = new DigitalInput(1);
+    public static DigitalInput throughSensor = new DigitalInput(0);
 
 
     public Storage(){
@@ -35,7 +35,7 @@ public class Storage extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("throughSensor.get()", throughSensor.get());
+        SmartDashboard.putBoolean("throughSensorBroke()", throughSensorBroke());
     }
 
     @Override
@@ -57,6 +57,10 @@ public class Storage extends SubsystemBase {
 
     public void storageRollerStop(){
         storageRollerSparkMax.set(0);
+    }
+
+    public static boolean throughSensorBroke(){
+        return (!throughSensor.get());
     }
 
  

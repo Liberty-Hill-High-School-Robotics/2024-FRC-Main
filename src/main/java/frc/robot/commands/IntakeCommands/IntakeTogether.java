@@ -1,6 +1,10 @@
-package frc.robot.commands.IntakeCommands.IntakePivot;
+package frc.robot.commands.IntakeCommands;
+
+
 
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Storage;
+//import frc.robot.subsystems.Storage;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -8,11 +12,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class IntakePivotDown extends Command {
+public class IntakeTogether extends Command {
   // The subsystem the command runs on
   private final Intake m_intake;
 
-  public IntakePivotDown(Intake subsystem) {
+  public IntakeTogether(Intake subsystem) {
     m_intake = subsystem;
     addRequirements(m_intake);
   }
@@ -23,18 +27,24 @@ public class IntakePivotDown extends Command {
   }
 
   @Override
-  public void execute(){
-    m_intake.intakePivotDown();
+  public void execute() {
+     m_intake.intakeRollerFeed();
+     m_intake.intakePivotDown();
   }
 
   @Override
   public void end(boolean interrupted){
-    m_intake.intakePivotStop();
+    m_intake.intakeRollerStop();
+    m_intake.intakePivotUp();
   }
 
   @Override
   public boolean isFinished() {
-    return false;
-    //return m_intake.pivotInakeAtForwardLimit();
+    //return false;
+    return Storage.throughSensorBroke();
   }
+
+  
+
+ 
 }

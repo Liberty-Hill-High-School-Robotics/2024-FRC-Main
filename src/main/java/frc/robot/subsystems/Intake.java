@@ -36,6 +36,7 @@ public class Intake extends SubsystemBase {
 
         pivotInakeReverseLimitSwitch = pivotIntakeSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
         pivotIntakeRelativeEncoder = pivotIntakeSparkMax.getEncoder();
+        
 
         pivotIntakeSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
         pivotIntakeSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
@@ -51,17 +52,20 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        
+        SmartDashboard.putNumber("pivotIntakeRelativeEncoder", pivotIntakeRelativeEncoder.getPosition());
+        SmartDashboard.putBoolean("pivotInakeAtReverseLimit", pivotInakeAtReverseLimit());
+        SmartDashboard.putBoolean("pivotInakeAtForwardLimit", pivotInakeAtForwardLimit());
+
+        if(pivotInakeAtReverseLimit() == true){
+            pivotIntakeResetRelativeEncoder();
+        }
+
     }
 
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
-
-        SmartDashboard.putNumber("pivotIntakeRelativeEncoder", pivotIntakeRelativeEncoder.getPosition());
-
-        if(pivotInakeAtReverseLimit() == true){
-            pivotIntakeResetRelativeEncoder();
-        }
 
 
     }

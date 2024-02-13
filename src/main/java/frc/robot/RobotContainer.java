@@ -27,6 +27,7 @@ import frc.robot.commands.AutoIntake;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.sDrive;
 import frc.robot.commands.DriveAutonCommands.xPattern;
+import frc.robot.commands.IntakeCommands.IntakeTogether;
 //leave these imports here, we will need them later...
 //import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotDown;
@@ -147,6 +148,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("IntakeRollerFeed", new IntakeRollerFeed(m_intake));
     SmartDashboard.putData("IntakeRollerBackFeed", new IntakeRollerBackFeed(m_intake));
     SmartDashboard.putData("IntakeRollerStop", new IntakeRollerStop(m_intake));
+
+    SmartDashboard.putData("IntakeTogether",new IntakeTogether(m_intake));
     
     SmartDashboard.putData("LEDgold", new CandleGold(m_leds));
     SmartDashboard.putData("LEDorange", new CandleOrange(m_leds));

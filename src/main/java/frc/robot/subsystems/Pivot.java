@@ -69,6 +69,7 @@ public class Pivot extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean( "pivotHallEffectSensor", pivotAtReverseLimit() );
+        SmartDashboard.putNumber("pivotAbsoluteEncoder.getPositionConversionFactor()", pivotAbsoluteEncoder.getPositionConversionFactor());
 
        if(pivotAtReverseLimit() == true){
             pivotResetRelativeEncoder();
