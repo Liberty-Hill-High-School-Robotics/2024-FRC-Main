@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -22,6 +24,8 @@ public class Pivot extends SubsystemBase {
     private CANSparkMax pivotSparkMax2;
     private CANSparkMax transferRollerSparkMax;
     private final AbsoluteEncoder pivotAbsoluteEncoder;
+
+    private final DigitalInput pivotHallEffectSensor;
 
      PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
 
@@ -45,6 +49,10 @@ public class Pivot extends SubsystemBase {
         pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle);
         pivotAbsoluteEncoder.setVelocityConversionFactor(180/(Math.PI));
 
+        pivotHallEffectSensor = new DigitalInput(2);
+
+
+
     }
 
   
@@ -52,6 +60,7 @@ public class Pivot extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putBoolean( "pivotHallEffectSensor", pivotHallEffectSensor.get());
     }
 
     @Override
@@ -102,6 +111,8 @@ public class Pivot extends SubsystemBase {
     public void tRollerStop(){
         transferRollerSparkMax.set(0);
     }
+
+    
 
 
 }
