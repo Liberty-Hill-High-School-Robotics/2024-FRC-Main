@@ -39,7 +39,7 @@ public final class Constants {
 
     public static final double ApTagHeight = 36.875; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
     public static final double CamHeight = 7.00; //in inches
-    public static final double CamAngle = 30.00; //in degrees
+    public static final double CamAngle = 35.00; //in degrees
   }
 
   public static final class PivotConstants{

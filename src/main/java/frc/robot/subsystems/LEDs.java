@@ -1,7 +1,16 @@
 package frc.robot.subsystems;
 //CANdle has yet to be ported to Phoenix6, so for now use the Phoenix5 imports and libraries
 import com.ctre.phoenix.led.CANdle;
+import com.ctre.phoenix.led.CANdle.LEDStripType;
+import com.ctre.phoenix.led.ColorFlowAnimation;
+import com.ctre.phoenix.led.FireAnimation;
+import com.ctre.phoenix.led.LarsonAnimation;
 import com.ctre.phoenix.led.RainbowAnimation;
+import com.ctre.phoenix.led.RgbFadeAnimation;
+import com.ctre.phoenix.led.SingleFadeAnimation;
+import com.ctre.phoenix.led.StrobeAnimation;
+import com.ctre.phoenix.led.TwinkleAnimation;
+import com.ctre.phoenix.led.TwinkleOffAnimation;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,14 +28,47 @@ public class LEDs extends SubsystemBase {
 
 
     CANdle candle = new CANdle(20);
-    //create a rainbow anim.
-    RainbowAnimation rainbowAnimation = new RainbowAnimation(1, 1, 0);
+    //create some animations for the LEDs, all are purple for now (with exceptions)
+    //rainbow/set color animations
+    RainbowAnimation rainbowAnimation = new RainbowAnimation();
+    FireAnimation fireAnimation = new FireAnimation();
+    RgbFadeAnimation rgbFadeAnimation = new RgbFadeAnimation();
+
+
+    //set color animations
+    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    //https://www.youtube.com/watch?v=Ns0f6jZIo9I
+
+
+    ColorFlowAnimation colorFlowAnimation = new ColorFlowAnimation   (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    //Animation that gradually lights the entire LED strip one LED at a time.
+
+
+    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    //Animation that fades into and out of a specified color 
+
+
+    StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    //Animation that strobes the LEDs a specified color 
+
+
+    TwinkleAnimation twinkleAnimation = new TwinkleAnimation         (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    //Animation that randomly turns LEDs on and off to a certain color
+
+
+    TwinkleOffAnimation twinkleOffAnimation = new TwinkleOffAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    //Animation that randomly turns on LEDs, until it reaches the maximum count and turns them all off 
 
     private boolean dashboardPurple = false;
     private boolean dashboardGold = false;
+    private int r;
+    private int g;
+    private int b;
 
 
     public LEDs() {
+        candle.configLEDType(LEDStripType.RGB);
+        //candle.configLOSBehavior();
     }
 
     @Override
@@ -39,6 +81,9 @@ public class LEDs extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
+        SmartDashboard.putNumber("redvalue()", r);
+        SmartDashboard.putNumber("greenvalue()", g);
+        SmartDashboard.putNumber("bluevalue()", b);
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -48,9 +93,6 @@ public class LEDs extends SubsystemBase {
     public void candleSetColor(String color){
         //set brightness
         candle.configBrightnessScalar(100);
-        int r;
-        int g;
-        int b;
 
         //switch statement
         if(color == "purple"){
@@ -80,13 +122,13 @@ public class LEDs extends SubsystemBase {
         }
 
 
-        else if(color == "purple"){
+        else if(color == "red"){
             r = ColorConstants.red[0]; 
             g = ColorConstants.red[1]; 
             b = ColorConstants.red[2]; 
         }
 
-        else if(color == "purple"){
+        else if(color == "green"){
             r = ColorConstants.green[0]; 
             g = ColorConstants.green[1]; 
             b = ColorConstants.green[2];
@@ -113,10 +155,43 @@ public class LEDs extends SubsystemBase {
     }
 
 
-    public void candleRainbow(){
-        //not yet working
+    public void candleSetAnimation(String animation){
+        //set animation based on given string.=
         candle.configBrightnessScalar(1);
-        candle.animate(rainbowAnimation);
+        if(animation == "rainbow"){
+           candle.animate(rainbowAnimation);
+        }
+
+        else if(animation == "fire"){
+           candle.animate(fireAnimation);
+        }
+
+        else if(animation == "rgbfade"){
+           candle.animate(rgbFadeAnimation);
+        }
+
+        else if(animation == "larson"){
+           candle.animate(larsonAnimation);
+        }
+
+        else if(animation == "colorflow"){
+           candle.animate(colorFlowAnimation);
+        }
+
+        else if(animation == "singlefade"){
+           candle.animate(singleFadeAnimation);
+        }
+
+        else if(animation == "strobe"){
+           candle.animate(strobeAnimation);
+        }
+
+        else if(animation == "twinkle"){
+           candle.animate(twinkleAnimation);
+        }
+
+        else if(animation == "twinkleoff"){
+           candle.animate(twinkleOffAnimation);
+        }
     }
 }
-
