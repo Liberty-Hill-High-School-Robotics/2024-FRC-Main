@@ -10,6 +10,7 @@ import frc.robot.Constants.*;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
@@ -24,6 +25,9 @@ public class Pivot extends SubsystemBase {
     private CANSparkMax pivotSparkMax2;
     private CANSparkMax transferRollerSparkMax;
     private final AbsoluteEncoder pivotAbsoluteEncoder;
+    private final RelativeEncoder pivotRelativeEncoder;
+    private final RelativeEncoder pivotRelativeEncoder2;
+
 
     private final DigitalInput pivotHallEffectSensor;
 
@@ -46,10 +50,14 @@ public class Pivot extends SubsystemBase {
         transferRollerSparkMax.setInverted(true);
         transferRollerSparkMax.setIdleMode(IdleMode.kCoast);
 
-        pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle);
+        pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle); 
         pivotAbsoluteEncoder.setVelocityConversionFactor(180/(Math.PI));
+        //pivotAbsoluteEncoder.setZeroOffset(0);
 
         pivotHallEffectSensor = new DigitalInput(2);
+
+        pivotRelativeEncoder = pivotSparkMax.getEncoder();
+        pivotRelativeEncoder2 = pivotSparkMax2.getEncoder();
 
 
 
@@ -60,7 +68,12 @@ public class Pivot extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean( "pivotHallEffectSensor", pivotHallEffectSensor.get());
+        SmartDashboard.putBoolean( "pivotHallEffectSensor", pivotAtReverseLimit() );
+
+       if(pivotAtReverseLimit() == true){
+            pivotResetRelativeEncoder();
+       }
+
     }
 
     @Override
@@ -112,6 +125,15 @@ public class Pivot extends SubsystemBase {
         transferRollerSparkMax.set(0);
     }
 
+    public boolean pivotAtReverseLimit(){
+        return (!pivotHallEffectSensor.get());
+    }
+
+    public void pivotResetRelativeEncoder(){
+            pivotRelativeEncoder.setPosition(0);
+            pivotRelativeEncoder2.setPosition(0);
+    }
+    
     
 
 

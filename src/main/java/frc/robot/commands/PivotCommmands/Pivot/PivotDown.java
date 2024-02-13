@@ -34,6 +34,7 @@ public class PivotDown extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return m_pivot.pivotAtReverseLimit();
+    //return false;
   }
 }

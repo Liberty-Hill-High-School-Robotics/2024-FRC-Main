@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -24,6 +25,8 @@ public class Storage extends SubsystemBase {
         storageRollerSparkMax.restoreFactoryDefaults();
         storageRollerSparkMax.setInverted(true);
         storageRollerSparkMax.setIdleMode(IdleMode.kCoast);
+        
+
 
     }
 
@@ -32,6 +35,7 @@ public class Storage extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putBoolean("throughSensor.get()", throughSensor.get());
     }
 
     @Override
@@ -54,5 +58,7 @@ public class Storage extends SubsystemBase {
     public void storageRollerStop(){
         storageRollerSparkMax.set(0);
     }
+
+ 
 
 }
