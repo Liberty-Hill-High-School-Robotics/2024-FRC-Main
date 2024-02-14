@@ -1,4 +1,4 @@
-package frc.robot.commands.LEDCommands;
+package frc.robot.commands.LEDCommands.Animations;
 
 import frc.robot.subsystems.LEDs;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class CandleOff extends Command {
+public class CandleLarson extends Command {
   // The subsystem the command runs on
   private final LEDs m_leds;
 
-  public CandleOff(LEDs subsystem) {
+  public CandleLarson(LEDs subsystem) {
     m_leds = subsystem;
     addRequirements(m_leds);
   }
@@ -24,11 +24,12 @@ public class CandleOff extends Command {
 
   @Override
   public void execute(){
-    m_leds.candleSetColor("stop");
+    m_leds.candleSetAnimation("larson");
   }
 
   @Override
   public void end(boolean interrupted){
+    m_leds.candleSetColor("stop");
     }
 
   @Override

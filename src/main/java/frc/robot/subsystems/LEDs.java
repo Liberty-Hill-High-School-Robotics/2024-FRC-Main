@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 //CANdle has yet to be ported to Phoenix6, so for now use the Phoenix5 imports and libraries
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
+import com.ctre.phoenix.led.CANdle.VBatOutputMode;
 import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 import com.ctre.phoenix.led.CANdleConfiguration;
 import com.ctre.phoenix.led.ColorFlowAnimation;
@@ -32,13 +33,13 @@ public class LEDs extends SubsystemBase {
     CANdle candle = new CANdle(20);
     //create some animations for the LEDs, all are purple for now (with exceptions)
     //rainbow/set color animations
-    RainbowAnimation rainbowAnimation = new RainbowAnimation(1, .5, 20);
+    RainbowAnimation rainbowAnimation = new RainbowAnimation(1, .5, 300);
     FireAnimation fireAnimation = new FireAnimation();
     RgbFadeAnimation rgbFadeAnimation = new RgbFadeAnimation();
 
 
     //set color animations
-    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, 1, 20, BounceMode.Back, 2);
+    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, 1, 300, BounceMode.Back, 2);
     //https://www.youtube.com/watch?v=Ns0f6jZIo9I
 
     ColorFlowAnimation colorFlowAnimation = new ColorFlowAnimation   (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
@@ -49,7 +50,7 @@ public class LEDs extends SubsystemBase {
     //Animation that fades into and out of a specified color 
 
 
-    StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, 20);
+    StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, 300);
     //Animation that strobes the LEDs a specified color 
 
 
@@ -73,13 +74,14 @@ public class LEDs extends SubsystemBase {
         //
         //
         //
-        CANdleConfiguration config = new CANdleConfiguration();
+        CANdleConfiguration configAll = new CANdleConfiguration();
+        configAll.statusLedOffWhenActive = true;
+        configAll.disableWhenLOS = false;
+        configAll.stripType = LEDStripType.RGB;
+        configAll.brightnessScalar = 1;
+        configAll.vBatOutputMode = VBatOutputMode.Modulated;
+        candle.configAllSettings(configAll, 100);
 
-        config.stripType = LEDStripType.RGB; // set the strip type to RGB
-
-        config.brightnessScalar = 1; // set LEDs to max brightness
-
-        candle.configAllSettings(config);
     }
 
     @Override
@@ -101,7 +103,7 @@ public class LEDs extends SubsystemBase {
     // here. Call these from Commands.
     public void candleSetColor(String color){
         //set brightness
-        candle.configBrightnessScalar(100);
+        candle.configBrightnessScalar(1);
 
         //switch statement
         if(color == "purple"){
@@ -143,7 +145,8 @@ public class LEDs extends SubsystemBase {
             b = ColorConstants.green[2];
         }     
 
-        else{
+        else {
+            candle.configBrightnessScalar(0);
             r = 255;
             g = 255;
             b = 255;
@@ -153,12 +156,6 @@ public class LEDs extends SubsystemBase {
         candle.setLEDs(r, g, b);
     }
 
-
-    public void candleOff(){
-        //set to an idle configuration
-        candle.configBrightnessScalar(0);
-        candle.setLEDs(255, 255, 255);
-    }
 
 
     public void candleSetAnimation(String animation){

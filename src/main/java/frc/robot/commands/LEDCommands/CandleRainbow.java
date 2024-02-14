@@ -29,7 +29,7 @@ public class CandleRainbow extends Command {
 
   @Override
   public void end(boolean interrupted){
-    m_leds.candleOff();
+    m_leds.candleSetColor("stop");
     }
 
   @Override

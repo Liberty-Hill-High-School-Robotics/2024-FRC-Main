@@ -1,4 +1,4 @@
-package frc.robot.commands.LEDCommands;
+package frc.robot.commands.LEDCommands.Colors;
 
 import frc.robot.subsystems.LEDs;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,7 +29,7 @@ public class CandleGold extends Command {
 
   @Override
   public void end(boolean interrupted){
-    m_leds.candleOff();
+    m_leds.candleSetColor("stop");
     }
 
   @Override
