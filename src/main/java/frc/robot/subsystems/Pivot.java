@@ -51,7 +51,7 @@ public class Pivot extends SubsystemBase {
         transferRollerSparkMax.setIdleMode(IdleMode.kCoast);
 
         pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle); 
-        pivotAbsoluteEncoder.setVelocityConversionFactor(180/(Math.PI));
+        pivotAbsoluteEncoder.setPositionConversionFactor(180/(Math.PI));
         //pivotAbsoluteEncoder.setZeroOffset(0);
 
         pivotHallEffectSensor = new DigitalInput(2);
@@ -69,7 +69,9 @@ public class Pivot extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean( "pivotHallEffectSensor", pivotAtReverseLimit() );
-        SmartDashboard.putNumber("pivotAbsoluteEncoder.getPositionConversionFactor()", pivotAbsoluteEncoder.getPositionConversionFactor());
+        SmartDashboard.putNumber("pivotAbsoluteEncoder.getPosition()", pivotAbsoluteEncoder.getPosition());
+        SmartDashboard.putBoolean("pivotAtReverseLimit", pivotAtReverseLimit());
+        SmartDashboard.putNumber("pivotRelativeEncoder.getPosition()", pivotRelativeEncoder.getPosition());
 
        if(pivotAtReverseLimit() == true){
             pivotResetRelativeEncoder();
@@ -87,8 +89,8 @@ public class Pivot extends SubsystemBase {
     // here. Call these from Commands.
 
     public void anglePivot(double degree){
-        pivotSparkMax.set(pivotPID.calculate(pivotAbsoluteEncoder.getPositionConversionFactor(), degree));
-        pivotSparkMax2.set(pivotPID.calculate(pivotAbsoluteEncoder.getPositionConversionFactor(), degree));
+        pivotSparkMax.set(pivotPID.calculate(pivotAbsoluteEncoder.getPosition(), degree));
+        pivotSparkMax2.set(pivotPID.calculate(pivotAbsoluteEncoder.getPosition(), degree));
     }
 
     public double calculateAngle(){

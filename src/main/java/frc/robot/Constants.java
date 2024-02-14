@@ -57,7 +57,7 @@ public final class Constants {
 
   }
   public static final class IntakeConstants{
-    public final static float fLimit = 6;
+    public final static float fLimit = 5;
 
   }
   public static final class MotorSpeeds{
@@ -66,7 +66,7 @@ public final class Constants {
     public static final double pivotIntakeSpeed = .3;
     public static final double groundRollerSpeed = .5;
     public static final double transferRollerSpeed = .75;
-    public static final double pivotSpeed = .3;
+    public static final double pivotSpeed = .15;
     public static final double shooterSpeed = .75;
     public static final double storageRollerSpeed = .5;
     public static final double barRotatorSpeed = .05;
