@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 /*
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotDown;
@@ -8,6 +9,9 @@ import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 */
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.IntakeCommands.IntakeTogether;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
+import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
@@ -26,21 +30,25 @@ public class AutoIntake extends SequentialCommandGroup {
         Storage m_storage,
         Pivot m_pivot,
         Shooter m_shooter
-    ){}
+    ){
     
-        /* 
-        new ParallelCommandGroup(
+        addCommands(
+            new ParallelCommandGroup(
             //want to change this to a parallel deadline group, which ends once a certain command ends, but cant figure out the syntax for it yet
             //run all commands in parallel until the throughbeam == true
-            new IntakePivotDown(m_intake),
-            new IntakeRollerFeed(m_intake),
+            new IntakeTogether(m_intake),
             new TRollerFeed(m_pivot),
-            new StorageRollersFeed(m_storage));
+            new StorageRollersFeed(m_storage)
+            )
+
+        );
+
         }
-        */
+
 
     @Override
     public boolean runsWhenDisabled() {
+
         return false;
     }
 }

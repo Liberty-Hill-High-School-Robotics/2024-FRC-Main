@@ -159,7 +159,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("ledstrobe", new CandleStrobe(m_leds));
     SmartDashboard.putData("ledSTOP", new CandleOff(m_leds));
 
-
+    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
     
     SmartDashboard.putData("BarRotateForward", new BarRotateForward(m_bar));
     SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));

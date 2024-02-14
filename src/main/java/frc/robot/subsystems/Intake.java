@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase {
         //config motor settings here
         pivotIntakeSparkMax = new CANSparkMax(CanIDs.pivotIntakeID, MotorType.kBrushless);
         pivotIntakeSparkMax.restoreFactoryDefaults();
-        pivotIntakeSparkMax.setInverted(false);
+        pivotIntakeSparkMax.setInverted(true);
         pivotIntakeSparkMax.setIdleMode(IdleMode.kBrake);
 
         pivotInakeReverseLimitSwitch = pivotIntakeSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
@@ -90,10 +90,10 @@ public class Intake extends SubsystemBase {
 
     //intakePivot
     public void intakePivotUp(){
-        pivotIntakeSparkMax.set(MotorSpeeds.pivotIntakeSpeed);
+        pivotIntakeSparkMax.set(-MotorSpeeds.pivotIntakeSpeed);
     }
     public void intakePivotDown(){
-        pivotIntakeSparkMax.set(-MotorSpeeds.pivotIntakeSpeed);
+        pivotIntakeSparkMax.set(MotorSpeeds.pivotIntakeSpeed);
     }
     public void intakePivotStop(){
         pivotIntakeSparkMax.set(0);
