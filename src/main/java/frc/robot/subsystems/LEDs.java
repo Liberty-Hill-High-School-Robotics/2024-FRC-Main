@@ -158,9 +158,6 @@ public class LEDs extends SubsystemBase {
         //set to an idle configuration
         candle.configBrightnessScalar(0);
         candle.setLEDs(255, 255, 255);
-
-        dashboardGold = false;
-        dashboardPurple = false;
     }
 
 
