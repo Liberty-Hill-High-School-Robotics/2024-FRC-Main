@@ -24,6 +24,9 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.commands.AmpPrep;
 import frc.robot.commands.AutoIntake;
+import frc.robot.commands.BarCommands.BarRotateBackward;
+import frc.robot.commands.BarCommands.BarRotateForward;
+import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.sDrive;
 import frc.robot.commands.DriveAutonCommands.xPattern;
@@ -154,6 +157,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("LEDgrreeeeen", new CandleGreen(m_leds));
     SmartDashboard.putData("rainbowanimation", new CandleRainbow(m_leds));
 
+
+    
+    SmartDashboard.putData("BarRotateForward", new BarRotateForward(m_bar));
+    SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));
+    SmartDashboard.putData("BarRotateStop", new BarRotateStop(m_bar));
 
 
     

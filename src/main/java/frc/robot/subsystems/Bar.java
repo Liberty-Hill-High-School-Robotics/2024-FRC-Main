@@ -45,6 +45,7 @@ public class Bar extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("barRotatorRelativeEncoder", barRotatorRelativeEncoder.getPosition());
+        SmartDashboard.putBoolean("barAtRotateForwardLimit",barAtRotateForwardLimit());
 
         if(barAtReverseLimit() == true){
             barRotateRestRelativeEncoder();
