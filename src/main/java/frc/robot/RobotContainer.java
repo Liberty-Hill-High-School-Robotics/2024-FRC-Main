@@ -36,12 +36,7 @@ import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotUp;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeed;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerStop;
-import frc.robot.commands.LEDCommands.CandleBlue;
-import frc.robot.commands.LEDCommands.CandleGold;
-import frc.robot.commands.LEDCommands.CandleGreen;
-import frc.robot.commands.LEDCommands.CandleOrange;
-import frc.robot.commands.LEDCommands.CandlePurple;
-import frc.robot.commands.LEDCommands.CandleRed;
+import frc.robot.commands.LEDCommands.*;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 //import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
@@ -157,6 +152,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("LEDred", new CandleRed(m_leds));
     SmartDashboard.putData("LEDpurple", new CandlePurple(m_leds));
     SmartDashboard.putData("LEDgrreeeeen", new CandleGreen(m_leds));
+    SmartDashboard.putData("rainbowanimation", new CandleRainbow(m_leds));
+
 
 
     

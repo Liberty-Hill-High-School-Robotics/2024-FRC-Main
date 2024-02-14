@@ -99,7 +99,6 @@ public final class Constants {
     public static final double tP = 0.01;
     public static final double tI = 0;
     public static final double tD = 0;
-    //whether the robot is field centric or not, used to change control with a button
 
     
     // Driving Parameters - Note that these are not the maximum capable speeds of

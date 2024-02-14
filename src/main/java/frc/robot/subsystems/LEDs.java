@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 //CANdle has yet to be ported to Phoenix6, so for now use the Phoenix5 imports and libraries
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
+import com.ctre.phoenix.led.CANdleConfiguration;
 import com.ctre.phoenix.led.ColorFlowAnimation;
 import com.ctre.phoenix.led.FireAnimation;
 import com.ctre.phoenix.led.LarsonAnimation;
@@ -59,23 +60,31 @@ public class LEDs extends SubsystemBase {
     TwinkleOffAnimation twinkleOffAnimation = new TwinkleOffAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that randomly turns on LEDs, until it reaches the maximum count and turns them all off 
 
-    private boolean dashboardPurple = false;
-    private boolean dashboardGold = false;
     private int r;
     private int g;
     private int b;
 
 
     public LEDs() {
-        candle.configLEDType(LEDStripType.RGB);
-        //candle.configLOSBehavior();
+        //
+        //
+        //
+        //https://store.ctr-electronics.com/content/api/java/html/classcom_1_1ctre_1_1phoenix_1_1led_1_1_c_a_ndle.html
+        //
+        //
+        //
+        CANdleConfiguration config = new CANdleConfiguration();
+
+        config.stripType = LEDStripType.RGB; // set the strip type to RGB
+
+        config.brightnessScalar = 1; // set LEDs to max brightness
+
+        candle.configAllSettings(config);
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putBoolean("LEDpurple", dashboardPurple);
-        SmartDashboard.putBoolean("LEDgold", dashboardGold);
     }
 
     @Override

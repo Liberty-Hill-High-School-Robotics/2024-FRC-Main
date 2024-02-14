@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 //import frc.robot.RobotContainer;
 import frc.robot.Constants.*;
-import com.revrobotics.CANSparkMax;
+
+import com.revrobotics.CANSparkFlex;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -19,10 +20,10 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 public class Shooter extends SubsystemBase {
 
     //motors & variables here
-    private CANSparkMax shooterSparkMax;
-    private CANSparkMax shooterSparkMax2;
-    private RelativeEncoder shooterSparkMaxRelativeEncoder;
-    private RelativeEncoder shooterSparkMax2RelativeEncoder;
+    private CANSparkFlex shooterVortex;
+    private CANSparkFlex shooterVortex2;
+    private RelativeEncoder shooterVortexRelativeEncoder;
+    private RelativeEncoder shooterVortex2RelativeEncoder;
 
     PIDController shooterPID = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
     
@@ -31,18 +32,18 @@ public class Shooter extends SubsystemBase {
 
     public Shooter(){
         //config motor settings here
-        shooterSparkMax = new CANSparkMax(CanIDs.shooterMotorID, MotorType.kBrushless);
-        shooterSparkMax.restoreFactoryDefaults();
-        shooterSparkMax.setInverted(false);
-        shooterSparkMax.setIdleMode(IdleMode.kCoast);
+        shooterVortex = new CANSparkFlex(CanIDs.shooterMotorID, MotorType.kBrushless);
+        shooterVortex.restoreFactoryDefaults();
+        shooterVortex.setInverted(false);
+        shooterVortex.setIdleMode(IdleMode.kCoast);
 
-        shooterSparkMax2 = new CANSparkMax(CanIDs.shooterMotor2ID, MotorType.kBrushless);
-        shooterSparkMax2.restoreFactoryDefaults();
-        shooterSparkMax2.setInverted(false);
-        shooterSparkMax2.setIdleMode(IdleMode.kCoast);
+        shooterVortex2 = new CANSparkFlex(CanIDs.shooterMotor2ID, MotorType.kBrushless);
+        shooterVortex2.restoreFactoryDefaults();
+        shooterVortex2.setInverted(false);
+        shooterVortex2.setIdleMode(IdleMode.kCoast);
 
-        shooterSparkMaxRelativeEncoder = shooterSparkMax.getEncoder();
-        shooterSparkMax2RelativeEncoder = shooterSparkMax2.getEncoder();
+        shooterVortexRelativeEncoder = shooterVortex.getEncoder();
+        shooterVortex2RelativeEncoder = shooterVortex2.getEncoder();
 
     }
 
@@ -58,11 +59,11 @@ public class Shooter extends SubsystemBase {
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
 
-        SmartDashboard.putNumber("shooterSparkMax.get()", shooterSparkMax.get());
-        SmartDashboard.putNumber("shooterSparkMax2.get()", shooterSparkMax2.get());
+        SmartDashboard.putNumber("shooterSparkMax.get()", shooterVortex.get());
+        SmartDashboard.putNumber("shooterSparkMax2.get()", shooterVortex2.get());
 
-        SmartDashboard.putNumber("shooterSparkMaxRelativeEncoder.getVelocity()", shooterSparkMaxRelativeEncoder.getVelocity());
-        SmartDashboard.putNumber("shooterSparkMax2RelativeEncoder.getVelocity()", shooterSparkMax2RelativeEncoder.getVelocity());
+        SmartDashboard.putNumber("shooterSparkMaxRelativeEncoder.getVelocity()", shooterVortexRelativeEncoder.getVelocity());
+        SmartDashboard.putNumber("shooterSparkMax2RelativeEncoder.getVelocity()", shooterVortex2RelativeEncoder.getVelocity());
         
         SmartDashboard.putNumber("calculateSpeed", calculateSpeed());
         
@@ -76,8 +77,8 @@ public class Shooter extends SubsystemBase {
     
     public void revShooter(double setpoint){
        
-        shooterSparkMax.set(setpoint);
-        shooterSparkMax2.set(setpoint);
+        shooterVortex.set(setpoint);
+        shooterVortex2.set(setpoint);
     }
 
     
@@ -92,17 +93,17 @@ public class Shooter extends SubsystemBase {
     }
     
     public void shooterFeed(){
-        shooterSparkMax.set(MotorSpeeds.shooterSpeed);
-        shooterSparkMax2.set(MotorSpeeds.shooterSpeed);
+        shooterVortex.set(MotorSpeeds.shooterSpeed);
+        shooterVortex2.set(MotorSpeeds.shooterSpeed);
     }
 
     public void shooterBackfeed(){
-        shooterSparkMax.set(-MotorSpeeds.shooterSpeed);
-        shooterSparkMax2.set(-MotorSpeeds.shooterSpeed);
+        shooterVortex.set(-MotorSpeeds.shooterSpeed);
+        shooterVortex2.set(-MotorSpeeds.shooterSpeed);
     }
 
     public void shooterStop(){
-        shooterSparkMax.set(0);
-        shooterSparkMax2.set(0);
+        shooterVortex.stopMotor();
+        shooterVortex2.stopMotor();
     }
 }
