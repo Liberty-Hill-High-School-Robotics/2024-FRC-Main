@@ -156,6 +156,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("LEDpurple", new CandlePurple(m_leds));
     SmartDashboard.putData("LEDgrreeeeen", new CandleGreen(m_leds));
     SmartDashboard.putData("rainbowanimation", new CandleRainbow(m_leds));
+    SmartDashboard.putData("ledstrobe", new CandleStrobe(m_leds));
+    SmartDashboard.putData("ledSTOP", new CandleOff(m_leds));
 
 
     
