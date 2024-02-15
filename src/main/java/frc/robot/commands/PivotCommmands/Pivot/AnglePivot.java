@@ -31,6 +31,7 @@ public class AnglePivot extends Command {
 
   @Override
   public void end(boolean interrupted){
+   //m_pivot.pivotDown();
    m_pivot.pivotStop();
   }
 

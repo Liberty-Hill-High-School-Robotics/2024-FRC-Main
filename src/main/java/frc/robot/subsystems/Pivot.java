@@ -12,6 +12,7 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
+import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
 //import java.lang.Math.*;
@@ -51,13 +52,24 @@ public class Pivot extends SubsystemBase {
         transferRollerSparkMax.setIdleMode(IdleMode.kCoast);
 
         pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle); 
-        pivotAbsoluteEncoder.setPositionConversionFactor(180/(Math.PI));
+        //pivotAbsoluteEncoder.setPositionConversionFactor(.209502431724654);
         //pivotAbsoluteEncoder.setZeroOffset(0);
+        
 
         pivotHallEffectSensor = new DigitalInput(2);
 
         pivotRelativeEncoder = pivotSparkMax.getEncoder();
         pivotRelativeEncoder2 = pivotSparkMax2.getEncoder();
+
+        pivotRelativeEncoder.setPositionConversionFactor(1/.209502431724654);
+        pivotRelativeEncoder2.setPositionConversionFactor(1/.209502431724654);
+
+
+        pivotSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
+        pivotSparkMax2.enableSoftLimit(SoftLimitDirection.kForward, true);
+
+        pivotSparkMax.setSoftLimit(SoftLimitDirection.kForward, 50);
+        pivotSparkMax2.setSoftLimit(SoftLimitDirection.kForward, 50);
 
 
 
@@ -89,8 +101,8 @@ public class Pivot extends SubsystemBase {
     // here. Call these from Commands.
 
     public void anglePivot(double degree){
-        pivotSparkMax.set(pivotPID.calculate(pivotAbsoluteEncoder.getPosition(), degree));
-        pivotSparkMax2.set(pivotPID.calculate(pivotAbsoluteEncoder.getPosition(), degree));
+        pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), degree));
+        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder2.getPosition(), degree));
     }
 
     public double calculateAngle(){

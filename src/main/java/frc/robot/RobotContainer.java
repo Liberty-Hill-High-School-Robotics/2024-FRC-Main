@@ -150,7 +150,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));
     SmartDashboard.putData("BarRotateStop", new BarRotateStop(m_bar));
 
-
+    SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 20));
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
