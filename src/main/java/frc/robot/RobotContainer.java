@@ -151,6 +151,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("BarRotateStop", new BarRotateStop(m_bar));
 
     SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 20));
+
+    SmartDashboard.putNumber("getDistance", getDistance());
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
