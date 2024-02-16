@@ -74,6 +74,8 @@ public class RobotContainer {
     public final Shooter m_shooter = new Shooter();
     public final LEDs m_leds = new LEDs();
 
+    public static int increment = 0;
+
 
   // The robot's subsystems
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
@@ -157,6 +159,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putNumber("getDistance", getDistance());
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
+
+    SmartDashboard.putNumber("increment", increment);
 
 
 
@@ -284,7 +288,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
     //uses this equation ^
     //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
-    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + getTy()) * (Math.PI/180));
+    var y = table.getEntry("ty");
+    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + (y.getDouble(0))) * (Math.PI/180));
+    increment++;
     return distance;
    }
 
