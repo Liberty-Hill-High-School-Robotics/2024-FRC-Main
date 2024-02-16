@@ -53,6 +53,9 @@ public final class Constants {
 
   }
   public static final class BarConstants{
+    public static final double bP = 0.01;
+    public static final double bI = 0;
+    public static final double bD = 0;
     public final static float fLimit = 22;
 
   }
@@ -69,7 +72,7 @@ public final class Constants {
     public static final double pivotSpeed = .15;
     public static final double shooterSpeed = .75;
     public static final double storageRollerSpeed = .75;
-    public static final double barRotatorSpeed = .5;
+    public static final double barRotatorSpeed = .3;
 
     
   }

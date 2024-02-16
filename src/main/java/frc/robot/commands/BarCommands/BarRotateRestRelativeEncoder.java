@@ -24,7 +24,7 @@ public class BarRotateRestRelativeEncoder extends Command {
 
   @Override
   public void execute(){
-    m_bar.barRotateRestRelativeEncoder();
+    m_bar.barRotatorRestRelativeEncoder();
   }
 
   @Override

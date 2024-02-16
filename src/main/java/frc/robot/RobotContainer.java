@@ -151,6 +151,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("BarRotateForward", new BarRotateForward(m_bar));
     SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));
     SmartDashboard.putData("BarRotateStop", new BarRotateStop(m_bar));
+    SmartDashboard.putData("AngleBarRotatorPivot", new AngleBarRotatorPivot(m_bar, 10));
 
     SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 20));
     SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));

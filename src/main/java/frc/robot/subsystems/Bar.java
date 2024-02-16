@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,7 +22,7 @@ public class Bar extends SubsystemBase {
     private CANSparkMax barRotatorSparkMax;
     private SparkLimitSwitch barReverseLimitSwitch;
     public RelativeEncoder barRotatorRelativeEncoder;
-
+    PIDController barPID = new PIDController(BarConstants.bP, BarConstants.bI, BarConstants.bD);
 
 
     public Bar(){
@@ -48,7 +49,7 @@ public class Bar extends SubsystemBase {
         SmartDashboard.putBoolean("barAtRotateForwardLimit",barAtRotateForwardLimit());
 
         if(barAtReverseLimit() == true){
-            barRotateRestRelativeEncoder();
+            barRotatorRestRelativeEncoder();
         }
 
     }
@@ -63,6 +64,11 @@ public class Bar extends SubsystemBase {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void angleBar(double setpoint){
+        barRotatorSparkMax.set(barPID.calculate(barRotatorRelativeEncoder.getPosition(), setpoint));
+        
+    }
+
 
     public void barRotateForward(){
         barRotatorSparkMax.set(MotorSpeeds.barRotatorSpeed);
@@ -85,9 +91,11 @@ public class Bar extends SubsystemBase {
         return barRotatorSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
     }
 
-    public void barRotateRestRelativeEncoder(){
+    public void barRotatorRestRelativeEncoder(){
         barRotatorRelativeEncoder.setPosition(0);
     }
+
+    
 
 
 
