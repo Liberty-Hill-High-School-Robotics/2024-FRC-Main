@@ -69,7 +69,7 @@ public final class Constants {
     public static final double pivotSpeed = .15;
     public static final double shooterSpeed = .75;
     public static final double storageRollerSpeed = .75;
-    public static final double barRotatorSpeed = .05;
+    public static final double barRotatorSpeed = .5;
 
     
   }
