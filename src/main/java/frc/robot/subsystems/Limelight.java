@@ -17,9 +17,13 @@ import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 */
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ShooterConstants;
 //import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.RobotContainer;
 import static java.lang.Math.*;
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 /*
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
@@ -31,7 +35,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Limelight extends SubsystemBase {
- 
+    public static int increment;
+    static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+
+
 
     @Override
     public void periodic() {
@@ -44,6 +51,11 @@ public class Limelight extends SubsystemBase {
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
         SmartDashboard.putNumber("LimelightArea", area);
+        SmartDashboard.putNumber("GetDistance", getDistance());
+        SmartDashboard.putNumber("increment", increment);
+
+
+
     }
     
 
@@ -55,8 +67,19 @@ public class Limelight extends SubsystemBase {
 
     public static int roundDistance(){
         //takes distance (currently subed for .getTa), and rounds it to the nearest whole number (casted to an int because round returns long)
-        int distance = (int) round(RobotContainer.getDistance());
+        int distance = (int) round(getDistance());
         return distance;
     }
+
+    public static double getDistance(){
+    //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
+    //uses this equation ^
+    //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
+    var y = table.getEntry("ty");
+    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + (y.getDouble(0))) * (Math.PI/180));
+    increment++;
+    return distance;
+   }
+
 
 }
