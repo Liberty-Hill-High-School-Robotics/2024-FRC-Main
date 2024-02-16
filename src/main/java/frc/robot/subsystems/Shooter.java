@@ -52,13 +52,6 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
-    }
-
-    @Override
-    public void simulationPeriodic() {
-        // This method will be called once per scheduler run when in simulation
-
         SmartDashboard.putNumber("shooterSparkMax.get()", shooterVortex.get());
         SmartDashboard.putNumber("shooterSparkMax2.get()", shooterVortex2.get());
 
@@ -66,6 +59,14 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("shooterSparkMax2RelativeEncoder.getVelocity()", shooterVortex2RelativeEncoder.getVelocity());
         
         SmartDashboard.putNumber("calculateSpeed", calculateSpeed());
+        
+
+    }
+
+    @Override
+    public void simulationPeriodic() {
+        // This method will be called once per scheduler run when in simulation
+
         
         
 

@@ -107,7 +107,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("ShooterOut", new ShooterFeed(m_shooter));
     SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
     SmartDashboard.putData("ShooterStop", new ShooterStop(m_shooter));
-    SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, m_shooter.calculateSpeed()));
+    
     
     SmartDashboard.putNumber("GetDistance", getDistance());
 
@@ -122,7 +122,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("PivotUp", new PivotUp(m_pivot));
     SmartDashboard.putData("PivotDown", new PivotDown(m_pivot));
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
-    SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 25));
+    
 
     SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
     SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
@@ -151,6 +151,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("BarRotateStop", new BarRotateStop(m_bar));
 
     SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 20));
+    SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));
+    SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
 
     SmartDashboard.putNumber("getDistance", getDistance());
     
