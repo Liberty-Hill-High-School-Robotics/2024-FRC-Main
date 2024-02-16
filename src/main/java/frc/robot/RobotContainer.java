@@ -111,7 +111,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("ShooterStop", new ShooterStop(m_shooter));
     SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, m_shooter.calculateSpeed()));
     
-    SmartDashboard.putNumber("GetDistance", getDistance());
 
     SmartDashboard.putData("StorageRollersFeed", new StorageRollersFeed(m_storage));
     SmartDashboard.putData("StorageRollersBackFeed", new StorageRollersBackFeed(m_storage));
@@ -154,7 +153,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 20));
 
-    SmartDashboard.putNumber("getDistance", getDistance());
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
@@ -282,16 +280,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    return ta.getDouble(0.0);
    }
    
-  public static double getDistance(){
-    //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
-    //uses this equation ^
-    //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
-    var y = table.getEntry("ty");
-    double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + (y.getDouble(0))) * (Math.PI/180));
-    increment++;
-    return distance;
-   }
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

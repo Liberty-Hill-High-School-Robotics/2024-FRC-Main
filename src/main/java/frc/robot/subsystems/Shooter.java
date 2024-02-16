@@ -6,7 +6,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotContainer;
 //import frc.robot.RobotContainer;
 import frc.robot.Constants.*;
 
@@ -88,7 +87,7 @@ public class Shooter extends SubsystemBase {
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
         double speed = .2; //starting speed @ 0 ft
-        speed = speed - ((RobotContainer.getDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        speed = speed - ((Limelight.getDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
         return speed;
     }
     
