@@ -71,6 +71,7 @@ public class Pivot extends SubsystemBase {
         pivotSparkMax.setSoftLimit(SoftLimitDirection.kForward, 50);
         pivotSparkMax2.setSoftLimit(SoftLimitDirection.kForward, 50);
 
+        
 
 
     }
@@ -81,9 +82,14 @@ public class Pivot extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putBoolean( "pivotHallEffectSensor", pivotAtReverseLimit() );
-        SmartDashboard.putNumber("pivotAbsoluteEncoder.getPosition()", pivotAbsoluteEncoder.getPosition());
-        SmartDashboard.putBoolean("pivotAtReverseLimit", pivotAtReverseLimit());
         SmartDashboard.putNumber("pivotRelativeEncoder.getPosition()", pivotRelativeEncoder.getPosition());
+        SmartDashboard.putBoolean("pivotAtReverseLimit", pivotAtReverseLimit());
+        SmartDashboard.putNumber("pivotRelativeEncoder2.getPosition()", pivotRelativeEncoder2.getPosition());
+
+        SmartDashboard.putNumber("calculateAngle", calculateAngle());
+
+        SmartDashboard.putNumber("pivotPID.getPositionError", pivotPID.getPositionError());
+        
 
        if(pivotAtReverseLimit() == true){
             pivotResetRelativeEncoder();
@@ -101,8 +107,9 @@ public class Pivot extends SubsystemBase {
     // here. Call these from Commands.
 
     public void anglePivot(double degree){
-        pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), degree));
-        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder2.getPosition(), degree));
+        double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), degree);
+        pivotSparkMax.set(temp);
+        pivotSparkMax2.set(temp);
     }
 
     public double calculateAngle(){

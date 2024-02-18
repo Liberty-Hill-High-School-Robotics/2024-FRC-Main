@@ -25,7 +25,7 @@ public class Shooter extends SubsystemBase {
     private RelativeEncoder shooterVortex2RelativeEncoder;
 
     PIDController shooterPID = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
-    
+    PIDController shooterPID2 = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
 
 
 
@@ -76,9 +76,10 @@ public class Shooter extends SubsystemBase {
     // here. Call these from Commands.
     
     public void revShooter(double setpoint){
-       
         shooterVortex.set(setpoint);
         shooterVortex2.set(setpoint);
+        //shooterVortex.set(setpoint);
+        //shooterVortex2.set(setpoint);
     }
 
     
@@ -88,7 +89,7 @@ public class Shooter extends SubsystemBase {
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
         double speed = .2; //starting speed @ 0 ft
-        speed = speed - ((Limelight.getDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        speed = speed + ((Limelight.getDistance()) * ShooterConstants.Slope); //subtract x angle for x number of feet away
         return speed;
     }
     

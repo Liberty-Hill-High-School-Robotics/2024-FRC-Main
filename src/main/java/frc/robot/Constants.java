@@ -31,23 +31,23 @@ public final class Constants {
   }
 
   public static final class ShooterConstants{
-    public static final double sP = 0.01;
-    public static final double sI = 0;
+    public static final double sP = 0.001;
+    public static final double sI = 0.0;
     public static final double sD = 0;
 
     public static final double Slope = .05;
 
-    public static final double ApTagHeight = 36.875; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
-    public static final double CamHeight = 7.00; //in inches
+    public static final double ApTagHeight = 54.5; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
+    public static final double CamHeight = 21.00; //in inches
     public static final double CamAngle = 35.00; //in degrees
   }
 
   public static final class PivotConstants{
-    public static final double pP = 0.01;
-    public static final double pI = 0;
+    public static final double pP = 0.005;
+    public static final double pI = 0.00001;
     public static final double pD = 0;
 
-    public static final double Slope = 0; //angle subtracted with each foot the robot is away from the sub
+    public static final double Slope = 0.05; //angle subtracted with each foot the robot is away from the sub
 
 
 
