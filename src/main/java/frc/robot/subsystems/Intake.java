@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,9 +23,10 @@ public class Intake extends SubsystemBase {
     private CANSparkMax pivotIntakeSparkMax;
     private CANSparkMax groundRollerSparkMax;
     
-    private SparkLimitSwitch pivotInakeReverseLimitSwitch;
+    //private SparkLimitSwitch pivotInakeReverseLimitSwitch;
     public RelativeEncoder pivotIntakeRelativeEncoder;
 
+    private final DigitalInput intakePivotHallEffectSensor;
 
 
     public Intake(){
@@ -33,8 +35,11 @@ public class Intake extends SubsystemBase {
         pivotIntakeSparkMax.restoreFactoryDefaults();
         pivotIntakeSparkMax.setInverted(true);
         pivotIntakeSparkMax.setIdleMode(IdleMode.kBrake);
+        pivotIntakeSparkMax.setSmartCurrentLimit(40);
 
-        pivotInakeReverseLimitSwitch = pivotIntakeSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
+        intakePivotHallEffectSensor = new DigitalInput(3);
+
+        
         pivotIntakeRelativeEncoder = pivotIntakeSparkMax.getEncoder();
         
 
@@ -45,6 +50,7 @@ public class Intake extends SubsystemBase {
         groundRollerSparkMax.restoreFactoryDefaults();
         groundRollerSparkMax.setInverted(false);
         groundRollerSparkMax.setIdleMode(IdleMode.kCoast);
+        groundRollerSparkMax.setSmartCurrentLimit(60);
     }
 
   
@@ -55,10 +61,12 @@ public class Intake extends SubsystemBase {
         
         SmartDashboard.putNumber("pivotIntakeRelativeEncoder", pivotIntakeRelativeEncoder.getPosition());
         SmartDashboard.putBoolean("pivotInakeAtReverseLimit", pivotInakeAtReverseLimit());
-        SmartDashboard.putBoolean("pivotInakeAtForwardLimit", pivotInakeAtForwardLimit());
+        SmartDashboard.getNumber("groundRollerSparkMax.getMotorTemperature", groundRollerSparkMax.getMotorTemperature());
+        //SmartDashboard.putBoolean("pivotInakeAtForwardLimit", pivotInakeAtForwardLimit());
 
         if(pivotInakeAtReverseLimit() == true){
             pivotIntakeResetRelativeEncoder();
+            //intakeRollerBackFeedTogeather().end(true);
         }
 
     }
@@ -83,6 +91,10 @@ public class Intake extends SubsystemBase {
         groundRollerSparkMax.set(-MotorSpeeds.groundRollerSpeed);
     }
 
+    public void intakeRollerBackFeedTogeather(){
+        groundRollerSparkMax.set(-MotorSpeeds.groundRollerBackFeedSpeed);
+    }
+
     public void intakeRollerStop(){
         groundRollerSparkMax.set(0);
     }
@@ -101,7 +113,7 @@ public class Intake extends SubsystemBase {
 
     public boolean pivotInakeAtReverseLimit(){
     
-        return pivotInakeReverseLimitSwitch.isPressed();
+        return (!intakePivotHallEffectSensor.get());
     }
 
     public boolean pivotInakeAtForwardLimit(){

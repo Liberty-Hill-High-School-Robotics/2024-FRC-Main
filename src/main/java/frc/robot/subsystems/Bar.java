@@ -31,6 +31,7 @@ public class Bar extends SubsystemBase {
         barRotatorSparkMax.restoreFactoryDefaults();
         barRotatorSparkMax.setInverted(true);
         barRotatorSparkMax.setIdleMode(IdleMode.kBrake);
+        barRotatorSparkMax.setSmartCurrentLimit(40);
 
         barReverseLimitSwitch = barRotatorSparkMax.getReverseLimitSwitch(Type.kNormallyOpen);
 

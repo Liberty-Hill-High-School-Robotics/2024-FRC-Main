@@ -29,10 +29,9 @@ public class Pivot extends SubsystemBase {
     private final RelativeEncoder pivotRelativeEncoder;
     private final RelativeEncoder pivotRelativeEncoder2;
 
-
     private final DigitalInput pivotHallEffectSensor;
 
-     PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
+    PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
 
     public Pivot(){
         //config motor settings here
@@ -40,16 +39,20 @@ public class Pivot extends SubsystemBase {
         pivotSparkMax.restoreFactoryDefaults();
         pivotSparkMax.setInverted(false);
         pivotSparkMax.setIdleMode(IdleMode.kBrake);
+        pivotSparkMax.setSmartCurrentLimit(60);
 
         pivotSparkMax2 = new CANSparkMax(CanIDs.pivotMotor2ID, MotorType.kBrushless);
         pivotSparkMax2.restoreFactoryDefaults();
         pivotSparkMax2.setInverted(true);
         pivotSparkMax2.setIdleMode(IdleMode.kBrake);
+        pivotSparkMax2.setSmartCurrentLimit(60);
+
 
         transferRollerSparkMax = new CANSparkMax(CanIDs.transferRollerID, MotorType.kBrushless);
         transferRollerSparkMax.restoreFactoryDefaults();
         transferRollerSparkMax.setInverted(true);
         transferRollerSparkMax.setIdleMode(IdleMode.kCoast);
+        transferRollerSparkMax.setSmartCurrentLimit(30);
 
         pivotAbsoluteEncoder = pivotSparkMax.getAbsoluteEncoder(Type.kDutyCycle); 
         //pivotAbsoluteEncoder.setPositionConversionFactor(.209502431724654);
@@ -114,7 +117,7 @@ public class Pivot extends SubsystemBase {
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        double angle = 50; //starting angle @ 0 ft
+        double angle = 40; //starting angle @ 0 ft
         angle = angle - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
         return angle;
     }

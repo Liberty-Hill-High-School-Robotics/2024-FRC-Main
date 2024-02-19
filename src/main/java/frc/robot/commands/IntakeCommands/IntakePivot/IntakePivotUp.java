@@ -36,4 +36,5 @@ public class IntakePivotUp extends Command {
   public boolean isFinished() {
     return m_intake.pivotInakeAtReverseLimit();
   }
+  
 }

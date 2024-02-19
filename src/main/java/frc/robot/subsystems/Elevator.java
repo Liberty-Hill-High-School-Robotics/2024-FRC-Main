@@ -29,11 +29,13 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax.restoreFactoryDefaults();
         elevatorSparkMax.setInverted(false);
         elevatorSparkMax.setIdleMode(IdleMode.kBrake);
+        elevatorSparkMax.setSmartCurrentLimit(60);
 
         elevatorSparkMax2 = new CANSparkMax(CanIDs.elevatorMotor2ID, MotorType.kBrushless);
         elevatorSparkMax2.restoreFactoryDefaults();
         elevatorSparkMax2.setInverted(false);
         elevatorSparkMax2.setIdleMode(IdleMode.kBrake);
+        elevatorSparkMax2.setSmartCurrentLimit(60);
 
         //elevatorRelativeEncoder.
     }

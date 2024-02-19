@@ -35,11 +35,13 @@ public class Shooter extends SubsystemBase {
         shooterVortex.restoreFactoryDefaults();
         shooterVortex.setInverted(false);
         shooterVortex.setIdleMode(IdleMode.kCoast);
+        shooterVortex.setSmartCurrentLimit(60);
 
         shooterVortex2 = new CANSparkFlex(CanIDs.shooterMotor2ID, MotorType.kBrushless);
         shooterVortex2.restoreFactoryDefaults();
         shooterVortex2.setInverted(false);
         shooterVortex2.setIdleMode(IdleMode.kCoast);
+        shooterVortex2.setSmartCurrentLimit(60);
 
         shooterVortexRelativeEncoder = shooterVortex.getEncoder();
         shooterVortex2RelativeEncoder = shooterVortex2.getEncoder();
@@ -88,7 +90,7 @@ public class Shooter extends SubsystemBase {
     public double calculateSpeed(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
-        double speed = .2; //starting speed @ 0 ft
+        double speed = .6; //starting speed @ 0 ft
         speed = speed + ((Limelight.getDistance()) * ShooterConstants.Slope); //subtract x angle for x number of feet away
         return speed;
     }

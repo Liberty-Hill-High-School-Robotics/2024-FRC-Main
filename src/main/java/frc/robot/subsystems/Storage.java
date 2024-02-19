@@ -25,6 +25,7 @@ public class Storage extends SubsystemBase {
         storageRollerSparkMax.restoreFactoryDefaults();
         storageRollerSparkMax.setInverted(true);
         storageRollerSparkMax.setIdleMode(IdleMode.kCoast);
+        storageRollerSparkMax.setSmartCurrentLimit(60);
         
 
 

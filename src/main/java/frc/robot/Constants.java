@@ -37,14 +37,14 @@ public final class Constants {
 
     public static final double Slope = .05;
 
-    public static final double ApTagHeight = 54.5; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
+    public static final double ApTagHeight = 53.5; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
     public static final double CamHeight = 21.00; //in inches
     public static final double CamAngle = 35.00; //in degrees
   }
 
   public static final class PivotConstants{
-    public static final double pP = 0.005;
-    public static final double pI = 0.00001;
+    public static final double pP = 0.006;
+    public static final double pI = 0.00000003;
     public static final double pD = 0;
 
     public static final double Slope = 0.05; //angle subtracted with each foot the robot is away from the sub
@@ -66,11 +66,12 @@ public final class Constants {
   public static final class MotorSpeeds{
     //all speeds should be a double
     public static final double elevatorSpeed = .5;
-    public static final double pivotIntakeSpeed = .75;
-    public static final double groundRollerSpeed = .5;
-    public static final double transferRollerSpeed = .75;
+    public static final double pivotIntakeSpeed = .25;
+    public static final double groundRollerSpeed = 1;
+    public static final double groundRollerBackFeedSpeed = .1;
+    public static final double transferRollerSpeed = 1;
     public static final double pivotSpeed = .15;
-    public static final double shooterSpeed = .75;
+    public static final double shooterSpeed = .89;
     public static final double storageRollerSpeed = .75;
     public static final double barRotatorSpeed = .3;
 
@@ -201,7 +202,7 @@ public final class Constants {
     public static final IdleMode kDrivingMotorIdleMode = IdleMode.kBrake;
     public static final IdleMode kTurningMotorIdleMode = IdleMode.kBrake;
 
-    public static final int kDrivingMotorCurrentLimit = 60; // amps
+    public static final int kDrivingMotorCurrentLimit = 80; // amps
     public static final int kTurningMotorCurrentLimit = 20; // amps
   }
 
