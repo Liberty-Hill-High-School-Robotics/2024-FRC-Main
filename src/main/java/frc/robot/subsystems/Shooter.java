@@ -91,7 +91,10 @@ public class Shooter extends SubsystemBase {
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
         double speed = .6; //starting speed @ 0 ft
-        speed = speed + ((Limelight.getDistance()) * ShooterConstants.Slope); //subtract x angle for x number of feet away
+        if(Limelight.getDistance() > 40){
+            speed = (.545*Math.pow(Limelight.getDistance(),.0667)); //subtract x angle for x number of feet away
+        }
+        
         return speed;
     }
     

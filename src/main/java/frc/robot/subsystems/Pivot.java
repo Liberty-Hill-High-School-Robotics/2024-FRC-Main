@@ -117,9 +117,14 @@ public class Pivot extends SubsystemBase {
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        double angle = 40; //starting angle @ 0 ft
-        angle = angle - ((Limelight.roundDistance()) * PivotConstants.Slope); //subtract x angle for x number of feet away
+        double angle = 40;
+        if (Limelight.getDistance() > 40){
+            angle = (58.496*Math.pow(Limelight.getDistance(),-.216) ); 
+        }
         return angle;
+        //starting angle 40 0 ft //58.496x^{-.216}
+        //subtract x angle for x number of feet away //
+       
     }
 
     public void pivotUp(){
