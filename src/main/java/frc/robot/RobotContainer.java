@@ -162,6 +162,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
     SmartDashboard.putNumber("increment", increment);
+    SmartDashboard.putData("turnwhileaim", new AimWhileMoving(m_drivesubsystem));
 
 
 
