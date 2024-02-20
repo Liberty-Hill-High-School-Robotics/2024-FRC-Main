@@ -40,6 +40,9 @@ public final class Constants {
     public static final double ApTagHeight = 53.5; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
     public static final double CamHeight = 21.00; //in inches
     public static final double CamAngle = 35.00; //in degrees
+
+    public static final double sCalcC = .231;
+    public static final double sCalucP = .247;
   }
 
   public static final class PivotConstants{
@@ -49,7 +52,8 @@ public final class Constants {
 
     public static final double Slope = 0.05; //angle subtracted with each foot the robot is away from the sub
 
-
+    public static final double pCalcC = 1039.215;
+    public static final double pCalucP = -.822;
 
   }
   public static final class BarConstants{

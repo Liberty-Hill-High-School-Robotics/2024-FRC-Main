@@ -92,7 +92,7 @@ public class Shooter extends SubsystemBase {
         //speed is on a scale from -1 -> 1
         double speed = .6; //starting speed @ 0 ft
         if(Limelight.getDistance() > 40){
-            speed = (.545*Math.pow(Limelight.getDistance(),.0667)); //subtract x angle for x number of feet away
+            speed = (ShooterConstants.sCalcC*Math.pow(Limelight.getDistance(),ShooterConstants.sCalucP)); //subtract x angle for x number of feet away
         }
         
         return speed;
