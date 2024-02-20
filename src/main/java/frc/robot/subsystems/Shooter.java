@@ -100,7 +100,12 @@ public class Shooter extends SubsystemBase {
         
         return speed;
     }
-    
+    public void shooterSetpoint(double setpoint){
+        shooterVortex.set(setpoint);
+        shooterVortex2.set(setpoint);
+    }
+
+
     public void shooterFeed(){
         shooterVortex.set(MotorSpeeds.shooterSpeed);
         shooterVortex2.set(MotorSpeeds.shooterSpeed);

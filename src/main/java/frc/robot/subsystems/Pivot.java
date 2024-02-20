@@ -128,6 +128,11 @@ public class Pivot extends SubsystemBase {
        
     }
 
+    public void pivotSetpoint(double setpoint){
+        pivotSparkMax.set(setpoint);
+        pivotSparkMax2.set(setpoint);
+    }
+
     public void pivotUp(){
         pivotSparkMax.set(MotorSpeeds.pivotSpeed);
         pivotSparkMax2.set(MotorSpeeds.pivotSpeed);

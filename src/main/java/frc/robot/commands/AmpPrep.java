@@ -6,6 +6,8 @@ import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
+import frc.robot.commands.ShooterCommands.shooterSetpoint;
+import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
 import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
@@ -31,9 +33,9 @@ public class AmpPrep extends SequentialCommandGroup {
             new AngleBarRotatorPivot(bar, 10),
         
             new ParallelCommandGroup(
-                new BarRotateForward(bar)
-                //new AnglePivot(pivot, 39),
-                //new RevShooter(shooter, .1)
+                new BarRotateForward(bar),
+                new PivotSetpoint(pivot, 39),
+                new shooterSetpoint(shooter, .1)
             )    
         
     );
