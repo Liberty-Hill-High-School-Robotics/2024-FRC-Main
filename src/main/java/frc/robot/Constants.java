@@ -71,8 +71,8 @@ public final class Constants {
     public static final double groundRollerBackFeedSpeed = .1;
     public static final double transferRollerSpeed = 1;
     public static final double pivotSpeed = .15;
-    public static final double shooterSpeed = .89;
-    public static final double storageRollerSpeed = .75;
+    public static final double shooterSpeed = .2;
+    public static final double storageRollerSpeed = .89;
     public static final double barRotatorSpeed = .3;
 
     

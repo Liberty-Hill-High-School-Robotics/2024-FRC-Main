@@ -50,7 +50,7 @@ public class Intake extends SubsystemBase {
         groundRollerSparkMax.restoreFactoryDefaults();
         groundRollerSparkMax.setInverted(false);
         groundRollerSparkMax.setIdleMode(IdleMode.kCoast);
-        groundRollerSparkMax.setSmartCurrentLimit(60);
+        groundRollerSparkMax.setSmartCurrentLimit(40);
     }
 
   

@@ -240,24 +240,28 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     BoostMode.whileTrue(new BoostMode());*/
 
     //Deploys the Amp Bar, piviots, and sets flywheels to amp speed
-    final Trigger AmpPrep = new JoystickButton(m_operatorController, 3);
-    AmpPrep.whileTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
+    //final Trigger AmpPrep = new JoystickButton(m_operatorController, 3);
+    //AmpPrep.whileTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
 
     /*Spins up flywheels to subwoofer speed and pivots to subwoofer pitch, then runs indexer rollers to fire piece
     final Trigger SubwooferOverride = new JoystickButton(m_operatorController, 3);
     SubwooferOverride.whileTrue(new SubwooferOverride());*/
+    //
+    final Trigger Shoot = new JoystickButton(m_operatorController, 5);
+    Shoot.onTrue(new ShooterFeed(m_shooter));
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
     final Trigger AutoIntake = new JoystickButton(m_operatorController, 1);
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
     
     //Runs indexer to shoot game piece
-    final Trigger AmpFire = new JoystickButton(m_operatorController, 5);
-    AmpFire.whileTrue(new StorageRollersFeed(m_storage));
+    //final Trigger AmpFire = new JoystickButton(m_operatorController, 5);
+    //AmpFire.whileTrue(new StorageRollersFeed(m_storage));
 
     //Waits until the robot is in shooting position, and runs the indexer to shoot
     final Trigger FireFromAim = new JoystickButton(m_operatorController, 6);
-    FireFromAim.whileTrue(new StorageRollersFeed(m_storage));
+    FireFromAim.whileTrue(new StorageRollersShooter(m_storage));
+    FireFromAim.whileFalse(new StorageRollersStop(m_storage));
   }
   /* Example Button Binding from 2023 Main code
   starts by defining a trigger, can be replaced with other button types like POVButton, but only when necessary
