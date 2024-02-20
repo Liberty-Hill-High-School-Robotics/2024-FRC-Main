@@ -29,7 +29,7 @@ public class resetHeading extends Command {
      private final DriveSubsystem m_robotDrive;
 
 
-    public resetHeading( DriveSubsystem subsystem
+     public resetHeading( DriveSubsystem subsystem
 
     ) {
 
@@ -64,7 +64,6 @@ public class resetHeading extends Command {
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-        super.end(interrupted);
     }
 
 

@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
-import frc.robot.Constants.ShooterConstants;
+//import frc.robot.Constants.ShooterConstants;
 //subsystem imports
 //import frc.robot.commands.AutoAimCommands.*;
 import frc.robot.commands.BarCommands.*;
@@ -229,7 +229,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     
     //Resets current chassis rotation to 0 degrees
     final Trigger resetHeading = new JoystickButton(m_driverController, 4);
-    resetHeading.onTrue(new xPattern(m_drivesubsystem));
+    resetHeading.onTrue(new resetHeading(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);

@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+//import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
@@ -360,17 +360,6 @@ public class DriveSubsystem extends SubsystemBase {
       return true;
     }
     return false;
-  }
-
-
-  public void controlSchemeRobot() {
-    //sets controlscheme to true when button held
-    Constants.DriveConstants.driveScheme = false;
-  }
-
-  public void controlSchemeField() {
-    //sets controscheme to false when not held
-    Constants.DriveConstants.driveScheme = true; 
   }
 
   
