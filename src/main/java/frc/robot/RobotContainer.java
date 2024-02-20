@@ -38,6 +38,7 @@ import frc.robot.commands.StorageCommands.*;
 //special imports
 import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AmpPrep;
+import frc.robot.commands.AutoAim;
 import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
@@ -248,19 +249,25 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger SubwooferOverride = new JoystickButton(m_operatorController, 3);
     SubwooferOverride.whileTrue(new SubwooferOverride());*/
     //
-    final Trigger Shoot = new JoystickButton(m_operatorController, 5);
-    Shoot.onTrue(new ShooterFeed(m_shooter));
+    //final Trigger Shoot = new JoystickButton(m_operatorController, 5);
+    //Shoot.onTrue(new ShooterFeed(m_shooter));
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
-    final Trigger AutoIntake = new JoystickButton(m_operatorController, 1);
+    final Trigger AutoIntake = new JoystickButton(m_driverController, 3);
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
+
+    final Trigger AutoAim = new JoystickButton(m_driverController, 2);
+    AutoAim.whileTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
+    
+
+    
     
     //Runs indexer to shoot game piece
     //final Trigger AmpFire = new JoystickButton(m_operatorController, 5);
     //AmpFire.whileTrue(new StorageRollersFeed(m_storage));
 
     //Waits until the robot is in shooting position, and runs the indexer to shoot
-    final Trigger FireFromAim = new JoystickButton(m_operatorController, 6);
+    final Trigger FireFromAim = new JoystickButton(m_driverController, 4);
     FireFromAim.whileTrue(new StorageRollersShooter(m_storage));
     FireFromAim.whileFalse(new StorageRollersStop(m_storage));
   }
