@@ -380,7 +380,8 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double turnPID(){
-    double output = (turningPID.calculate(-RobotContainer.getTx(), 0));
+    double output = (turningPID.calculate(RobotContainer.getTx(), 0));
+    SmartDashboard.putNumber("turningoutput", output);
     return output;
 }
 

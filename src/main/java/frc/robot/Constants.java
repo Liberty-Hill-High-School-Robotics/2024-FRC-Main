@@ -104,7 +104,7 @@ public final class Constants {
 
     public static boolean driveScheme = true;
 
-    public static final double tP = 0.01;
+    public static final double tP = 0.1;
     public static final double tI = 0;
     public static final double tD = 0;
 
