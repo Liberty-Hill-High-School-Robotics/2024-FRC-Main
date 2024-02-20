@@ -153,8 +153,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("BarRotateStop", new BarRotateStop(m_bar));
     SmartDashboard.putData("AngleBarRotatorPivot", new AngleBarRotatorPivot(m_bar, 10));
 
-    SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, 20)); //m_pivot.calculateAngle()
-    SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .75));//m_shooter.calculateSpeed()
+    SmartDashboard.putData("AnglePivot", new AnglePivot(m_pivot, m_pivot.calculateAngle())); //m_pivot.calculateAngle()
+    SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, m_shooter.calculateSpeed()));//m_shooter.calculateSpeed()
     //SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));
     SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
 
