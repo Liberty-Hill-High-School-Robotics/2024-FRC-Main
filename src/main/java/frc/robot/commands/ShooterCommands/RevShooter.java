@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RevShooter extends Command {
   // The subsystem the command runs on
   private final Shooter m_shooter;
-  private final double m_setpoint;
+  //private final double m_setpoint;
 
-  public RevShooter(Shooter subsystem, double setpoint) {
+  public RevShooter(Shooter subsystem) {
     m_shooter = subsystem;
     addRequirements(m_shooter);
-    m_setpoint = setpoint;
+    //m_setpoint = setpoint;
     
   }
 
@@ -27,7 +27,7 @@ public class RevShooter extends Command {
 
   @Override
   public void execute(){
-    m_shooter.revShooter(m_setpoint);
+    m_shooter.revShooter();
     //need to add value output from PID loop
   }
 

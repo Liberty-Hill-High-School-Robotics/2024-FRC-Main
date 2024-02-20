@@ -31,9 +31,9 @@ public class AmpPrep extends SequentialCommandGroup {
             new AngleBarRotatorPivot(bar, 10),
         
             new ParallelCommandGroup(
-                new BarRotateForward(bar),
-                new AnglePivot(pivot, 39),
-                new RevShooter(shooter, .1)
+                new BarRotateForward(bar)
+                //new AnglePivot(pivot, 39),
+                //new RevShooter(shooter, .1)
             )    
         
     );

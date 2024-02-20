@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class AnglePivot extends Command {
   // The subsystem the command runs on
   private final Pivot m_pivot;
-  private final double m_degree;
+  //private final double m_degree;
 
-  public AnglePivot(Pivot subsystem, double degree) {
+  public AnglePivot(Pivot subsystem) {
     m_pivot = subsystem;
     addRequirements(m_pivot);
-    m_degree = degree;
+   // m_degree = degree;
   }
 
   @Override
@@ -26,7 +26,7 @@ public class AnglePivot extends Command {
 
   @Override
   public void execute(){
-    m_pivot.anglePivot(m_degree);
+    m_pivot.anglePivot();
   }
 
   @Override

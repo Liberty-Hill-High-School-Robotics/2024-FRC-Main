@@ -24,6 +24,8 @@ public class Shooter extends SubsystemBase {
     private RelativeEncoder shooterVortexRelativeEncoder;
     private RelativeEncoder shooterVortex2RelativeEncoder;
 
+    private double speedCalc;
+
     PIDController shooterPID = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
     PIDController shooterPID2 = new PIDController(ShooterConstants.sP, ShooterConstants.sI, ShooterConstants.sD);
 
@@ -61,6 +63,7 @@ public class Shooter extends SubsystemBase {
         
         SmartDashboard.putNumber("calculateSpeed", calculateSpeed());
         
+        speedCalc = (ShooterConstants.sCalcC*Math.pow(Limelight.getDistance(),ShooterConstants.sCalucP));
 
     }
 
@@ -77,9 +80,9 @@ public class Shooter extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
-    public void revShooter(double setpoint){
-        shooterVortex.set(setpoint);
-        shooterVortex2.set(setpoint);
+    public void revShooter(){
+        shooterVortex.set(calculateSpeed());
+        shooterVortex2.set(calculateSpeed());
         //shooterVortex.set(setpoint);
         //shooterVortex2.set(setpoint);
     }
@@ -92,7 +95,7 @@ public class Shooter extends SubsystemBase {
         //speed is on a scale from -1 -> 1
         double speed = .6; //starting speed @ 0 ft
         if(Limelight.getDistance() > 40){
-            speed = (ShooterConstants.sCalcC*Math.pow(Limelight.getDistance(),ShooterConstants.sCalucP)); //subtract x angle for x number of feet away
+            speed = speedCalc; //subtract x angle for x number of feet away
         }
         
         return speed;

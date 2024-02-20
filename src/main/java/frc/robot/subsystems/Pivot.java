@@ -30,6 +30,7 @@ public class Pivot extends SubsystemBase {
     private final RelativeEncoder pivotRelativeEncoder2;
 
     private final DigitalInput pivotHallEffectSensor;
+    private double angleCalc;
 
     PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
 
@@ -97,7 +98,7 @@ public class Pivot extends SubsystemBase {
        if(pivotAtReverseLimit() == true){
             pivotResetRelativeEncoder();
        }
-
+       angleCalc =  (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP)); 
     }
 
     @Override
@@ -109,8 +110,8 @@ public class Pivot extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public void anglePivot(double degree){
-        double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), degree);
+    public void anglePivot(){
+        double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), calculateAngle());
         pivotSparkMax.set(temp);
         pivotSparkMax2.set(temp);
     }
@@ -119,7 +120,7 @@ public class Pivot extends SubsystemBase {
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
         double angle = 40;
         if (Limelight.getDistance() > 40){
-            angle = (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP)); 
+            angle = angleCalc;
         }
         return angle;
         //starting angle 40 0 ft //58.496x^{-.216}
