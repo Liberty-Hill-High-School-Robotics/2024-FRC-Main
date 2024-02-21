@@ -166,8 +166,8 @@ public class Pivot extends SubsystemBase {
     }
 
     public void pivotResetRelativeEncoder(){
-            pivotRelativeEncoder.setPosition(0);
-            pivotRelativeEncoder2.setPosition(0);
+        pivotRelativeEncoder.setPosition(0);
+        pivotRelativeEncoder2.setPosition(0);
     }
     
     

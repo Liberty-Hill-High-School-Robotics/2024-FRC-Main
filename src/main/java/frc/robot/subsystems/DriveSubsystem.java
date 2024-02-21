@@ -162,7 +162,7 @@ public class DriveSubsystem extends SubsystemBase {
         });
 
     SmartDashboard.putNumber("CurrentRotation", m_currentRotation);
-    SmartDashboard.putNumber("Degree", Rotation2d.fromDegrees(m_gyro.getYaw().getValue()).getDegrees());
+    //SmartDashboard.putNumber("Degree", Rotation2d.fromDegrees(m_gyro.getYaw().getValue()).getDegrees());
 
     SmartDashboard.putNumber("FrontLeftDriveVoltage", m_frontLeft.m_drivingSparkFlex.getBusVoltage());
     SmartDashboard.putNumber("FrontRightDriveVoltage", m_frontRight.m_drivingSparkFlex.getBusVoltage());

@@ -29,9 +29,7 @@ public class resetHeading extends Command {
      private final DriveSubsystem m_robotDrive;
 
 
-     public resetHeading( DriveSubsystem subsystem
-
-    ) {
+     public resetHeading( DriveSubsystem subsystem){
 
         m_robotDrive = subsystem;
         addRequirements(m_robotDrive);

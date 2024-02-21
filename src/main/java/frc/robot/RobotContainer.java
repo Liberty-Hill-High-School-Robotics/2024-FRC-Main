@@ -188,7 +188,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
                 -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true), //drivescheme sets either field centric or not
+                true, true),
             m_drivesubsystem));
 
   }

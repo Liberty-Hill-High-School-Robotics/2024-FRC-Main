@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
 import frc.robot.commands.BarCommands.BarRotateForward;
-import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
-import frc.robot.commands.ShooterCommands.RevShooter;
 import frc.robot.commands.ShooterCommands.shooterSetpoint;
 import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
 import frc.robot.subsystems.Bar;
