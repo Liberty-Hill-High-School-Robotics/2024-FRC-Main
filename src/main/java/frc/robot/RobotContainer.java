@@ -226,12 +226,12 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //Aim.whileTrue(new Aim());
 
     //Holds wheels in X pattern
-    final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
-    xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
+    //final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
+    //xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
     
     //Resets current chassis rotation to 0 degrees
-    final Trigger resetHeading = new JoystickButton(m_driverController, 4);
-    resetHeading.onTrue(new resetHeading(m_drivesubsystem));
+    //final Trigger resetHeading = new JoystickButton(m_driverController, 4);
+    //resetHeading.onTrue(new resetHeading(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
@@ -257,7 +257,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
 
     final Trigger AutoAim = new JoystickButton(m_driverController, 2);
-    AutoAim.whileTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
+    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
     
 
     

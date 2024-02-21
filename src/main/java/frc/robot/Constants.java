@@ -46,13 +46,13 @@ public final class Constants {
   }
 
   public static final class PivotConstants{
-    public static final double pP = 0.007;
+    public static final double pP = 0.0065;
     public static final double pI = 0.00000003;
     public static final double pD = 0;
 
     public static final double Slope = 0.05; //angle subtracted with each foot the robot is away from the sub
 
-    public static final double pCalcC = 1020;
+    public static final double pCalcC = 1015;
     public static final double pCalucP = -.822;
 
   }
