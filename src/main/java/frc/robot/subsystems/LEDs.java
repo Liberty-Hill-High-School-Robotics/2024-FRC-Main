@@ -79,7 +79,7 @@ public class LEDs extends SubsystemBase {
         configAll.disableWhenLOS = false;
         configAll.stripType = LEDStripType.RGB;
         configAll.brightnessScalar = 1;
-        configAll.vBatOutputMode = VBatOutputMode.Modulated;
+        configAll.vBatOutputMode = VBatOutputMode.On;
         candle.configAllSettings(configAll, 100);
 
     }
