@@ -26,7 +26,7 @@ import frc.robot.Constants.OIConstants;
 //import frc.robot.commands.AutoAimCommands.*;
 import frc.robot.commands.BarCommands.*;
 import frc.robot.commands.DriveAutonCommands.*;
-import frc.robot.commands.ElevatorCommands.*;
+//import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
 import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.LEDCommands.Animations.*;
@@ -39,6 +39,7 @@ import frc.robot.commands.StorageCommands.*;
 import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AmpPrep;
 import frc.robot.commands.AutoAim;
+//import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
 
@@ -144,14 +145,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("LEDgrreeeeen", new CandleGreen(m_leds));
     SmartDashboard.putData("rainbowanimation", new CandleRainbow(m_leds));
     SmartDashboard.putData("ledstrobe", new CandleStrobe(m_leds));
-    SmartDashboard.putData("ColorFlowanimation", new CandleColorFlow(m_leds));
-    SmartDashboard.putData("fireanimation", new CandleFire(m_leds));
-    SmartDashboard.putData("larsonanimation", new CandleLarson(m_leds));
-    SmartDashboard.putData("rgbfade", new CandleRGBFade(m_leds));
-    SmartDashboard.putData("singlefade", new CandleSingleFade(m_leds));
-    SmartDashboard.putData("candletwinkle", new CandleTwinkle(m_leds));
-
-
     SmartDashboard.putData("ledSTOP", new CandleOff(m_leds));
 
     SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
@@ -166,8 +159,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));
     SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
 
-    SmartDashboard.putData("AnglePivot", new PivotSetpoint(m_pivot, 0)); //m_pivot.calculateAngle()
-    SmartDashboard.putData("RevShooter", new shooterSetpoint(m_shooter, 0));//m_shooter.calculateSpeed()
+    SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, 35)); //m_pivot.calculateAngle()
+    SmartDashboard.putData("shooterSetpoint", new shooterSetpoint(m_shooter, .65));//m_shooter.calculateSpeed()
 
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
@@ -195,7 +188,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
                 -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true),
+                true, true), //drivescheme sets either field centric or not
             m_drivesubsystem));
 
   }
@@ -259,30 +252,25 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger SubwooferOverride = new JoystickButton(m_operatorController, 3);
     SubwooferOverride.whileTrue(new SubwooferOverride());*/
     //
-    //final Trigger Shoot = new JoystickButton(m_operatorController, 5);
-    //Shoot.onTrue(new ShooterFeed(m_shooter));
+    final Trigger SoftRev = new JoystickButton(m_operatorController, 5);
+    SoftRev.onTrue(new ShooterFeed(m_shooter));
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
-    final Trigger AutoIntake = new JoystickButton(m_driverController, 3);
+    final Trigger AutoIntake = new JoystickButton(m_operatorController, 3);
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
 
-    final Trigger AutoAim = new JoystickButton(m_driverController, 2);
+    final Trigger AutoAim = new JoystickButton(m_driverController, 5);
     AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
     
-    //Elevator buttons
-    final Trigger ElevatorUp = new JoystickButton(m_operatorController, 2);
-    ElevatorUp.toggleOnTrue(new ElevatorUp(m_elevator)); 
 
-    final Trigger ElevatorDown = new JoystickButton(m_operatorController, 1);
-    ElevatorDown.toggleOnTrue(new ElevatorDown(m_elevator)); 
     
     
     //Runs indexer to shoot game piece
     //final Trigger AmpFire = new JoystickButton(m_operatorController, 5);
     //AmpFire.whileTrue(new StorageRollersFeed(m_storage));
 
-    //Waits until the robot is in shooting position, and runs the indexer to shoot
-    final Trigger FireFromAim = new JoystickButton(m_driverController, 4);
+    //Waits until the robot is in shooting position, and runs the indexer to shoot 
+    final Trigger FireFromAim = new JoystickButton(m_operatorController, 4);
     FireFromAim.whileTrue(new StorageRollersShooter(m_storage));
     FireFromAim.whileFalse(new StorageRollersStop(m_storage));
   }

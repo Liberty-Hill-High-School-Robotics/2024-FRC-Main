@@ -24,7 +24,7 @@ public class Storage extends SubsystemBase {
         storageRollerSparkMax = new CANSparkMax(CanIDs.storageRollerMotorID, MotorType.kBrushless);
         storageRollerSparkMax.restoreFactoryDefaults();
         storageRollerSparkMax.setInverted(true);
-        storageRollerSparkMax.setIdleMode(IdleMode.kCoast);
+        storageRollerSparkMax.setIdleMode(IdleMode.kBrake);
         storageRollerSparkMax.setSmartCurrentLimit(60);
         
 
