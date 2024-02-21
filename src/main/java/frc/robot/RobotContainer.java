@@ -26,7 +26,7 @@ import frc.robot.Constants.OIConstants;
 //import frc.robot.commands.AutoAimCommands.*;
 import frc.robot.commands.BarCommands.*;
 import frc.robot.commands.DriveAutonCommands.*;
-//import frc.robot.commands.ElevatorCommands.*;
+import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
 import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.LEDCommands.Animations.*;
@@ -269,7 +269,12 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger AutoAim = new JoystickButton(m_driverController, 2);
     AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
     
+    //Elevator buttons
+    final Trigger ElevatorUp = new JoystickButton(m_operatorController, 2);
+    ElevatorUp.toggleOnTrue(new ElevatorUp(m_elevator)); 
 
+    final Trigger ElevatorDown = new JoystickButton(m_operatorController, 1);
+    ElevatorDown.toggleOnTrue(new ElevatorDown(m_elevator)); 
     
     
     //Runs indexer to shoot game piece
