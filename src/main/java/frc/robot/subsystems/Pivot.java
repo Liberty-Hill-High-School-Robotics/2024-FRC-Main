@@ -129,8 +129,8 @@ public class Pivot extends SubsystemBase {
     }
 
     public void pivotSetpoint(double setpoint){
-        pivotSparkMax.set(setpoint);
-        pivotSparkMax2.set(setpoint);
+        pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
     }
 
     public void pivotUp(){

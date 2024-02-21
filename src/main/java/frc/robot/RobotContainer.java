@@ -159,6 +159,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));
     SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
 
+    SmartDashboard.putData("AnglePivot", new PivotSetpoint(m_pivot, 0)); //m_pivot.calculateAngle()
+    SmartDashboard.putData("RevShooter", new shooterSetpoint(m_shooter, 0));//m_shooter.calculateSpeed()
+
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 

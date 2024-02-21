@@ -57,8 +57,8 @@ public final class Constants {
 
   }
   public static final class BarConstants{
-    public static final double bP = 0.01;
-    public static final double bI = 0;
+    public static final double bP = 0.05;
+    public static final double bI = 0.01;
     public static final double bD = 0;
     public final static float fLimit = 22;
 
