@@ -104,6 +104,7 @@ public class LEDs extends SubsystemBase {
     public void candleSetColor(String color){
         //set brightness
         candle.configBrightnessScalar(1);
+        candle.clearAnimation(1);
 
         //switch statement
         if(color == "purple"){
@@ -146,6 +147,7 @@ public class LEDs extends SubsystemBase {
         }     
 
         else {
+            candle.clearAnimation(1);
             candle.configBrightnessScalar(0);
             r = 255;
             g = 255;
@@ -162,39 +164,39 @@ public class LEDs extends SubsystemBase {
         //set animation based on given string.=
         candle.configBrightnessScalar(1);
         if(animation == "rainbow"){
-           candle.animate(rainbowAnimation);
+           candle.animate(rainbowAnimation, 1);
         }
 
         else if(animation == "fire"){
-           candle.animate(fireAnimation);
+           candle.animate(fireAnimation, 1);
         }
 
         else if(animation == "rgbfade"){
-           candle.animate(rgbFadeAnimation);
+           candle.animate(rgbFadeAnimation, 1);
         }
 
         else if(animation == "larson"){
-           candle.animate(larsonAnimation);
+           candle.animate(larsonAnimation, 1);
         }
 
         else if(animation == "colorflow"){
-           candle.animate(colorFlowAnimation);
+           candle.animate(colorFlowAnimation, 1);
         }
 
         else if(animation == "singlefade"){
-           candle.animate(singleFadeAnimation);
+           candle.animate(singleFadeAnimation, 1);
         }
 
         else if(animation == "strobe"){
-           candle.animate(strobeAnimation);
+           candle.animate(strobeAnimation, 1);
         }
 
         else if(animation == "twinkle"){
-           candle.animate(twinkleAnimation);
+           candle.animate(twinkleAnimation, 1);
         }
 
         else if(animation == "twinkleoff"){
-           candle.animate(twinkleOffAnimation);
+           candle.animate(twinkleOffAnimation, 1);
         }
     }
 }

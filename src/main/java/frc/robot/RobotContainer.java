@@ -39,7 +39,6 @@ import frc.robot.commands.StorageCommands.*;
 import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AmpPrep;
 import frc.robot.commands.AutoAim;
-import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
 
@@ -145,6 +144,14 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("LEDgrreeeeen", new CandleGreen(m_leds));
     SmartDashboard.putData("rainbowanimation", new CandleRainbow(m_leds));
     SmartDashboard.putData("ledstrobe", new CandleStrobe(m_leds));
+    SmartDashboard.putData("ColorFlowanimation", new CandleColorFlow(m_leds));
+    SmartDashboard.putData("fireanimation", new CandleFire(m_leds));
+    SmartDashboard.putData("larsonanimation", new CandleLarson(m_leds));
+    SmartDashboard.putData("rgbfade", new CandleRGBFade(m_leds));
+    SmartDashboard.putData("singlefade", new CandleSingleFade(m_leds));
+    SmartDashboard.putData("candletwinkle", new CandleTwinkle(m_leds));
+
+
     SmartDashboard.putData("ledSTOP", new CandleOff(m_leds));
 
     SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
