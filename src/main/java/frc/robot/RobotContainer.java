@@ -110,6 +110,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
     NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_drivesubsystem, m_storage));
+    NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
+    NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
+    NamedCommands.registerCommand("CandleOff", new CandleOff(m_leds));
+
+
 
     configureButtonBindings();
 
