@@ -55,6 +55,14 @@ public class Elevator extends SubsystemBase {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public double getencoderspeed(){
+        if(elevatorRelativeEncoder.getPosition() != elevatorRelativeEncoder2.getPosition()){
+            return -1; //error
+        }
+        else{
+            return elevatorRelativeEncoder.getPosition();
+        }
+    }
 
     public void elevatorUp(){
         elevatorSparkMax.set(MotorSpeeds.elevatorSpeed);

@@ -22,7 +22,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
   public static final class ColorConstants{
-    public static int[] purple = new int[]{80, 45, 127}; 
+    public static int[] purple = new int[]{80, 3, 143}; 
     public static int[] gold   = new int[]{255, 145, 0}; 
     public static int[] orange = new int[]{255, 145, 0}; 
     public static int[] blue   = new int[]{0, 0, 255}; 

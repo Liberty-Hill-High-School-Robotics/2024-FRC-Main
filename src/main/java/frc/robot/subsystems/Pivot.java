@@ -109,6 +109,9 @@ public class Pivot extends SubsystemBase {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public double getencoderspeed(){
+        return pivotAbsoluteEncoder.getPosition();
+    }
 
     public void anglePivot(){
         double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), calculateAngle());
@@ -118,7 +121,7 @@ public class Pivot extends SubsystemBase {
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        double angle = 40;
+        double angle = 10;
         if (Limelight.getDistance() > 40){
             angle = angleCalc;
         }
@@ -126,6 +129,13 @@ public class Pivot extends SubsystemBase {
         //starting angle 40 0 ft //58.496x^{-.216}
         //subtract x angle for x number of feet away //
        
+    }
+
+    public void forceSubAngle(){
+        double angle = 40;
+        double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), angle);
+        pivotSparkMax.set(temp);
+        pivotSparkMax2.set(temp);
     }
 
     public void pivotSetpoint(double setpoint){

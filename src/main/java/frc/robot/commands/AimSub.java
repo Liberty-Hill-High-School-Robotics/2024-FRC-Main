@@ -2,10 +2,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
-import frc.robot.commands.ShooterCommands.shooterSetpoint;
-import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
-import frc.robot.subsystems.Bar;
+import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
+import frc.robot.commands.PivotCommmands.Pivot.AngleSub;
+import frc.robot.commands.ShooterCommands.RevShooterSub;
+//import frc.robot.subsystems.Bar;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
 
@@ -15,22 +16,23 @@ import frc.robot.subsystems.Shooter;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AmpPrep extends SequentialCommandGroup {
-    public AmpPrep(
-        Bar bar,
+public class AimSub extends SequentialCommandGroup {
+    public AimSub(
+    
         Shooter shooter,
-        Pivot pivot
-        
+        Pivot pivot,
+        DriveSubsystem drivesubsystem
+
     ){
     
-    addCommands( 
+    addCommands(
         
             new ParallelCommandGroup(
-                 
-                new AngleBarRotatorPivot(bar, 10),
-                new PivotSetpoint(pivot, 39), //.wait(5),
-                //new BarRotateForward(bar),
-                new shooterSetpoint(shooter, .1))
+                new AngleSub(pivot),
+                new RevShooterSub(shooter),
+                new AimWhileMoving(drivesubsystem)
+            )    
+        
     );
     }
     
@@ -38,4 +40,6 @@ public class AmpPrep extends SequentialCommandGroup {
     public boolean runsWhenDisabled() {
         return false;
     }
+
+    
 }
