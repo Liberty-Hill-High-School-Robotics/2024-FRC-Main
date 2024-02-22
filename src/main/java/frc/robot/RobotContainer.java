@@ -26,6 +26,9 @@ import frc.robot.Constants.OIConstants;
 //import frc.robot.commands.AutoAimCommands.*;
 import frc.robot.commands.BarCommands.*;
 import frc.robot.commands.DriveAutonCommands.*;
+import frc.robot.commands.ElevatorCommands.ElevatorDown;
+import frc.robot.commands.ElevatorCommands.ElevatorStop;
+import frc.robot.commands.ElevatorCommands.ElevatorUp;
 //import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakePivot.*;
 import frc.robot.commands.IntakeCommands.IntakeRoller.*;
@@ -111,7 +114,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
     SmartDashboard.putData("ShooterStop", new ShooterStop(m_shooter));
     
-    
+    SmartDashboard.putData("ElevatorUp",new ElevatorUp(m_elevator));
+    SmartDashboard.putData("ElevatorDown", new ElevatorDown(m_elevator));
+    SmartDashboard.putData("ElevatorStop", new ElevatorStop(m_elevator));
+
 
     SmartDashboard.putData("StorageRollersFeed", new StorageRollersFeed(m_storage));
     SmartDashboard.putData("StorageRollersShooter", new StorageRollersShooter(m_storage));
