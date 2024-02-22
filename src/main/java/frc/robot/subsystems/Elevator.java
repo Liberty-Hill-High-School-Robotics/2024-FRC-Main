@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
@@ -10,6 +11,10 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+<<<<<<< Updated upstream
+=======
+//import com.revrobotics.SparkLimitSwitch.Type;
+>>>>>>> Stashed changes
 
 
 public class Elevator extends SubsystemBase {
@@ -19,7 +24,7 @@ public class Elevator extends SubsystemBase {
     private CANSparkMax elevatorSparkMax2;
     private RelativeEncoder elevatorRelativeEncoder;
     private RelativeEncoder elevatorRelativeEncoder2;
-    private static SparkLimitSwitch elevatorReverseLimit;
+    private  SparkLimitSwitch elevatorReverseLimit;
     private SparkLimitSwitch elevatorForwardLimit;
     
     //private
@@ -35,13 +40,15 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax.setIdleMode(IdleMode.kCoast);
         elevatorSparkMax.setSmartCurrentLimit(60);
 
-        //elevatorReverseLimit = elevatorSparkMax.getReverseLimitSwitch(Type.kOpen);
+        elevatorReverseLimit = elevatorSparkMax.getReverseLimitSwitch(com.revrobotics.SparkLimitSwitch.Type.kNormallyOpen);
 
         elevatorSparkMax2 = new CANSparkMax(CanIDs.elevatorMotor2ID, MotorType.kBrushless);
         elevatorSparkMax2.restoreFactoryDefaults();
         elevatorSparkMax2.setInverted(true);
         elevatorSparkMax2.setIdleMode(IdleMode.kCoast);
         elevatorSparkMax2.setSmartCurrentLimit(60);
+
+        elevatorForwardLimit = elevatorSparkMax2.getForwardLimitSwitch(com.revrobotics.SparkLimitSwitch.Type.kNormallyOpen);
 
         //elevatorRelativeEncoder.
     }
@@ -51,6 +58,8 @@ public class Elevator extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putBoolean("elevatorAtForwardLimit", elevatorAtForwardLimit());
+        SmartDashboard.putBoolean("elevatorAtReverseLimit", elevatorAtReverseLimit());
     }
 
     @Override
@@ -84,5 +93,15 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax.set(0);
         elevatorSparkMax2.set(0);
     }
+
+    public boolean elevatorAtReverseLimit(){
+        return elevatorReverseLimit.isPressed();
+    }
+
+    public boolean elevatorAtForwardLimit(){
+        return elevatorForwardLimit.isPressed();
+    }
+
+
 
 }

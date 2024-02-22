@@ -40,6 +40,7 @@ import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
 //special imports
 import frc.robot.commands.AutoIntake;
+import frc.robot.commands.AimSub;
 import frc.robot.commands.AmpPrep;
 import frc.robot.commands.AutoAim;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
@@ -217,36 +218,38 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    */
   private void configureButtonBindings() {
 
-
     /* 
-    final Trigger resetHeadingButton = new JoystickButton(m_driverController, 5);
-    resetHeadingButton.onTrue(new resetHeading(m_drivesubsystem));
-
-    final POVButton snapFrontButton = new POVButton(m_driverController, 0, 1);
-    snapFrontButton.onTrue(new rightSnap(m_drivesubsystem));
+    LeftBumper(5),
+     
+    RightBumper(6),
+ 
+    LeftStick(9),
+     
+    RightStick(10),
+    
+    A(1),
+    
+    B(2),
+    
+    X(3),
+    
+    Y(4),
+    
+    Back(7),
+    
+    Start(8);
     */
 
-    //the implementation below is kind of weird, it calls a function directly from a subsystem, and 
-    //the buttons don't seem to work, or aren't tuned properly.
+    // Driver controller  buttons
 
-  //  new JoystickButton(m_driverController, Button.kR1.value)
-  //      .whileTrue(new RunCommand(
-  //          () -> m_drivesubsystem.setX(),
-  //          m_drivesubsystem));
-  
-    //here is an implementation as I see it should be
+    final Trigger AutoAim = new JoystickButton(m_driverController, 1);
+    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 
-    //Chassis rotates towards speaker
-    //final Trigger Aim = new Aim(m_driverController, 1);
-    //Aim.whileTrue(new Aim());
-
-    //Holds wheels in X pattern
-    //final Trigger xPatternButton = new JoystickButton(m_driverController, 3);
-    //xPatternButton.whileTrue(new xPattern(m_drivesubsystem));
+    final Trigger SetX = new JoystickButton(m_driverController, 3); 
+    SetX.whileTrue(new xPattern(m_drivesubsystem));
     
-    //Resets current chassis rotation to 0 degrees
-    //final Trigger resetHeading = new JoystickButton(m_driverController, 4);
-    //resetHeading.onTrue(new resetHeading(m_drivesubsystem));
+    final Trigger resetHeading = new JoystickButton(m_driverController, 4);
+    resetHeading.onTrue(new resetHeading(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
@@ -256,35 +259,31 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger BoostMode = new JoystickButton(m_driverController, 6);
     BoostMode.whileTrue(new BoostMode());*/
 
-    //Deploys the Amp Bar, piviots, and sets flywheels to amp speed
-    //final Trigger AmpPrep = new JoystickButton(m_operatorController, 3);
-    //AmpPrep.whileTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
 
-    /*Spins up flywheels to subwoofer speed and pivots to subwoofer pitch, then runs indexer rollers to fire piece
-    final Trigger SubwooferOverride = new JoystickButton(m_operatorController, 3);
-    SubwooferOverride.whileTrue(new SubwooferOverride());*/
-    //
-    final Trigger SoftRev = new JoystickButton(m_operatorController, 5);
-    SoftRev.onTrue(new ShooterFeed(m_shooter));
+    // Operator Controller button
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
     final Trigger AutoIntake = new JoystickButton(m_operatorController, 3);
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
 
-    final Trigger AutoAim = new JoystickButton(m_driverController, 5);
-    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
-    
+    final Trigger Fire = new JoystickButton(m_operatorController, 6);
+    Fire.whileTrue(new StorageRollersShooter(m_storage));
+    Fire.whileFalse(new StorageRollersStop(m_storage));
+
+    final Trigger SubwooferOverride = new JoystickButton(m_operatorController, 2);
+    SubwooferOverride.whileTrue(new AimSub(m_shooter, m_pivot, m_drivesubsystem));
+
+    final Trigger AmpPrep = new JoystickButton(m_operatorController, 5);
+    AmpPrep.whileTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
+
+    final Trigger EleUp = new JoystickButton(m_operatorController, 2);
+    EleUp.whileTrue(new ElevatorUp(m_elevator));
+
+    final Trigger EleDown = new JoystickButton(m_operatorController, 1);
+    EleDown.whileTrue(new ElevatorDown(m_elevator));
 
     
-    
-    //Runs indexer to shoot game piece
-    //final Trigger AmpFire = new JoystickButton(m_operatorController, 5);
-    //AmpFire.whileTrue(new StorageRollersFeed(m_storage));
-
-    //Waits until the robot is in shooting position, and runs the indexer to shoot 
-    final Trigger FireFromAim = new JoystickButton(m_operatorController, 4);
-    FireFromAim.whileTrue(new StorageRollersShooter(m_storage));
-    FireFromAim.whileFalse(new StorageRollersStop(m_storage));
+  
   }
   /* Example Button Binding from 2023 Main code
   starts by defining a trigger, can be replaced with other button types like POVButton, but only when necessary
