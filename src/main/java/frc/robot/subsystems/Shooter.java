@@ -87,9 +87,6 @@ public class Shooter extends SubsystemBase {
         //shooterVortex2.set(setpoint);
     }
 
-    
-    //TODO: tune these values for the commands below and replace .getTa with a .getDistance command
-
     public double calculateSpeed(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1
