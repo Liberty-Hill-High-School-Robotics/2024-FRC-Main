@@ -38,13 +38,6 @@ public class AngleBarRotatorPivot extends Command {
 
   @Override
   public boolean isFinished() {
-
-    if(m_bar.barRotatorRelativeEncoder.getPosition() >= m_setpoint){
-      return true;
-    }else {
-      return false;
-    }
-    
+    return false;
   }
-  
 }
