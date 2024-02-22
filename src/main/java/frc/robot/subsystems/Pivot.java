@@ -26,8 +26,8 @@ public class Pivot extends SubsystemBase {
     private CANSparkMax pivotSparkMax2;
     private CANSparkMax transferRollerSparkMax;
     private final AbsoluteEncoder pivotAbsoluteEncoder;
-    private final RelativeEncoder pivotRelativeEncoder;
-    private final RelativeEncoder pivotRelativeEncoder2;
+    public  RelativeEncoder pivotRelativeEncoder;
+    public  RelativeEncoder pivotRelativeEncoder2;
 
     private final DigitalInput pivotHallEffectSensor;
     private double angleCalc;

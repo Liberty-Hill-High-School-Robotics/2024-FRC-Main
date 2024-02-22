@@ -58,7 +58,7 @@ public class rightSnap extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.rightSnap(m_robotDrive);
+      //m_robotDrive.rightSnap(m_robotDrive);
     }
 
 
@@ -72,6 +72,7 @@ public class rightSnap extends Command {
     @Override
     public boolean isFinished(){
         return m_robotDrive.isright();
+        
     }
    
 

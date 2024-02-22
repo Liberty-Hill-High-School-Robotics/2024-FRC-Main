@@ -341,6 +341,7 @@ public class DriveSubsystem extends SubsystemBase {
     //.getrate replaced with .getrawgyro (https://www.chiefdelphi.com/t/does-pigeon-imu-have-an-equivalent-to-navx-getrate/375640)
   }
 
+  /* 
   public void rightSnap(DriveSubsystem m_robotDrive){
     double degree = getHeading();
    
@@ -352,6 +353,7 @@ public class DriveSubsystem extends SubsystemBase {
     }
     
   }
+  */
 
   public boolean isright(){
     double degree = getHeading();
