@@ -11,10 +11,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-<<<<<<< Updated upstream
-=======
 //import com.revrobotics.SparkLimitSwitch.Type;
->>>>>>> Stashed changes
 
 
 public class Elevator extends SubsystemBase {

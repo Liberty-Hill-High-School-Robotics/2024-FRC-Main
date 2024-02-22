@@ -98,7 +98,7 @@ public class Pivot extends SubsystemBase {
        if(pivotAtReverseLimit() == true){
             pivotResetRelativeEncoder();
        }
-       angleCalc =  (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP)); 
+       angleCalc =  (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP)+ PivotConstants.pCaluK); 
     }
 
     @Override
