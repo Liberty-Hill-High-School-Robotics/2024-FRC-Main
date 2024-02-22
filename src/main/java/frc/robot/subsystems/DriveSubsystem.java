@@ -271,6 +271,10 @@ public class DriveSubsystem extends SubsystemBase {
     double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
+    xSpeedDelivered = xSpeedDelivered * DriveConstants.driveRatio;
+    ySpeedDelivered = ySpeedDelivered * DriveConstants.driveRatio;
+
+
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates( fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds
     (xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_gyro.getYaw().getValue())) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
@@ -373,6 +377,10 @@ public class DriveSubsystem extends SubsystemBase {
       m_frontRight.getState(),
       m_rearRight.getState()
       );
+  }
+
+  public void setDriveRatio(double ratio){
+    DriveConstants.driveRatio = ratio;
   }
 
   //see drive constants for details

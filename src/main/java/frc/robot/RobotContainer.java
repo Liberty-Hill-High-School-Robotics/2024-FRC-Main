@@ -6,6 +6,14 @@ package frc.robot;
 //import edu.wpi.first.wpilibj.PS4Controller.Button;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+//import com.pathplanner.lib.commands.PathPlannerAuto;
+/*
+import com.pathplanner.lib.path.PathPlannerTrajectory;
+import com.pathplanner.lib.path.EventMarker;
+import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.commands.FollowPathWithEvents;
+*/
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.math.MathUtil;
@@ -43,6 +51,7 @@ import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AimSub;
 import frc.robot.commands.AmpPrep;
 import frc.robot.commands.AutoAim;
+import frc.robot.commands.AutoShoot;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
@@ -70,19 +79,19 @@ import frc.robot.subsystems.Storage;
 public class RobotContainer {
 
 // The robot's subsystems
-    public final Bar m_bar = new Bar();
-    public final Elevator m_elevator = new Elevator();
-    public final Intake m_intake = new Intake();
-    public final Limelight m_limelight = new Limelight();
-    public final Storage m_storage = new Storage();
-    public final Pivot m_pivot = new Pivot();
-    public final Shooter m_shooter = new Shooter();
-    public final LEDs m_leds = new LEDs();
+  public final Bar m_bar = new Bar();
+  public final Elevator m_elevator = new Elevator();
+  public final Intake m_intake = new Intake();
+  public final Limelight m_limelight = new Limelight();
+  public final Storage m_storage = new Storage();
+  public final Pivot m_pivot = new Pivot();
+  public final Shooter m_shooter = new Shooter();
+  public final LEDs m_leds = new LEDs();
+    
 
-    public static int increment = 0;
+  public static int increment = 0;
 
 
-  // The robot's subsystems
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   public final SendableChooser<Command> autoChooser;
   
@@ -96,13 +105,19 @@ public class RobotContainer {
 SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
+    //named command stuff
+    NamedCommands.registerCommand("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
+    NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_drivesubsystem, m_storage));
+
     configureButtonBindings();
+
+
 
     //Pathplanner auto chooser
     autoChooser = AutoBuilder.buildAutoChooser();
-
+        
     //Autons
-    //SmartDashboard.putData("tAuto", new PathPlannerAuto("tAuto"));
+    SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
     //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
 
@@ -180,6 +195,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     SmartDashboard.putNumber("increment", increment);
     SmartDashboard.putData("turnwhileaim", new AimWhileMoving(m_drivesubsystem));
+
+
+    SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
+    SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
+
 
 
 
@@ -317,6 +337,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new PathPlannerAuto("tAuto");
+    return autoChooser.getSelected();  
   }
 }
