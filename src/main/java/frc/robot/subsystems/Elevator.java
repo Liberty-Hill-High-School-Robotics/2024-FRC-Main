@@ -37,7 +37,7 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax.setIdleMode(IdleMode.kCoast);
         elevatorSparkMax.setSmartCurrentLimit(60);
 
-        elevatorReverseLimit = elevatorSparkMax.getReverseLimitSwitch(Type.kOpen);
+        //elevatorReverseLimit = elevatorSparkMax.getReverseLimitSwitch(Type.kOpen);
 
         elevatorSparkMax2 = new CANSparkMax(CanIDs.elevatorMotor2ID, MotorType.kBrushless);
         elevatorSparkMax2.restoreFactoryDefaults();
