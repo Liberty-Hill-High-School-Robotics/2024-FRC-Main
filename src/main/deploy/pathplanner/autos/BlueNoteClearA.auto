@@ -12,22 +12,21 @@
     "data": {
       "commands": [
         {
+          "type": "path",
+          "data": {
+            "pathName": "BlueNoteClear"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoShoot"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "BlueNoteClear"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "AutoShoot"
-                }
-              }
-            ]
+            "commands": []
           }
         }
       ]
