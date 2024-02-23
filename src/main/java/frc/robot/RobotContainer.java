@@ -7,6 +7,7 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 //import com.pathplanner.lib.commands.PathPlannerAuto;
 /*
 import com.pathplanner.lib.path.PathPlannerTrajectory;
@@ -14,6 +15,7 @@ import com.pathplanner.lib.path.EventMarker;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.commands.FollowPathWithEvents;
 */
+import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.MathUtil;
 //limelight imports
@@ -123,8 +125,16 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Mode", autoChooser); 
 
+
         
     //Autons
+    SmartDashboard.putData("teardroptest", new PathPlannerAuto("TeardropTest"));
+    SmartDashboard.putData("6Note", new PathPlannerAuto("6Note"));
+    SmartDashboard.putData("BlueSpeaker", new PathPlannerAuto("BlueSpeaker"));
+    SmartDashboard.putData("BlueAmp", new PathPlannerAuto("BlueAmp"));
+    SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
+    SmartDashboard.putData("BlueMiddle", new PathPlannerAuto("BlueMiddle"));
+
     //SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
     //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
@@ -209,8 +219,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("1/3speed", new DriveSlowmode(m_drivesubsystem));
     SmartDashboard.putData("normalspeed", new DriveNormal(m_drivesubsystem));
 
-
-    SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
 

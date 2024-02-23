@@ -399,7 +399,6 @@ public class DriveSubsystem extends SubsystemBase {
     //TODO: test this, make sure that the command is fine with the joystick values when it wants translation in m/s
     var speeds = new ChassisSpeeds(-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband),
                                    -MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband), PIDValue);
-
     //apply swerve module states
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
