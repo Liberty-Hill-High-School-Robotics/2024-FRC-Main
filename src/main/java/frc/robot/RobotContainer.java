@@ -305,7 +305,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger AmpPrep = new JoystickButton(m_operatorController, 5);
     AmpPrep.whileTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
 
-    final Trigger EleUp = new JoystickButton(m_operatorController, 2);
+    final Trigger EleUp = new JoystickButton(m_operatorController, 4);
     EleUp.whileTrue(new ElevatorUp(m_elevator));
 
     final Trigger EleDown = new JoystickButton(m_operatorController, 1);

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
+import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.ShooterCommands.shooterSetpoint;
 import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
 import frc.robot.subsystems.Bar;
@@ -28,10 +29,11 @@ public class AmpPrep extends SequentialCommandGroup {
         
             new ParallelCommandGroup(
                  
-                new AngleBarRotatorPivot(bar, 10),
-                new WaitCommand(.3),
+                new BarRotateForward(bar),
+                new WaitCommand(4),
                 new PivotSetpoint(pivot, 39),
-                new shooterSetpoint(shooter, .1))
+                new shooterSetpoint(shooter, .1)
+                )
     );
     }
     
