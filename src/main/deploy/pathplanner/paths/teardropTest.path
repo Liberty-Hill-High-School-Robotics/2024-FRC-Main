@@ -59,7 +59,7 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "candle",
+      "name": "candlered",
       "waypointRelativePos": 0.45,
       "command": {
         "type": "parallel",
@@ -76,7 +76,7 @@
       }
     },
     {
-      "name": "candle",
+      "name": "candleblue",
       "waypointRelativePos": 1.3,
       "command": {
         "type": "parallel",
