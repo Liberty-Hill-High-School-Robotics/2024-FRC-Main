@@ -34,7 +34,7 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax = new CANSparkMax(CanIDs.elevatorMotorID, MotorType.kBrushless);
         elevatorSparkMax.restoreFactoryDefaults();
         elevatorSparkMax.setInverted(true);
-        elevatorSparkMax.setIdleMode(IdleMode.kCoast);
+        elevatorSparkMax.setIdleMode(IdleMode.kBrake);
         elevatorSparkMax.setSmartCurrentLimit(60);
 
         elevatorReverseLimit = elevatorSparkMax.getReverseLimitSwitch(com.revrobotics.SparkLimitSwitch.Type.kNormallyOpen);
@@ -42,7 +42,7 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax2 = new CANSparkMax(CanIDs.elevatorMotor2ID, MotorType.kBrushless);
         elevatorSparkMax2.restoreFactoryDefaults();
         elevatorSparkMax2.setInverted(true);
-        elevatorSparkMax2.setIdleMode(IdleMode.kCoast);
+        elevatorSparkMax2.setIdleMode(IdleMode.kBrake);
         elevatorSparkMax2.setSmartCurrentLimit(60);
 
         elevatorForwardLimit = elevatorSparkMax2.getForwardLimitSwitch(com.revrobotics.SparkLimitSwitch.Type.kNormallyOpen);

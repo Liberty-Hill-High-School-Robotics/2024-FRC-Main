@@ -30,9 +30,13 @@ public class AmpPrep extends SequentialCommandGroup {
             new ParallelCommandGroup(
                  
                 new BarRotateForward(bar),
-                new WaitCommand(4),
-                new PivotSetpoint(pivot, 39),
-                new shooterSetpoint(shooter, .1)
+                
+                new ParallelCommandGroup(
+                    new WaitCommand(4),
+                    //new PivotSetpoint(pivot, 39),
+                    new shooterSetpoint(shooter, .1)
+                )
+                
                 )
     );
     }
