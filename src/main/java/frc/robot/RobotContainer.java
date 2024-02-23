@@ -14,8 +14,6 @@ import com.pathplanner.lib.path.EventMarker;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.commands.FollowPathWithEvents;
 */
-import com.pathplanner.lib.path.PathPlannerPath;
-import com.pathplanner.lib.path.PathPlannerTrajectory;
 
 import edu.wpi.first.math.MathUtil;
 //limelight imports
@@ -207,6 +205,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     SmartDashboard.putNumber("increment", increment);
     SmartDashboard.putData("turnwhileaim", new AimWhileMoving(m_drivesubsystem));
+
+    SmartDashboard.putData("1/3speed", new DriveSlowmode(m_drivesubsystem));
+    SmartDashboard.putData("normalspeed", new DriveNormal(m_drivesubsystem));
 
 
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
