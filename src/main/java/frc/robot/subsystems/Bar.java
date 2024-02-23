@@ -21,7 +21,7 @@ public class Bar extends SubsystemBase {
     //motors & variables here
     private CANSparkMax barRotatorSparkMax;
     private SparkLimitSwitch barReverseLimitSwitch;
-    public RelativeEncoder barRotatorRelativeEncoder;
+    public static RelativeEncoder barRotatorRelativeEncoder;
     PIDController barPID = new PIDController(BarConstants.bP, BarConstants.bI, BarConstants.bD);
 
 

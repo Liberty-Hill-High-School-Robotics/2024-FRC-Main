@@ -51,7 +51,9 @@ import frc.robot.commands.StorageCommands.*;
 //special imports
 import frc.robot.commands.AutoIntake;
 import frc.robot.commands.AimSub;
+import frc.robot.commands.AmpBack;
 import frc.robot.commands.AmpPrep;
+import frc.robot.commands.AmpShoot;
 import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoShoot;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
@@ -195,6 +197,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("RevShooter", new RevShooter(m_shooter));//m_shooter.calculateSpeed()
     //SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));
     SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
+     SmartDashboard.putData("AmpBack", new AmpBack(m_bar, m_shooter, m_pivot, m_storage));
+     SmartDashboard.putData("AmpShoot", new AmpShoot(m_bar, m_shooter, m_pivot, m_storage));
 
     SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, 35)); //m_pivot.calculateAngle()
     SmartDashboard.putData("shooterSetpoint", new shooterSetpoint(m_shooter, .65));//m_shooter.calculateSpeed()

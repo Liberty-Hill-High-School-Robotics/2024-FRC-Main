@@ -1,12 +1,18 @@
 package frc.robot.subsystems;
 
 
+
+
+
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
+
+import javax.swing.text.Position;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
@@ -31,6 +37,8 @@ public class Pivot extends SubsystemBase {
 
     private final DigitalInput pivotHallEffectSensor;
     private double angleCalc;
+
+    private double barPos;
 
     PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
 
@@ -98,7 +106,12 @@ public class Pivot extends SubsystemBase {
        if(pivotAtReverseLimit() == true){
             pivotResetRelativeEncoder();
        }
+
        angleCalc =  (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP)+ PivotConstants.pCaluK); 
+
+       barPos = Bar.barRotatorRelativeEncoder.getPosition();
+    
+
     }
 
     @Override
@@ -142,6 +155,17 @@ public class Pivot extends SubsystemBase {
         pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
         pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
     }
+
+    public void pivotWithBar(double setpoint){
+        if(barPos >= 10 || barPos <= .5){
+        pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+        }else{
+            pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
+        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
+        }
+    }
+
 
     public void pivotUp(){
         pivotSparkMax.set(MotorSpeeds.pivotSpeed);

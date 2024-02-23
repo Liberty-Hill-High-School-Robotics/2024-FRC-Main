@@ -4,13 +4,16 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
+import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.ShooterCommands.shooterSetpoint;
+import frc.robot.commands.StorageCommands.StorageRollersShooter;
 import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
 import frc.robot.commands.PivotCommmands.Pivot.PivotWithBar;
 import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Storage;
 
 
 /**
@@ -18,22 +21,22 @@ import frc.robot.subsystems.Shooter;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AmpPrep extends SequentialCommandGroup {
-    public AmpPrep(
+public class AmpBack extends SequentialCommandGroup {
+    public AmpBack(
         Bar bar,
         Shooter shooter,
-        Pivot pivot
+        Pivot pivot,
+        Storage storage
         
     ){
     
     addCommands( 
-        
+            
+            
             new ParallelCommandGroup(
                  
-                new BarRotateForward(bar),
-                new PivotWithBar(pivot, 39)
-                
-                
+                new BarRotateBackward(bar),
+                new PivotWithBar(pivot, 0)
                 
                 )
     );
