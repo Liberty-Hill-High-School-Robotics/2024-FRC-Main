@@ -77,12 +77,12 @@ public class Elevator extends SubsystemBase {
     }
 
     public void elevatorUp(){
-        //elevatorSparkMax.set(MotorSpeeds.elevatorSpeed);
+        elevatorSparkMax.set(MotorSpeeds.elevatorSpeed);
         elevatorSparkMax2.set(MotorSpeeds.elevatorSpeed);
     }
 
     public void elevatorDown(){
-        //elevatorSparkMax.set(-MotorSpeeds.elevatorSpeed);
+        elevatorSparkMax.set(-MotorSpeeds.elevatorSpeed);
         elevatorSparkMax2.set(-MotorSpeeds.elevatorSpeed);
     }
 

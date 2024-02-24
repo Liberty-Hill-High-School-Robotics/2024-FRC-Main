@@ -110,7 +110,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   public RobotContainer() {
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
-    NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_drivesubsystem, m_storage));
+    NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
     NamedCommands.registerCommand("CandleOff", new CandleOff(m_leds));
@@ -129,6 +129,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
         
     //Autons
     SmartDashboard.putData("teardroptest", new PathPlannerAuto("TeardropTest"));
+    SmartDashboard.putData("shootingtest", new PathPlannerAuto("path"));
+
     SmartDashboard.putData("6Note", new PathPlannerAuto("6Note"));
     SmartDashboard.putData("BlueSpeaker", new PathPlannerAuto("BlueSpeaker"));
     SmartDashboard.putData("BlueAmp", new PathPlannerAuto("BlueAmp"));
