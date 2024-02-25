@@ -19,8 +19,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 public class Shooter extends SubsystemBase {
 
     //motors & variables here
-    public final LEDs m_leds = new LEDs();
-
     private CANSparkFlex shooterVortex;
     private CANSparkFlex shooterVortex2;
     private RelativeEncoder shooterVortexRelativeEncoder;
@@ -66,6 +64,12 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("calculateSpeed", calculateSpeed());
         
         speedCalc = (ShooterConstants.sCalcC*Math.pow(Limelight.getDistance(),ShooterConstants.sCalucP));
+        if(shooterVortex.get() > calculateSpeed() - ShooterConstants.shooterError && shooterVortex.get() < calculateSpeed() + ShooterConstants.shooterError){
+            ShooterConstants.shooterAtSpeed = true;
+        }
+        else{
+            ShooterConstants.shooterAtSpeed = false;
+        }
 
     }
 
@@ -86,7 +90,7 @@ public class Shooter extends SubsystemBase {
         shooterVortex.set(calculateSpeed());
         shooterVortex2.set(calculateSpeed());
         if(Limelight.isTarget()){
-            m_leds.candleSetAnimation("greenstrobe");        
+            //m_leds.candleSetAnimation("greenstrobe");        
         }
         //shooterVortex.set(setpoint);
         //shooterVortex2.set(setpoint);
@@ -101,15 +105,6 @@ public class Shooter extends SubsystemBase {
         }
         
         return speed;
-    }
-
-    public boolean isAtSpeed(){
-        if(shooterVortex.get() > calculateSpeed() - ShooterConstants.shooterError && shooterVortex.get() < calculateSpeed() + ShooterConstants.shooterError){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 
     public void forceSubSpeed(){
@@ -137,6 +132,6 @@ public class Shooter extends SubsystemBase {
     public void shooterStop(){
         shooterVortex.stopMotor();
         shooterVortex2.stopMotor();
-        m_leds.candleSetColor("off");
+        //m_leds.candleSetColor("off");
     }
 }

@@ -38,7 +38,6 @@ public class Intake extends SubsystemBase {
         intake1SparkMax.setIdleMode(IdleMode.kCoast);
         intake1SparkMax.setSmartCurrentLimit(40);
 
-       // intakePivotHallEffectSensor = new DigitalInput(3);
 
         
         //pivotIntakeRelativeEncoder = intake1.getEncoder();

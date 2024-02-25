@@ -31,6 +31,7 @@ public final class Constants {
   }
 
   public static final class ShooterConstants{
+    public static boolean shooterAtSpeed;
     public static final double shooterError = .05;
     public static final double sP = 0.001;
     public static final double sI = 0.0;

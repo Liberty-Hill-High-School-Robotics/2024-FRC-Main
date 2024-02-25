@@ -10,7 +10,7 @@ import frc.robot.commands.StorageCommands.StorageRollersFeed;
 */
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
-import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
+import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pivot;
@@ -37,7 +37,7 @@ public class AutoIntake extends SequentialCommandGroup {
             //want to change this to a parallel deadline group, which ends once a certain command ends, but cant figure out the syntax for it yet
             //run all commands in parallel until the throughbeam == true
             new IntakeTogether(m_intake),
-            new TRollerFeed(m_pivot),
+            new AngleAndFeed(m_pivot),
             new StorageRollersFeed(m_storage)
             )
 

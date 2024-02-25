@@ -107,7 +107,7 @@ public class Pivot extends SubsystemBase {
             pivotResetRelativeEncoder();
        }
 
-       angleCalc =  (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP)+ PivotConstants.pCaluK); 
+       angleCalc = (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP) + PivotConstants.pCaluK); 
 
        barPos = Bar.barRotatorRelativeEncoder.getPosition();
     
@@ -134,11 +134,14 @@ public class Pivot extends SubsystemBase {
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        double angle = 10;
-        if (Limelight.getDistance() > 40){
-            angle = angleCalc;
+        if(Limelight.isTarget()){
+            double angle = angleCalc;
+            return angle;
         }
-        return angle;
+        else{
+            return 10;
+        }
+        
         //starting angle 40 0 ft //58.496x^{-.216}
         //subtract x angle for x number of feet away //
        

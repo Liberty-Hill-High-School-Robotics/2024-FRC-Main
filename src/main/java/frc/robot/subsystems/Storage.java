@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
+import frc.robot.commands.LEDCommands.Colors.CandleGreen;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -14,8 +16,6 @@ public class Storage extends SubsystemBase {
 
     //motors & variables here
     private CANSparkMax storageRollerSparkMax;
-    private final Shooter m_shooter = new Shooter();
-    public final LEDs m_leds = new LEDs();
     public static DigitalInput throughSensor = new DigitalInput(0);
 
 
@@ -26,8 +26,6 @@ public class Storage extends SubsystemBase {
         storageRollerSparkMax.setInverted(true);
         storageRollerSparkMax.setIdleMode(IdleMode.kBrake);
         storageRollerSparkMax.setSmartCurrentLimit(60);
-        
-
 
     }
 
@@ -65,13 +63,13 @@ public class Storage extends SubsystemBase {
     }
 
     public void feedNoteAuto(){
-        if(m_shooter.isAtSpeed() == true){
+        if(ShooterConstants.shooterAtSpeed == true){
             storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
         }
     }
 
     public void noteReady(){
-        m_leds.candleSetColor("green");
+        //m_leds.candleSetColor("green");
     }
 
  

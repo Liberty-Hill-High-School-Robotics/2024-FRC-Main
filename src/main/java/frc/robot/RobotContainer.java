@@ -353,6 +353,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    NetworkTableEntry ta = table.getEntry("ta");
    return ta.getDouble(0.0);
    }
+
+   public static boolean getTv() {
+   NetworkTableEntry tv = table.getEntry("tv");
+   return tv.getBoolean(false);
+   }
    
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
