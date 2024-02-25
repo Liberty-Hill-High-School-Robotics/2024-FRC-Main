@@ -89,7 +89,7 @@ public class Shooter extends SubsystemBase {
     public void revShooter(){
         shooterVortex.set(calculateSpeed());
         shooterVortex2.set(calculateSpeed());
-        if(Limelight.isTarget()){
+        if(ShooterConstants.canSee){
             //m_leds.candleSetAnimation("greenstrobe");        
         }
         //shooterVortex.set(setpoint);

@@ -46,6 +46,7 @@ public class Limelight extends SubsystemBase {
         double x = RobotContainer.getTx();
         double y = RobotContainer.getTy();
         double area = RobotContainer.getTa();
+        boolean tv = RobotContainer.getTv();
 
         //post to smart dashboard periodically
         SmartDashboard.putNumber("LimelightX", x);
@@ -54,6 +55,7 @@ public class Limelight extends SubsystemBase {
         SmartDashboard.putNumber("GetDistance", getDistance());
         SmartDashboard.putNumber("increment", increment);
 
+        ShooterConstants.canSee = tv;
 
 
     }
@@ -80,12 +82,4 @@ public class Limelight extends SubsystemBase {
     increment++;
     return distance;
    }
-
-   public static boolean isTarget(){
-    var target = table.getEntry("tv");
-    boolean value = target.getBoolean(isTarget());
-    return value;
-   }
-
-
 }

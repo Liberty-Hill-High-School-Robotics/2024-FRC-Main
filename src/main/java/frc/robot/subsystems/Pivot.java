@@ -134,7 +134,7 @@ public class Pivot extends SubsystemBase {
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        if(Limelight.isTarget()){
+        if(ShooterConstants.canSee){
             double angle = angleCalc;
             return angle;
         }
