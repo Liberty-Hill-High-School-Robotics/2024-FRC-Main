@@ -57,7 +57,6 @@ public class Limelight extends SubsystemBase {
 
         ShooterConstants.canSee = tv;
 
-
     }
     
 

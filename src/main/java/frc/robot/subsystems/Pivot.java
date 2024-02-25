@@ -134,14 +134,8 @@ public class Pivot extends SubsystemBase {
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
-        if(ShooterConstants.canSee){
-            double angle = angleCalc;
-            return angle;
-        }
-        else{
-            return 10;
-        }
-        
+        double angle = angleCalc;
+        return angle;
         //starting angle 40 0 ft //58.496x^{-.216}
         //subtract x angle for x number of feet away //
        
