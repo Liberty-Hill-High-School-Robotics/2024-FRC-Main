@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -20,37 +21,37 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 public class Intake extends SubsystemBase {
 
     //motors & variables here
-    private CANSparkMax pivotIntakeSparkMax;
-    private CANSparkMax groundRollerSparkMax;
+    private CANSparkMax intake1SparkMax;
+    private CANSparkMax intake2SparkMax;
     
     //private SparkLimitSwitch pivotInakeReverseLimitSwitch;
-    public RelativeEncoder pivotIntakeRelativeEncoder;
+    //public RelativeEncoder pivotIntakeRelativeEncoder;
 
-    private final DigitalInput intakePivotHallEffectSensor;
+   // private final DigitalInput intakePivotHallEffectSensor;
 
 
     public Intake(){
         //config motor settings here
-        pivotIntakeSparkMax = new CANSparkMax(CanIDs.pivotIntakeID, MotorType.kBrushless);
-        pivotIntakeSparkMax.restoreFactoryDefaults();
-        pivotIntakeSparkMax.setInverted(true);
-        pivotIntakeSparkMax.setIdleMode(IdleMode.kBrake);
-        pivotIntakeSparkMax.setSmartCurrentLimit(40);
+        intake1SparkMax = new CANSparkMax(CanIDs.pivotIntakeID, MotorType.kBrushless);
+        intake1SparkMax.restoreFactoryDefaults();
+        intake1SparkMax.setInverted(true);
+        intake1SparkMax.setIdleMode(IdleMode.kBrake);
+        intake1SparkMax.setSmartCurrentLimit(40);
 
-        intakePivotHallEffectSensor = new DigitalInput(3);
+       // intakePivotHallEffectSensor = new DigitalInput(3);
 
         
-        pivotIntakeRelativeEncoder = pivotIntakeSparkMax.getEncoder();
+        //pivotIntakeRelativeEncoder = intake1.getEncoder();
         
 
-        pivotIntakeSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
-        pivotIntakeSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
+       // pivotIntakeSparkMax.enableSoftLimit(SoftLimitDirection.kForward, true);
+       // pivotIntakeSparkMax.setSoftLimit(SoftLimitDirection.kForward, IntakeConstants.fLimit);
 
-        groundRollerSparkMax = new CANSparkMax(CanIDs.groundRollerID, MotorType.kBrushless);
-        groundRollerSparkMax.restoreFactoryDefaults();
-        groundRollerSparkMax.setInverted(false);
-        groundRollerSparkMax.setIdleMode(IdleMode.kCoast);
-        groundRollerSparkMax.setSmartCurrentLimit(40);
+        intake2SparkMax = new CANSparkMax(CanIDs.groundRollerID, MotorType.kBrushless);
+        intake2SparkMax.restoreFactoryDefaults();
+        intake2SparkMax.setInverted(false);
+        intake2SparkMax.setIdleMode(IdleMode.kCoast);
+        intake2SparkMax.setSmartCurrentLimit(40);
     }
 
   
@@ -59,16 +60,17 @@ public class Intake extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         
-        SmartDashboard.putNumber("pivotIntakeRelativeEncoder", pivotIntakeRelativeEncoder.getPosition());
-        SmartDashboard.putBoolean("pivotInakeAtReverseLimit", pivotInakeAtReverseLimit());
-        SmartDashboard.getNumber("groundRollerSparkMax.getMotorTemperature", groundRollerSparkMax.getMotorTemperature());
+        //SmartDashboard.putNumber("pivotIntakeRelativeEncoder", pivotIntakeRelativeEncoder.getPosition());
+        //SmartDashboard.putBoolean("pivotInakeAtReverseLimit", pivotInakeAtReverseLimit());
+        SmartDashboard.getNumber("groundRollerSparkMax.getMotorTemperature", intake1SparkMax.getMotorTemperature());
         //SmartDashboard.putBoolean("pivotInakeAtForwardLimit", pivotInakeAtForwardLimit());
 
+        /*
         if(pivotInakeAtReverseLimit() == true){
             pivotIntakeResetRelativeEncoder();
             //intakeRollerBackFeedTogeather().end(true);
         }
-
+        */
     }
 
     @Override
@@ -81,25 +83,31 @@ public class Intake extends SubsystemBase {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    
     //intake rollers
     public void intakeRollerFeed(){
-        groundRollerSparkMax.set(MotorSpeeds.groundRollerSpeed);
+        intake1SparkMax.set(MotorSpeeds.groundRollerSpeed);
+        intake2SparkMax.set(MotorSpeeds.groundRollerSpeed);
     }
    
 
     public void intakeRollerBackFeed(){
-        groundRollerSparkMax.set(-MotorSpeeds.groundRollerSpeed);
+        intake1SparkMax.set(-MotorSpeeds.groundRollerSpeed);
+        intake2SparkMax.set(-MotorSpeeds.groundRollerSpeed);
     }
 
     public void intakeRollerBackFeedTogeather(){
-        groundRollerSparkMax.set(-MotorSpeeds.groundRollerBackFeedSpeed);
+        intake1SparkMax.set(-MotorSpeeds.groundRollerBackFeedSpeed);
+        intake2SparkMax.set(-MotorSpeeds.groundRollerBackFeedSpeed);
     }
 
     public void intakeRollerStop(){
-        groundRollerSparkMax.set(0);
+        intake1SparkMax.set(0);
+        intake2SparkMax.set(0);
     }
 
 
+    /*
     //intakePivot
     public void intakePivotUp(){
         pivotIntakeSparkMax.set(-MotorSpeeds.pivotIntakeSpeed);
@@ -123,7 +131,7 @@ public class Intake extends SubsystemBase {
     public void pivotIntakeResetRelativeEncoder(){
         pivotIntakeRelativeEncoder.setPosition(0);
     }
-
+    */
   
 
 

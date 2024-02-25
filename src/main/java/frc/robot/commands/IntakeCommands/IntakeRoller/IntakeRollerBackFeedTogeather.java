@@ -34,7 +34,8 @@ public class IntakeRollerBackFeedTogeather extends Command {
 
   @Override
   public boolean isFinished() {
-    return  m_intake.pivotInakeAtReverseLimit();
+    return false;
+    //return  m_intake.pivotInakeAtReverseLimit();
   }
 
   

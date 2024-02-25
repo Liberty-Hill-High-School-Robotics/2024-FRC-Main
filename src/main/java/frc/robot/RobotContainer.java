@@ -39,7 +39,6 @@ import frc.robot.commands.ElevatorCommands.ElevatorDown;
 import frc.robot.commands.ElevatorCommands.ElevatorStop;
 import frc.robot.commands.ElevatorCommands.ElevatorUp;
 //import frc.robot.commands.ElevatorCommands.*;
-import frc.robot.commands.IntakeCommands.IntakePivot.*;
 import frc.robot.commands.IntakeCommands.IntakeRoller.*;
 import frc.robot.commands.LEDCommands.Animations.*;
 import frc.robot.commands.LEDCommands.Colors.*;
@@ -169,9 +168,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
     
 
-    SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
-    SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
-    SmartDashboard.putData("IntakePivotStop", new IntakePivotStop(m_intake));
+    //SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
+    //SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
+    //SmartDashboard.putData("IntakePivotStop", new IntakePivotStop(m_intake));
 
     SmartDashboard.putData("IntakeRollerFeed", new IntakeRollerFeed(m_intake));
     SmartDashboard.putData("IntakeRollerBackFeed", new IntakeRollerBackFeed(m_intake));
