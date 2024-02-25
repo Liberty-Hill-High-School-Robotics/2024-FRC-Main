@@ -10,12 +10,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-
-
 public class Storage extends SubsystemBase {
 
     //motors & variables here
     private CANSparkMax storageRollerSparkMax;
+    private final Shooter m_shooter = new Shooter();
     public static DigitalInput throughSensor = new DigitalInput(0);
 
 
@@ -65,6 +64,9 @@ public class Storage extends SubsystemBase {
     }
 
     public void feedNoteAuto(){
+        if(m_shooter.isAtSpeed() == true){
+            storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
+        }
     }
 
  

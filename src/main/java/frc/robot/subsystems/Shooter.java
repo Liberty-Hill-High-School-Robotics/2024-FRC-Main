@@ -19,6 +19,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 public class Shooter extends SubsystemBase {
 
     //motors & variables here
+    public final LEDs m_leds = new LEDs();
+
     private CANSparkFlex shooterVortex;
     private CANSparkFlex shooterVortex2;
     private RelativeEncoder shooterVortexRelativeEncoder;
@@ -83,6 +85,12 @@ public class Shooter extends SubsystemBase {
     public void revShooter(){
         shooterVortex.set(calculateSpeed());
         shooterVortex2.set(calculateSpeed());
+        if(shooterVortex.get() > calculateSpeed() - ShooterConstants.shooterError && shooterVortex.get() < calculateSpeed() + ShooterConstants.shooterError){
+            m_leds.candleSetColor("green");
+        }
+        else{
+            m_leds.candleSetColor("red");
+        }
         //shooterVortex.set(setpoint);
         //shooterVortex2.set(setpoint);
     }
@@ -96,6 +104,15 @@ public class Shooter extends SubsystemBase {
         }
         
         return speed;
+    }
+
+    public boolean isAtSpeed(){
+        if(shooterVortex.get() > calculateSpeed() - ShooterConstants.shooterError && shooterVortex.get() < calculateSpeed() + ShooterConstants.shooterError){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void forceSubSpeed(){
@@ -123,5 +140,6 @@ public class Shooter extends SubsystemBase {
     public void shooterStop(){
         shooterVortex.stopMotor();
         shooterVortex2.stopMotor();
+        m_leds.candleSetColor("off");
     }
 }

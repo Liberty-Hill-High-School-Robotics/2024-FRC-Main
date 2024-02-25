@@ -15,7 +15,7 @@ import com.pathplanner.lib.path.EventMarker;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.commands.FollowPathWithEvents;
 */
-import com.pathplanner.lib.path.PathPlannerPath;
+//import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.MathUtil;
 //limelight imports
@@ -128,7 +128,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
         
     //Autons
     SmartDashboard.putData("teardroptest", new PathPlannerAuto("TeardropTest"));
-    SmartDashboard.putData("shootingtest", new PathPlannerAuto("path"));
 
     SmartDashboard.putData("6Note", new PathPlannerAuto("6Note"));
     SmartDashboard.putData("BlueSpeaker", new PathPlannerAuto("BlueSpeaker"));

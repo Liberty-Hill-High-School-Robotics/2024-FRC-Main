@@ -1,18 +1,18 @@
 package frc.robot.subsystems;
 
 
-import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //imports here
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+//import frc.robot.Constants;
 import frc.robot.Constants.*;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.RelativeEncoder;
 //import com.revrobotics.SparkLimitSwitch;
 
 import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkBase.SoftLimitDirection;
+//import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 //import com.revrobotics.SparkLimitSwitch.Type;
 
@@ -35,7 +35,7 @@ public class Intake extends SubsystemBase {
         intake1SparkMax = new CANSparkMax(CanIDs.pivotIntakeID, MotorType.kBrushless);
         intake1SparkMax.restoreFactoryDefaults();
         intake1SparkMax.setInverted(true);
-        intake1SparkMax.setIdleMode(IdleMode.kBrake);
+        intake1SparkMax.setIdleMode(IdleMode.kCoast);
         intake1SparkMax.setSmartCurrentLimit(40);
 
        // intakePivotHallEffectSensor = new DigitalInput(3);
