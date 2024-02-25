@@ -34,6 +34,6 @@ public class ElevatorDown extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return m_elevator.elevatorAtReverseLimit();
   }
 }

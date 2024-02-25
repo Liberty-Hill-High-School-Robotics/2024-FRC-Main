@@ -35,6 +35,7 @@ public class AngleAndFeed extends Command {
   public void end(boolean interrupted){
    //m_pivot.pivotDown();
    m_pivot.pivotStop();
+   m_pivot.tRollerStop();
   }
 
   @Override
