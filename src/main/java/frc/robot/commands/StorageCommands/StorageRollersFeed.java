@@ -1,6 +1,5 @@
 package frc.robot.commands.StorageCommands;
 
-
 import frc.robot.subsystems.Storage;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -31,6 +30,7 @@ public class StorageRollersFeed extends Command {
   @Override
   public void end(boolean interrupted){
     m_storage.storageRollerStop();
+    m_storage.noteReady();
   }
 
   @Override

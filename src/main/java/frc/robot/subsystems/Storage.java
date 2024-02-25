@@ -15,6 +15,7 @@ public class Storage extends SubsystemBase {
     //motors & variables here
     private CANSparkMax storageRollerSparkMax;
     private final Shooter m_shooter = new Shooter();
+    public final LEDs m_leds = new LEDs();
     public static DigitalInput throughSensor = new DigitalInput(0);
 
 
@@ -67,6 +68,10 @@ public class Storage extends SubsystemBase {
         if(m_shooter.isAtSpeed() == true){
             storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
         }
+    }
+
+    public void noteReady(){
+        m_leds.candleSetColor("green");
     }
 
  

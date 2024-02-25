@@ -81,5 +81,11 @@ public class Limelight extends SubsystemBase {
     return distance;
    }
 
+   public static boolean isTarget(){
+    var target = table.getEntry("tv");
+    boolean value = target.getBoolean(isTarget());
+    return value;
+   }
+
 
 }
