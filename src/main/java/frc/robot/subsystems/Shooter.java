@@ -23,6 +23,7 @@ public class Shooter extends SubsystemBase {
     private CANSparkFlex shooterVortex2;
     private RelativeEncoder shooterVortexRelativeEncoder;
     private RelativeEncoder shooterVortex2RelativeEncoder;
+    public static boolean isatspeed;
 
     private double speedCalc;
 
@@ -64,11 +65,12 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("calculateSpeed", calculateSpeed());
         
         speedCalc = (ShooterConstants.sCalcC*Math.pow(Limelight.getDistance(),ShooterConstants.sCalucP));
+
         if(shooterVortex.get() > calculateSpeed() - ShooterConstants.shooterError && shooterVortex.get() < calculateSpeed() + ShooterConstants.shooterError){
-            ShooterConstants.shooterAtSpeed = true;
+            isatspeed = true;
         }
         else{
-            ShooterConstants.shooterAtSpeed = false;
+            isatspeed = false;
         }
 
     }
@@ -89,9 +91,6 @@ public class Shooter extends SubsystemBase {
     public void revShooter(){
         shooterVortex.set(calculateSpeed());
         shooterVortex2.set(calculateSpeed());
-        if(ShooterConstants.canSee){
-            //m_leds.candleSetAnimation("greenstrobe");        
-        }
         //shooterVortex.set(setpoint);
         //shooterVortex2.set(setpoint);
     }

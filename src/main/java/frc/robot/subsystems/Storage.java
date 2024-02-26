@@ -62,15 +62,8 @@ public class Storage extends SubsystemBase {
     }
 
     public void feedNoteAuto(){
-        if(ShooterConstants.shooterAtSpeed == true){
+        if(Shooter.isatspeed){
             storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
         }
     }
-
-    public void noteReady(){
-        //m_leds.candleSetColor("green");
-    }
-
- 
-
 }

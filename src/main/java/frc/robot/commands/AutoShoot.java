@@ -1,11 +1,10 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 import frc.robot.commands.StorageCommands.FeedNoteAuto;
-//import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Storage;
@@ -27,10 +26,11 @@ public class AutoShoot extends SequentialCommandGroup {
  
     addCommands(
         
-            new ParallelCommandGroup(
-                new AnglePivot(pivot),
+            new ParallelRaceGroup(
+                new AnglePivot(pivot).withTimeout(4),
                 new RevShooter(shooter),
-                new FeedNoteAuto(storage)
+                new FeedNoteAuto(storage).onlyWhile()
+                //TODO:find out the proper booleansupplier for this
             )    
         
     );
