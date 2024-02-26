@@ -62,8 +62,6 @@ public class Storage extends SubsystemBase {
     }
 
     public void feedNoteAuto(){
-        if(Shooter.isatspeed){
-            storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
-        }
+        storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
     }
 }

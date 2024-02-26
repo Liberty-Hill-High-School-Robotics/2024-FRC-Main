@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+//import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
@@ -26,10 +27,10 @@ public class AutoShoot extends SequentialCommandGroup {
  
     addCommands(
         
-            new ParallelRaceGroup(
-                new AnglePivot(pivot).withTimeout(2.5),
+            new ParallelCommandGroup(
+                new AnglePivot(pivot).withTimeout(3),
                 new RevShooter(shooter),
-                new FeedNoteAuto(storage).onlyWhile(shooter::atSpeed)
+                new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)
                 //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)
             )    
         

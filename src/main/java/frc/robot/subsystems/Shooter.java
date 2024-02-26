@@ -97,8 +97,8 @@ public class Shooter extends SubsystemBase {
     }
 
     public boolean atSpeed(){
-        //See if the delievered and actual value for the speed of motors is within .05 (tolerance)
-        return MathUtil.isNear(calculateSpeed(), shooterVortexRelativeEncoder.getPosition(), .05);
+        //See if the delievered and actual value for the speed of motors is within x (tolerance)
+        return MathUtil.isNear(speedCalc, (shooterVortexRelativeEncoder.getVelocity() / 6784), .3);
     }
 
     public double calculateSpeed(){
