@@ -55,9 +55,9 @@ public final class Constants {
 
     public static final double Slope = 0.05; //angle subtracted with each foot the robot is away from the sub
 
-    public static final double pCalcC = 1770;
+    public static final double pCalcC = 1740;
     public static final double pCalucP = -0.95;
-    public static final double pCaluK = -1.7;
+    public static final double pCaluK = -0.8;
 
   }
   public static final class BarConstants{

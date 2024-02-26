@@ -1394,6 +1394,19 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "3,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/testing",
+              "_title": "SmartDashboard/testing",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
@@ -1401,8 +1414,8 @@
   ],
   "windowGeometry": {
     "x": 953.0,
-    "y": 222.0,
+    "y": 227.0,
     "width": 974.0,
-    "height": 817.0
+    "height": 812.0
   }
 }
