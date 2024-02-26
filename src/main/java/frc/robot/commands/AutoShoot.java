@@ -27,10 +27,10 @@ public class AutoShoot extends SequentialCommandGroup {
     addCommands(
         
             new ParallelRaceGroup(
-                new AnglePivot(pivot).withTimeout(4),
+                new AnglePivot(pivot).withTimeout(2.5),
                 new RevShooter(shooter),
                 new FeedNoteAuto(storage).onlyWhile(shooter::atSpeed)
-                //TODO:find out the proper booleansupplier for this
+                //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)
             )    
         
     );

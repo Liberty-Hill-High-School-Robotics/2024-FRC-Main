@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkFlex;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import edu.wpi.first.math.MathUtil;
 
 
 
@@ -97,7 +98,7 @@ public class Shooter extends SubsystemBase {
 
     public boolean atSpeed(){
         //See if the delievered and actual value for the speed of motors is within .05 (tolerance)
-        return Math.isClose(shooterVortexRelativeEncoder.getPosition(), calculateSpeed(), .05);
+        return MathUtil.isNear(calculateSpeed(), shooterVortexRelativeEncoder.getPosition(), .05);
     }
 
     public double calculateSpeed(){
