@@ -95,6 +95,11 @@ public class Shooter extends SubsystemBase {
         //shooterVortex2.set(setpoint);
     }
 
+    public boolean atSpeed(){
+        //See if the delievered and actual value for the speed of motors is within .05 (tolerance)
+        return Math.isClose(shooterVortexRelativeEncoder.getPosition(), calculateSpeed(), .05);
+    }
+
     public double calculateSpeed(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.
         //speed is on a scale from -1 -> 1

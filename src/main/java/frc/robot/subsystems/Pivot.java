@@ -21,7 +21,6 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
-//import java.lang.Math.*;
 
 
 
@@ -131,6 +130,7 @@ public class Pivot extends SubsystemBase {
         pivotSparkMax.set(temp);
         pivotSparkMax2.set(temp);
     }
+
 
     public double calculateAngle(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = angle @ 0ft, m = angle subtracted each foot away from sub.
