@@ -110,30 +110,30 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1,
-      "rotationDegrees": -137.04540848888715,
+      "waypointRelativePos": 0.95,
+      "rotationDegrees": 27.15,
       "rotateFast": false
     },
     {
       "waypointRelativePos": 2,
-      "rotationDegrees": -179.17565717915488,
+      "rotationDegrees": 0.2351825492880242,
       "rotateFast": false
     },
     {
       "waypointRelativePos": 3,
-      "rotationDegrees": 153.43494882292197,
+      "rotationDegrees": -28.638859855496083,
       "rotateFast": false
     },
     {
       "waypointRelativePos": 5,
-      "rotationDegrees": -176.00908690157024,
+      "rotationDegrees": -0.9603787421411113,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "AutoShoot",
+      "name": "rev",
       "waypointRelativePos": 0.0,
       "command": {
         "type": "parallel",
@@ -142,7 +142,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoShoot"
+                "name": "AutoRev"
               }
             }
           ]
@@ -150,7 +150,7 @@
       }
     },
     {
-      "name": "AutoIntake",
+      "name": "feed",
       "waypointRelativePos": 0.5499999999999999,
       "command": {
         "type": "parallel",
@@ -159,7 +159,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoIntake"
+                "name": "FeedNote"
               }
             }
           ]
@@ -167,7 +167,7 @@
       }
     },
     {
-      "name": "AutoShoot",
+      "name": "rev",
       "waypointRelativePos": 1.6,
       "command": {
         "type": "parallel",
@@ -176,7 +176,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoShoot"
+                "name": "AutoRev"
               }
             }
           ]
@@ -184,7 +184,7 @@
       }
     },
     {
-      "name": "AutoIntake",
+      "name": "feed",
       "waypointRelativePos": 1.9,
       "command": {
         "type": "parallel",
@@ -193,7 +193,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoIntake"
+                "name": "FeedNote"
               }
             }
           ]
@@ -201,7 +201,7 @@
       }
     },
     {
-      "name": "AutoShoot",
+      "name": "rev",
       "waypointRelativePos": 2.45,
       "command": {
         "type": "parallel",
@@ -210,7 +210,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoShoot"
+                "name": "AutoRev"
               }
             }
           ]
@@ -218,7 +218,7 @@
       }
     },
     {
-      "name": "AutoIntake",
+      "name": "feed",
       "waypointRelativePos": 2.7,
       "command": {
         "type": "parallel",
@@ -227,7 +227,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoIntake"
+                "name": "FeedNote"
               }
             }
           ]
@@ -235,7 +235,7 @@
       }
     },
     {
-      "name": "AutoShoot",
+      "name": "rev",
       "waypointRelativePos": 3.0,
       "command": {
         "type": "parallel",
@@ -244,7 +244,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoShoot"
+                "name": "AutoRev"
               }
             }
           ]
@@ -252,7 +252,7 @@
       }
     },
     {
-      "name": "AutoIntake",
+      "name": "feed",
       "waypointRelativePos": 4.5,
       "command": {
         "type": "parallel",
@@ -261,7 +261,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoIntake"
+                "name": "FeedNote"
               }
             }
           ]
@@ -269,7 +269,7 @@
       }
     },
     {
-      "name": "AutoShoot",
+      "name": "rev",
       "waypointRelativePos": 6.0,
       "command": {
         "type": "parallel",
@@ -278,7 +278,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoShoot"
+                "name": "AutoRev"
               }
             }
           ]
@@ -294,13 +294,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.63737332617052,
+    "rotation": -0.8577658539666473,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": -120.0,
+    "rotation": 62.03836606788055,
     "velocity": 0
   },
   "useDefaultConstraints": false
