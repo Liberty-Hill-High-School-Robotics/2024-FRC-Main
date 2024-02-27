@@ -73,7 +73,7 @@ public final class Constants {
   }
   public static final class MotorSpeeds{
     //all speeds should be a double
-    public static final double elevatorSpeed = .25;
+    public static final double elevatorSpeed = .6;
     public static final double pivotIntakeSpeed = .25;
     public static final double groundRollerSpeed = 1;
     public static final double groundRollerBackFeedSpeed = .1;
