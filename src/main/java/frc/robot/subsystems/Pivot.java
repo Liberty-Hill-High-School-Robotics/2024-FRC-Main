@@ -200,6 +200,13 @@ public class Pivot extends SubsystemBase {
         pivotRelativeEncoder.setPosition(0);
         pivotRelativeEncoder2.setPosition(0);
     }
+
+    public void forcePivotDown(){
+        double angle = 0;
+        double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), angle);
+        pivotSparkMax.set(temp);
+        pivotSparkMax2.set(temp);
+    }
     
     
 
