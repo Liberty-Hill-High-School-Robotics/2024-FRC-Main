@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 15.761239522479045,
-      "y": 6.483478421502298
+      "x": 15.763305620570975,
+      "y": 6.5150959832121
     },
-    "rotation": -61.31317118924846
+    "rotation": -59.58891873287475
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RedNoteClear"
+            "pathName": "RedAmp"
           }
         }
       ]
