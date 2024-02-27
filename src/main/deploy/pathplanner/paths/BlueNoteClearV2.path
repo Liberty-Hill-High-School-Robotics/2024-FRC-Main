@@ -203,7 +203,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 1.5,
+      "waypointRelativePos": 1.85,
       "command": {
         "type": "parallel",
         "data": {
@@ -220,7 +220,7 @@
     },
     {
       "name": "shoot",
-      "waypointRelativePos": 2.85,
+      "waypointRelativePos": 2.65,
       "command": {
         "type": "parallel",
         "data": {
@@ -229,6 +229,91 @@
               "type": "named",
               "data": {
                 "name": "AutoShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "intake",
+      "waypointRelativePos": 3.85,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoIntake"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "shoot",
+      "waypointRelativePos": 4.7,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "intake",
+      "waypointRelativePos": 5.75,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoIntake"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "shoot",
+      "waypointRelativePos": 6.45,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "intake",
+      "waypointRelativePos": 7.8,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoIntake"
               }
             }
           ]
