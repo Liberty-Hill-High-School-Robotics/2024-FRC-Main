@@ -142,6 +142,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
     SmartDashboard.putData("BlueMiddle", new PathPlannerAuto("BlueMiddle"));
 
+    SmartDashboard.putData("RedNoteClear", new PathPlannerAuto("RedNoteClear"));
+
     //SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
     //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
