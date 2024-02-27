@@ -48,6 +48,7 @@ import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
 //special imports
 import frc.robot.commands.AutoIntake;
+import frc.robot.commands.AutoIntakeTimeout;
 import frc.robot.commands.AimSub;
 import frc.robot.commands.AmpBack;
 import frc.robot.commands.AmpPrep;
@@ -108,7 +109,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
     //named command stuff
-    NamedCommands.registerCommand("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
+    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter));
     NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));

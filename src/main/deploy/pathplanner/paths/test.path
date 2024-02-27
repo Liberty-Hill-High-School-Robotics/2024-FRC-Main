@@ -56,7 +56,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 0.45,
+      "waypointRelativePos": 0.95,
       "command": {
         "type": "parallel",
         "data": {
@@ -80,7 +80,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -138.8140748342904,
+    "rotation": -137.72631099390622,
     "rotateFast": false
   },
   "reversed": false,
