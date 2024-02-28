@@ -133,7 +133,13 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
         
     //Autons
+    SmartDashboard.putData("AmpPlayoff", new PathPlannerAuto("AmpPlayoff"));
+    SmartDashboard.putData("SourcePlayoff", new PathPlannerAuto("SourcePlayoff"));
+    SmartDashboard.putData("MiddleQuals", new PathPlannerAuto("MiddleQuals"));
+    SmartDashboard.putData("TwoNoteMiddle", new PathPlannerAuto("TwoNoteMiddle"));
+    SmartDashboard.putData("OneNoteAmp", new PathPlannerAuto("OneNoteAmp"));
     SmartDashboard.putData("OneNoteSource", new PathPlannerAuto("OneNoteSource"));
+
 
     //SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
