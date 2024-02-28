@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 2.5747128004323114,
-        "y": 5.550916873645828
+        "x": 2.887570138776641,
+        "y": 5.559932574410603
       },
       "prevControl": {
-        "x": 2.3740413185524347,
-        "y": 5.490298544355477
+        "x": 2.6868986568967643,
+        "y": 5.499314245120253
       },
       "nextControl": {
-        "x": 2.775384282312188,
-        "y": 5.611535202936178
+        "x": 3.0882416206565177,
+        "y": 5.620550903700954
       },
       "isLocked": false,
       "linkedName": null
@@ -76,7 +76,7 @@
     {
       "name": "slow",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.25,
+      "maxWaypointRelativePos": 0.30000000000000004,
       "constraints": {
         "maxVelocity": 0.5,
         "maxAcceleration": 3.0,
@@ -87,9 +87,9 @@
     {
       "name": "New Constraints Zone",
       "minWaypointRelativePos": 1.5500000000000003,
-      "maxWaypointRelativePos": 2.0,
+      "maxWaypointRelativePos": 2.0999999999999996,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 0.25,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -133,7 +133,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 0.6000000000000001,
       "command": {
         "type": "parallel",
         "data": {
@@ -150,7 +150,7 @@
     },
     {
       "name": "rev",
-      "waypointRelativePos": 1.5500000000000003,
+      "waypointRelativePos": 2.0,
       "command": {
         "type": "parallel",
         "data": {

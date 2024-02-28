@@ -49,15 +49,20 @@
       "waypointRelativePos": 1.0,
       "rotationDegrees": 0.0,
       "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 28.072486935852968,
+      "rotateFast": false
     }
   ],
   "constraintZones": [
     {
       "name": "slow",
       "minWaypointRelativePos": 0.0,
-      "maxWaypointRelativePos": 0.3,
+      "maxWaypointRelativePos": 0.15,
       "constraints": {
-        "maxVelocity": 0.5,
+        "maxVelocity": 0.25,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -84,7 +89,7 @@
     },
     {
       "name": "feed",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0.15,
       "command": {
         "type": "parallel",
         "data": {
