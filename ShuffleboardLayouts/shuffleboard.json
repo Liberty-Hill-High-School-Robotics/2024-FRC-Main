@@ -1343,19 +1343,6 @@
               "_showGlyph": false
             }
           },
-          "3,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/teardroptest",
-              "_title": "/SmartDashboard/teardroptest",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "9,4": {
             "size": [
               1,
@@ -1376,8 +1363,8 @@
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/AutoIntake",
-              "_title": "/SmartDashboard/AutoIntake",
+              "_source0": "network_table:///SmartDashboard/OneNoteAmp",
+              "_title": "SmartDashboard/OneNoteAmp",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -1389,21 +1376,21 @@
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/shootingtest",
-              "_title": "/SmartDashboard/shootingtest",
+              "_source0": "network_table:///SmartDashboard/OneNoteSource",
+              "_title": "SmartDashboard/OneNoteSource",
               "_glyph": 148,
               "_showGlyph": false
             }
           },
-          "3,1": {
+          "5,1": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/testing",
-              "_title": "SmartDashboard/testing",
+              "_source0": "network_table:///SmartDashboard/SourcePlayoff",
+              "_title": "SmartDashboard/SourcePlayoff",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -1415,8 +1402,34 @@
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/OneNoteSource",
-              "_title": "/SmartDashboard/OneNoteSource",
+              "_source0": "network_table:///SmartDashboard/AmpPlayoff",
+              "_title": "SmartDashboard/AmpPlayoff",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/TwoNoteMiddle",
+              "_title": "SmartDashboard/TwoNoteMiddle",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/MiddleQuals",
+              "_title": "SmartDashboard/MiddleQuals",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -1426,9 +1439,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 953.0,
+    "x": -2.0,
     "y": 220.0,
-    "width": 974.0,
+    "width": 1929.0,
     "height": 819.0
   }
 }

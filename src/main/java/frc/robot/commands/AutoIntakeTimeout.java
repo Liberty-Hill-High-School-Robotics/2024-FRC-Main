@@ -36,9 +36,9 @@ public class AutoIntakeTimeout extends SequentialCommandGroup {
             new ParallelCommandGroup(
             //want to change this to a parallel deadline group, which ends once a certain command ends, but cant figure out the syntax for it yet
             //run all commands in parallel until the throughbeam == true
-            new IntakeTogether(m_intake).withTimeout(.6),
-            new AngleAndFeed(m_pivot).withTimeout(.6),
-            new StorageRollersFeed(m_storage).withTimeout(.6)
+            new IntakeTogether(m_intake).withTimeout(.65),
+            new AngleAndFeed(m_pivot).withTimeout(.65),
+            new StorageRollersFeed(m_storage).withTimeout(.65)
             )
 
         );

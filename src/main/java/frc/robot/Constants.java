@@ -49,7 +49,7 @@ public final class Constants {
   }
 
   public static final class PivotConstants{
-    public static final double pP = 0.0065;
+    public static final double pP = 0.0075; //0065
     public static final double pI = 0.00000003;
     public static final double pD = 0;
 
