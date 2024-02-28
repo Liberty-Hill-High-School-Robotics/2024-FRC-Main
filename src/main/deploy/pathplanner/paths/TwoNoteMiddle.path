@@ -20,28 +20,28 @@
         "y": 5.559932574410603
       },
       "prevControl": {
-        "x": 2.6868986568967643,
-        "y": 5.499314245120253
+        "x": 2.7351682988545862,
+        "y": 5.4159975033744185
       },
       "nextControl": {
-        "x": 3.0882416206565177,
-        "y": 5.620550903700954
+        "x": 3.223404992265912,
+        "y": 5.877109936036469
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.7000646081829072,
-        "y": 5.392516019931368
+        "x": 0.8072597963391561,
+        "y": 6.726025815686411
       },
       "prevControl": {
-        "x": 1.049800027871867,
-        "y": 5.526816391300567
+        "x": 0.20222060736058345,
+        "y": 6.452514949435823
       },
       "nextControl": {
-        "x": 2.3503291884939492,
-        "y": 5.258215648562169
+        "x": 1.4882582492451555,
+        "y": 7.033874431383642
       },
       "isLocked": false,
       "linkedName": null
@@ -52,8 +52,8 @@
         "y": 5.027505357024136
       },
       "prevControl": {
-        "x": 8.27714353415284,
-        "y": 7.6858849019711455
+        "x": 10.089361996905811,
+        "y": 5.886438681968273
       },
       "nextControl": null,
       "isLocked": false,
@@ -68,7 +68,7 @@
     },
     {
       "waypointRelativePos": 2,
-      "rotationDegrees": -6.581944655178007,
+      "rotationDegrees": 60.802513953935545,
       "rotateFast": false
     }
   ],
@@ -86,10 +86,10 @@
     },
     {
       "name": "New Constraints Zone",
-      "minWaypointRelativePos": 1.5500000000000003,
-      "maxWaypointRelativePos": 2.0999999999999996,
+      "minWaypointRelativePos": 1.7,
+      "maxWaypointRelativePos": 2.05,
       "constraints": {
-        "maxVelocity": 0.25,
+        "maxVelocity": 0.3,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -116,7 +116,7 @@
     },
     {
       "name": "feed",
-      "waypointRelativePos": 0.25,
+      "waypointRelativePos": 0.2,
       "command": {
         "type": "parallel",
         "data": {
@@ -133,7 +133,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 0.6000000000000001,
+      "waypointRelativePos": 0.5499999999999999,
       "command": {
         "type": "parallel",
         "data": {
@@ -150,7 +150,7 @@
     },
     {
       "name": "rev",
-      "waypointRelativePos": 2.0,
+      "waypointRelativePos": 1.75,
       "command": {
         "type": "parallel",
         "data": {
@@ -167,7 +167,7 @@
     },
     {
       "name": "feed",
-      "waypointRelativePos": 2.0999999999999996,
+      "waypointRelativePos": 2.0,
       "command": {
         "type": "parallel",
         "data": {
