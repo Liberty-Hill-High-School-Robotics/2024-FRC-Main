@@ -133,17 +133,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
         
     //Autons
-    SmartDashboard.putData("teardroptest", new PathPlannerAuto("TeardropTest"));
-    SmartDashboard.putData("testing", new PathPlannerAuto("test"));
-
-    SmartDashboard.putData("6Note", new PathPlannerAuto("6Note"));
-    SmartDashboard.putData("BlueSpeaker", new PathPlannerAuto("BlueSpeaker"));
-    SmartDashboard.putData("BlueAmp", new PathPlannerAuto("BlueAmp"));
-    SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
-    SmartDashboard.putData("BlueMiddle", new PathPlannerAuto("BlueMiddle"));
-
-    SmartDashboard.putData("RedNoteClear", new PathPlannerAuto("RedNoteClear"));
-    SmartDashboard.putData("RedOneNoteSource", new PathPlannerAuto("RedOneNoteSource"));
+    SmartDashboard.putData("OneNoteSource", new PathPlannerAuto("OneNoteSource"));
 
     //SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));

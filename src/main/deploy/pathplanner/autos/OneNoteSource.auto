@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 2,
-      "y": 2
+      "x": 0.78,
+      "y": 4.5897429976678135
     },
-    "rotation": 0
+    "rotation": -55.984295926604354
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RedOneNoteSource"
+            "pathName": "OneNoteSource"
           }
         }
       ]
