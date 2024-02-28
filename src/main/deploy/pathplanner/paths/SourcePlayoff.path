@@ -4,72 +4,72 @@
     {
       "anchor": {
         "x": 0.8047554350142251,
-        "y": 6.487548008653064
+        "y": 4.600511751359073
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.2179750533997704,
-        "y": 7.410405156380782
+        "x": 1.8047554350142243,
+        "y": 4.600511751359073
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.8777405205817117,
-        "y": 7.706545882890424
+        "x": 7.9810028076432,
+        "y": 0.7644562940132597
       },
       "prevControl": {
-        "x": 2.527064650658304,
-        "y": 7.710124208093724
+        "x": 2.616034762270866,
+        "y": -0.08264392367711024
       },
       "nextControl": {
-        "x": 3.5526658972781027,
-        "y": 7.699658889250665
+        "x": 9.138398358826223,
+        "y": 0.9472029599895266
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.960341826723922,
-        "y": 7.437953130939819
+        "x": 0.8047554350142251,
+        "y": 3.8842644128241277
       },
       "prevControl": {
-        "x": 6.7989783273943605,
-        "y": 7.8215709384106695
+        "x": 0.8047554350142251,
+        "y": 1.5447130385480539
       },
       "nextControl": {
-        "x": 9.48236742111068,
-        "y": 6.9352025952374055
+        "x": 0.8047554350142251,
+        "y": 4.166631152054246
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.3143929643563979,
-        "y": 6.322260161298846
+        "x": 4.4204270958877485,
+        "y": 2.004115149169896
       },
       "prevControl": {
-        "x": 2.2441371057238753,
-        "y": 5.964136492031373
+        "x": 2.813865252730505,
+        "y": 2.4539219212666605
       },
       "nextControl": {
-        "x": 0.8412952260841224,
-        "y": 6.5044904012259455
+        "x": 6.026988939044988,
+        "y": 1.5543083770731316
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.960341826723922,
-        "y": 5.791961651037396
+        "x": 7.9810028076432,
+        "y": 2.458656729393996
       },
       "prevControl": {
-        "x": 6.249818188373178,
-        "y": 5.999597468409452
+        "x": 7.780409455690974,
+        "y": 2.2096219632875513
       },
       "nextControl": null,
       "isLocked": false,
@@ -84,12 +84,12 @@
     },
     {
       "waypointRelativePos": 2,
-      "rotationDegrees": 0,
+      "rotationDegrees": -59.470294100066006,
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 3,
-      "rotationDegrees": 40.31410016049714,
+      "waypointRelativePos": 3.0,
+      "rotationDegrees": -10.304846468766119,
       "rotateFast": false
     },
     {
@@ -112,8 +112,8 @@
     },
     {
       "name": "slow",
-      "minWaypointRelativePos": 2.85,
-      "maxWaypointRelativePos": 3.3,
+      "minWaypointRelativePos": 1.9,
+      "maxWaypointRelativePos": 2.2,
       "constraints": {
         "maxVelocity": 0.5,
         "maxAcceleration": 3.0,
@@ -159,7 +159,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 1.85,
+      "waypointRelativePos": 0.9,
       "command": {
         "type": "parallel",
         "data": {
@@ -176,7 +176,7 @@
     },
     {
       "name": "rev]",
-      "waypointRelativePos": 2.85,
+      "waypointRelativePos": 1.9,
       "command": {
         "type": "parallel",
         "data": {
@@ -193,7 +193,7 @@
     },
     {
       "name": "feed",
-      "waypointRelativePos": 3.3,
+      "waypointRelativePos": 2.15,
       "command": {
         "type": "parallel",
         "data": {
@@ -210,7 +210,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 3.9,
+      "waypointRelativePos": 3.65,
       "command": {
         "type": "parallel",
         "data": {
@@ -234,13 +234,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 1.4320961841645496,
+    "rotation": 0.0,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": 60.0,
+    "rotation": -60.0,
     "velocity": 0
   },
   "useDefaultConstraints": true
