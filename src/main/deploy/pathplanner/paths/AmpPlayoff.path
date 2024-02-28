@@ -113,7 +113,7 @@
     {
       "name": "slow",
       "minWaypointRelativePos": 2.85,
-      "maxWaypointRelativePos": 3.3,
+      "maxWaypointRelativePos": 3.2,
       "constraints": {
         "maxVelocity": 0.5,
         "maxAcceleration": 3.0,
@@ -193,7 +193,7 @@
     },
     {
       "name": "feed",
-      "waypointRelativePos": 3.3,
+      "waypointRelativePos": 3.1,
       "command": {
         "type": "parallel",
         "data": {
