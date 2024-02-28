@@ -25,8 +25,8 @@ public class AutoRev extends SequentialCommandGroup {
     addCommands(
         
             new ParallelCommandGroup(
-                new AnglePivot(pivot).withTimeout(1.2),
-                new RevShooter(shooter).withTimeout(1.2)
+                new AnglePivot(pivot).withTimeout(1),
+                new RevShooter(shooter).withTimeout(1)
                 //new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)
                 //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)
             )    
