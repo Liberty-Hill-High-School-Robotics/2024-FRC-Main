@@ -335,6 +335,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger EleDown = new JoystickButton(m_operatorController, 1);
     EleDown.whileTrue(new ElevatorDown(m_elevator));
 
+    final Trigger PivotDown = new JoystickButton(m_operatorController, 8);
+    PivotDown.whileTrue(new PivotSetpoint(m_pivot, 0));
+
     
   
   }
