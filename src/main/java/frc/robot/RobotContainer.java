@@ -48,6 +48,7 @@ import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
 //special imports
 import frc.robot.commands.AutoIntake;
+import frc.robot.commands.IntakeOut;
 import frc.robot.commands.AutoIntakeTimeout;
 import frc.robot.commands.AutoRev;
 import frc.robot.commands.AimSub;
@@ -56,6 +57,7 @@ import frc.robot.commands.AmpPrep;
 
 import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoShoot;
+import frc.robot.commands.IntakeOut;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
@@ -337,6 +339,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     final Trigger PivotDown = new JoystickButton(m_operatorController, 8);
     PivotDown.whileTrue(new PivotSetpoint(m_pivot, 0));
+
+    final Trigger IntakeOut = new JoystickButton(m_operatorController, 7);
+    IntakeOut.whileTrue(new IntakeOut(m_intake, m_storage, m_pivot, m_shooter));
 
     
   
