@@ -28,7 +28,7 @@ public class Bar extends SubsystemBase {
     public Bar(){
         //config motor settings here
         barRotatorSparkMax = new CANSparkMax(CanIDs.barRotatorID, MotorType.kBrushless);
-        barRotatorSparkMax.restoreFactoryDefaults();
+        //barRotatorSparkMax.restoreFactoryDefaults();
         barRotatorSparkMax.setInverted(true);
         barRotatorSparkMax.setIdleMode(IdleMode.kBrake);
         barRotatorSparkMax.setSmartCurrentLimit(40);
@@ -89,7 +89,12 @@ public class Bar extends SubsystemBase {
     }
 
     public boolean barAtRotateForwardLimit(){
-        return barRotatorSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
+        if(barRotatorRelativeEncoder.getPosition() >= 22){
+            return true;
+        }else{
+            return false;
+        }
+        //return barRotatorSparkMax.isSoftLimitEnabled(SoftLimitDirection.kForward);
     }
 
     public void barRotatorRestRelativeEncoder(){

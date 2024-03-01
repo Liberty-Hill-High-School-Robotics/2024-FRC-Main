@@ -29,7 +29,7 @@ public class AmpPrep extends SequentialCommandGroup {
                  
                 new BarRotateForward(bar),
                 new PivotWithBar(pivot, 39),
-                new shooterSetpoint(shooter, .35)
+                new shooterSetpoint(shooter, .25)
                 
                 
                 )
