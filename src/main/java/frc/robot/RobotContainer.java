@@ -57,7 +57,6 @@ import frc.robot.commands.AmpPrep;
 
 import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoShoot;
-import frc.robot.commands.IntakeOut;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
@@ -141,6 +140,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("TwoNoteMiddle", new PathPlannerAuto("TwoNoteMiddle"));
     SmartDashboard.putData("OneNoteAmp", new PathPlannerAuto("OneNoteAmp"));
     SmartDashboard.putData("OneNoteSource", new PathPlannerAuto("OneNoteSource"));
+
+    SmartDashboard.putData("ThreeNoteMiddle", new PathPlannerAuto("ThreeNoteMiddle"));
 
 
     //SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
