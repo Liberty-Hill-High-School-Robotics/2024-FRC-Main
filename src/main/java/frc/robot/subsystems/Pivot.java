@@ -134,8 +134,14 @@ public class Pivot extends SubsystemBase {
 
     public void anglePivot(){
         double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), calculateAngle());
-        pivotSparkMax.set(temp);
-        pivotSparkMax2.set(temp);
+        if(Limelight.canSee == false){
+            pivotSparkMax.stopMotor();
+            pivotSparkMax2.stopMotor();
+        }
+        else{
+            pivotSparkMax.set(temp);
+            pivotSparkMax2.set(temp);
+        }
     }
 
 
@@ -168,11 +174,11 @@ public class Pivot extends SubsystemBase {
 
     public void pivotWithBar(double setpoint){
         if(barPos >= 10 || barPos <= .5){
-        pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
-        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+            pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+            pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
         }else{
             pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
-        pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
+            pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
         }
     }
 
@@ -188,10 +194,10 @@ public class Pivot extends SubsystemBase {
     }
 
     public void pivotStop(){
-        pivotSparkMax.set(0);
-        pivotSparkMax2.set(0);
+        pivotSparkMax.stopMotor();
+        pivotSparkMax2.stopMotor();
     }
-
+    
     //transfer roller
     public void tRollerFeed(){
         transferRollerSparkMax.set(MotorSpeeds.transferRollerSpeed);
