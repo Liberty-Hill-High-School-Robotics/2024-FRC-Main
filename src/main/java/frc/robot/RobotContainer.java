@@ -116,6 +116,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
     NamedCommands.registerCommand("CandleOff", new CandleOff(m_leds));
+    NamedCommands.registerCommand("AutoShoot", new CandleRed(m_leds));
     NamedCommands.registerCommand("FeedNote", new StorageRollersShooter(m_storage));
 
 
@@ -139,7 +140,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("OneNoteAmp", new PathPlannerAuto("OneNoteAmp"));
     SmartDashboard.putData("OneNoteSource", new PathPlannerAuto("OneNoteSource"));
 
-    SmartDashboard.putData("ThreeNoteMiddle", new PathPlannerAuto("ThreeNoteMiddle"));
+    //SmartDashboard.putData("ThreeNoteMiddle", new PathPlannerAuto("ThreeNoteMiddle"));
 
 
     //SmartDashboard.putData("BlueNoteClear", new PathPlannerAuto("BlueNoteClear"));
@@ -150,6 +151,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
+
+    SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem, m_leds));
 
     SmartDashboard.putData("ShooterOut", new ShooterFeed(m_shooter));
     SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
