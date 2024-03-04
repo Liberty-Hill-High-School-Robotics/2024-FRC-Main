@@ -24,7 +24,7 @@ public class CandleStrobeGreen extends Command {
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("strobe");
+    m_leds.candleSetAnimation("greenstrobe");
   }
 
   @Override

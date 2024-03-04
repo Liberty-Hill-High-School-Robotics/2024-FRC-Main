@@ -47,16 +47,16 @@ import frc.robot.commands.PivotCommmands.TRollers.*;
 import frc.robot.commands.ShooterCommands.*;
 import frc.robot.commands.StorageCommands.*;
 //special imports
-import frc.robot.commands.AutoIntake;
-import frc.robot.commands.IntakeOut;
-import frc.robot.commands.AutoIntakeTimeout;
-import frc.robot.commands.AutoRev;
-import frc.robot.commands.AimSub;
-import frc.robot.commands.AmpBack;
-import frc.robot.commands.AmpPrep;
+import frc.robot.commands.SemiAutonomousCommands.AutoIntake;
+import frc.robot.commands.SemiAutonomousCommands.IntakeOut;
+import frc.robot.commands.SemiAutonomousCommands.AutoIntakeTimeout;
+import frc.robot.commands.SemiAutonomousCommands.AutoRev;
+import frc.robot.commands.SemiAutonomousCommands.AimSub;
+import frc.robot.commands.SemiAutonomousCommands.AmpBack;
+import frc.robot.commands.SemiAutonomousCommands.AmpPrep;
 
-import frc.robot.commands.AutoAim;
-import frc.robot.commands.AutoShoot;
+import frc.robot.commands.SemiAutonomousCommands.AutoAim;
+import frc.robot.commands.SemiAutonomousCommands.AutoShoot;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
@@ -113,7 +113,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter));
     NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_storage));
-    NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
+    NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
     NamedCommands.registerCommand("FeedNote", new StorageRollersShooter(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));

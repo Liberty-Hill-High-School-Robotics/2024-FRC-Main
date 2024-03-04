@@ -28,6 +28,8 @@ public final class Constants {
     public static int[] blue   = new int[]{0, 0, 255}; 
     public static int[] red    = new int[]{255, 0, 0}; 
     public static int[] green  = new int[]{0, 255, 0};
+
+    public static int numLEDs = 28;
   }
 
   public static final class ShooterConstants{

@@ -21,6 +21,8 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkBase.SoftLimitDirection;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
+import edu.wpi.first.math.MathUtil;
+
 
 
 
@@ -140,6 +142,12 @@ public class Pivot extends SubsystemBase {
         //subtract x angle for x number of feet away //
        
     }
+
+    public boolean atAngle(){
+        //See if the delievered and actual value for the speed of motors is within x (tolerance)
+        return MathUtil.isNear(angleCalc, pivotAbsoluteEncoder.getPosition(), 3);
+    }
+
 
     public void forceSubAngle(){
         double angle = 40;

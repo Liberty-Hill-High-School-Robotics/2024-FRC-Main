@@ -1,12 +1,14 @@
-package frc.robot.commands;
+package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
+import frc.robot.commands.LEDCommands.Colors.CandleGreen;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 //import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
 
@@ -21,7 +23,8 @@ public class AutoAim extends SequentialCommandGroup {
     
         Shooter shooter,
         Pivot pivot,
-        DriveSubsystem drivesubsystem
+        DriveSubsystem drivesubsystem,
+        LEDs m_leds
 
     ){
  
@@ -30,9 +33,9 @@ public class AutoAim extends SequentialCommandGroup {
             new ParallelCommandGroup(
                 new AnglePivot(pivot),
                 new RevShooter(shooter),
-                new AimWhileMoving(drivesubsystem)
-            )    
-        
+                new AimWhileMoving(drivesubsystem),
+                new CandleGreen(m_leds).onlyWhile(pivot::atAngle)
+            )     
     );
     }
     
