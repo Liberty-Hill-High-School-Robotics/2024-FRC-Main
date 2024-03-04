@@ -61,7 +61,4 @@ public class Storage extends SubsystemBase {
         return (!throughSensor.get());
     }
 
-    public void feedNoteAuto(){
-        storageRollerSparkMax.set(MotorSpeeds.storageRollerSpeed);
-    }
 }

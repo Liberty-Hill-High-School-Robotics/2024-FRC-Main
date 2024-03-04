@@ -33,13 +33,13 @@ public class LEDs extends SubsystemBase {
     CANdle candle = new CANdle(20);
     //create some animations for the LEDs, all are purple for now (with exceptions)
     //rainbow/set color animations
-    RainbowAnimation rainbowAnimation = new RainbowAnimation(1, .5, 10);
+    RainbowAnimation rainbowAnimation = new RainbowAnimation(1, .5, ColorConstants.numLEDs);
     FireAnimation fireAnimation = new FireAnimation();
     RgbFadeAnimation rgbFadeAnimation = new RgbFadeAnimation();
 
 
     //set color animations
-    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, 1, 28, BounceMode.Back, 2);
+    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, 1, ColorConstants.numLEDs, BounceMode.Back, 2);
     //https://www.youtube.com/watch?v=Ns0f6jZIo9I
 
     ColorFlowAnimation colorFlowAnimation = new ColorFlowAnimation   (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
@@ -50,8 +50,8 @@ public class LEDs extends SubsystemBase {
     //Animation that fades into and out of a specified color 
 
 
-    StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, 28);
-    StrobeAnimation greenstrobe = new StrobeAnimation(0, 255, 0, 0, .5, 10);
+    StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, ColorConstants.numLEDs);
+    StrobeAnimation greenstrobe = new StrobeAnimation                (0, 255, 0, 0, .5, ColorConstants.numLEDs);
     //Animation that strobes the LEDs a specified color 
 
 

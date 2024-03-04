@@ -1,10 +1,11 @@
-package frc.robot.commands;
+package frc.robot.commands.SemiAutonomousCommands;
 
-//import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
-import frc.robot.commands.ShooterCommands.RevShooter;
+import frc.robot.commands.BarCommands.BarRotateForward;
+import frc.robot.commands.PivotCommmands.Pivot.PivotWithBar;
+import frc.robot.commands.ShooterCommands.shooterSetpoint;
+import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
 
@@ -14,31 +15,29 @@ import frc.robot.subsystems.Shooter;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoRev extends SequentialCommandGroup {
-    public AutoRev(
-    
+public class AmpPrep extends SequentialCommandGroup {
+    public AmpPrep(
+        Bar bar,
         Shooter shooter,
         Pivot pivot
-
+        
     ){
- 
-    addCommands(
+    
+    addCommands( 
         
             new ParallelCommandGroup(
-                new AnglePivot(pivot).withTimeout(1.1),
-                new RevShooter(shooter).withTimeout(1.1)
-                //new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)
-                //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)
-            )    
-        
+                 
+                new BarRotateForward(bar),
+                new PivotWithBar(pivot, 39),
+                new shooterSetpoint(shooter, .25)
+                
+                
+                )
     );
     }
     
     @Override
     public boolean runsWhenDisabled() {
         return false;
-
     }
-
-    
 }

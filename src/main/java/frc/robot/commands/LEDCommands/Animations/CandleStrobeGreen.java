@@ -1,7 +1,6 @@
-package frc.robot.commands.StorageCommands;
+package frc.robot.commands.LEDCommands.Animations;
 
-
-import frc.robot.subsystems.Storage;
+import frc.robot.subsystems.LEDs;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -9,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class FeedNoteAuto extends Command {
+public class CandleStrobeGreen extends Command {
   // The subsystem the command runs on
-  private final Storage m_storage;
+  private final LEDs m_leds;
 
-  public FeedNoteAuto(Storage subsystem) {
-    m_storage = subsystem;
-    addRequirements(m_storage);
+  public CandleStrobeGreen(LEDs subsystem) {
+    m_leds = subsystem;
+    addRequirements(m_leds);
   }
 
   @Override
@@ -25,13 +24,13 @@ public class FeedNoteAuto extends Command {
 
   @Override
   public void execute(){
-    m_storage.feedNoteAuto();
+    m_leds.candleSetAnimation("greenstrobe");
   }
 
   @Override
   public void end(boolean interrupted){
-    m_storage.storageRollerStop();
-  }
+    m_leds.candleSetColor("stop");
+    }
 
   @Override
   public boolean isFinished() {

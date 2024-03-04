@@ -13,7 +13,6 @@ import com.revrobotics.CANSparkFlex;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import edu.wpi.first.math.MathUtil;
 
 
 
@@ -96,10 +95,6 @@ public class Shooter extends SubsystemBase {
         //shooterVortex2.set(setpoint);
     }
 
-    public boolean atSpeed(){
-        //See if the delievered and actual value for the speed of motors is within x (tolerance)
-        return MathUtil.isNear(speedCalc, (shooterVortexRelativeEncoder.getVelocity() / 6784), .3);
-    }
 
     public double calculateSpeed(){
         //effectively a linear equation (y=mx+b) where x is feet away from subwoofer, b = speed @ 0ft, m = speed added each foot away from sub.

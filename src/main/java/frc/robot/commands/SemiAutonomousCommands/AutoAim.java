@@ -1,14 +1,16 @@
-package frc.robot.commands;
+package frc.robot.commands.SemiAutonomousCommands;
 
-//import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
+import frc.robot.commands.LEDCommands.Colors.CandleGreen;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
-import frc.robot.commands.StorageCommands.FeedNoteAuto;
+//import frc.robot.subsystems.Bar;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Storage;
 
 
 /**
@@ -16,24 +18,24 @@ import frc.robot.subsystems.Storage;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoShoot extends SequentialCommandGroup {
-    public AutoShoot(
+public class AutoAim extends SequentialCommandGroup {
+    public AutoAim(
     
         Shooter shooter,
         Pivot pivot,
-        Storage storage
+        DriveSubsystem drivesubsystem,
+        LEDs m_leds
 
     ){
  
     addCommands(
         
             new ParallelCommandGroup(
-                new AnglePivot(pivot).withTimeout(1.3),
+                new AnglePivot(pivot),
                 new RevShooter(shooter),
-                new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)
-                //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)
-            )    
-        
+                new AimWhileMoving(drivesubsystem),
+                new CandleGreen(m_leds).onlyWhile(pivot::atAngle)
+            )     
     );
     }
     
