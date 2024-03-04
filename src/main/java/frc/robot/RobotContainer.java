@@ -56,7 +56,6 @@ import frc.robot.commands.SemiAutonomousCommands.AmpBack;
 import frc.robot.commands.SemiAutonomousCommands.AmpPrep;
 
 import frc.robot.commands.SemiAutonomousCommands.AutoAim;
-import frc.robot.commands.SemiAutonomousCommands.AutoShoot;
 //import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.IntakeCommands.*;
@@ -112,7 +111,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
   public RobotContainer() {
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter));
-    NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_pivot, m_storage));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
     NamedCommands.registerCommand("FeedNote", new StorageRollersShooter(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
@@ -202,7 +200,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("singlefade", new CandleSingleFade(m_leds));
     SmartDashboard.putData("candletwinkle", new CandleTwinkle(m_leds));
 
-    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
+    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter, m_leds));
     
     SmartDashboard.putData("BarRotateForward", new BarRotateForward(m_bar));
     SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));
@@ -293,7 +291,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     // Driver controller  buttons
 
     final Trigger AutoAim = new JoystickButton(m_driverController, 1);
-    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
+    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem, m_leds));
 
     final Trigger SetX = new JoystickButton(m_driverController, 3); 
     SetX.whileTrue(new xPattern(m_drivesubsystem));
@@ -318,7 +316,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
     final Trigger AutoIntake = new JoystickButton(m_operatorController, 3);
-    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter));
+    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter, m_leds));
 
     final Trigger Fire = new JoystickButton(m_operatorController, 6);
     Fire.whileTrue(new StorageRollersShooter(m_storage));
