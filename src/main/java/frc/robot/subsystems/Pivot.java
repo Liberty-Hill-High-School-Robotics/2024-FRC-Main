@@ -108,7 +108,12 @@ public class Pivot extends SubsystemBase {
             pivotResetRelativeEncoder();
        }
 
-       angleCalc = (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP) + PivotConstants.pCaluK); 
+       if(Limelight.canSee){
+        angleCalc = (PivotConstants.pCalcC*Math.pow(Limelight.getDistance(),PivotConstants.pCalucP) + PivotConstants.pCaluK); 
+       }
+       else{
+        angleCalc = 0;
+       }
 
        barPos = Bar.barRotatorRelativeEncoder.getPosition();
     

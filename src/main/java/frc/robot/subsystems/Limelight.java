@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Limelight extends SubsystemBase {
     public static int increment;
+    public static boolean canSee;
     static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
 
@@ -46,7 +47,13 @@ public class Limelight extends SubsystemBase {
         double x = RobotContainer.getTx();
         double y = RobotContainer.getTy();
         double area = RobotContainer.getTa();
-        boolean tv = RobotContainer.getTv();
+        if(area == 0){
+            canSee = false;
+        }
+        else{
+            canSee = true;
+        }
+        //boolean tv = RobotContainer.getTv();
 
         //post to smart dashboard periodically
         SmartDashboard.putNumber("LimelightX", x);
@@ -54,8 +61,9 @@ public class Limelight extends SubsystemBase {
         SmartDashboard.putNumber("LimelightArea", area);
         SmartDashboard.putNumber("GetDistance", getDistance());
         SmartDashboard.putNumber("increment", increment);
+        SmartDashboard.putBoolean("cansee?", canSee);
 
-        ShooterConstants.canSee = tv;
+        
 
     }
     
