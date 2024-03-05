@@ -10,9 +10,11 @@ import frc.robot.commands.StorageCommands.StorageRollersFeed;
 */
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
+import frc.robot.commands.LEDCommands.Animations.CandleStrobeGreen;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Storage;
@@ -29,7 +31,8 @@ public class AutoIntakeTimeout extends SequentialCommandGroup {
         Intake m_intake,
         Storage m_storage,
         Pivot m_pivot,
-        Shooter m_shooter
+        Shooter m_shooter,
+        LEDs m_leds
     ){
     
         addCommands(
@@ -38,7 +41,8 @@ public class AutoIntakeTimeout extends SequentialCommandGroup {
             //run all commands in parallel until the throughbeam == true
             new IntakeTogether(m_intake).withTimeout(.65),
             new AngleAndFeed(m_pivot).withTimeout(.65),
-            new StorageRollersFeed(m_storage).withTimeout(.65)
+            new StorageRollersFeed(m_storage).withTimeout(.65),
+            new CandleStrobeGreen(m_leds).withTimeout(.65)
             )
 
         );

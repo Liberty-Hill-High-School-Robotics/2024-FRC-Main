@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class CandleColorFlow extends Command {
+public class CandleStrobeRed extends Command {
   // The subsystem the command runs on
   private final LEDs m_leds;
 
-  public CandleColorFlow(LEDs subsystem) {
+  public CandleStrobeRed(LEDs subsystem) {
     m_leds = subsystem;
     addRequirements(m_leds);
   }
@@ -24,7 +24,7 @@ public class CandleColorFlow extends Command {
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("colorflow");
+    m_leds.candleSetAnimation("redstrobe");
   }
 
   @Override
@@ -36,10 +36,4 @@ public class CandleColorFlow extends Command {
   public boolean isFinished() {
     return false;
   }
-
-  @Override
-    public boolean runsWhenDisabled()
-    {
-      return true;
-    }
 }

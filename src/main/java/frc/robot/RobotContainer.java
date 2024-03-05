@@ -110,7 +110,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
     //named command stuff
-    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter));
+    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
     NamedCommands.registerCommand("FeedNote", new StorageRollersShooter(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));

@@ -10,7 +10,7 @@ import frc.robot.commands.StorageCommands.StorageRollersFeed;
 */
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
-import frc.robot.commands.LEDCommands.Animations.CandleStrobe;
+import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
@@ -42,7 +42,7 @@ public class AutoIntake extends SequentialCommandGroup {
             new IntakeTogether(m_intake),
             new AngleAndFeed(m_pivot),
             new StorageRollersFeed(m_storage),
-            new CandleStrobe(m_leds)
+            new CandleStrobeRed(m_leds)
             )
 
         );

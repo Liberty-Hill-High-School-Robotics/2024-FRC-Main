@@ -52,6 +52,7 @@ public class LEDs extends SubsystemBase {
 
     StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, ColorConstants.numLEDs);
     StrobeAnimation greenstrobe = new StrobeAnimation                (0, 255, 0, 0, .5, ColorConstants.numLEDs);
+    StrobeAnimation redstrobe = new StrobeAnimation                (255, 0, 0, 0, .5, ColorConstants.numLEDs);
     //Animation that strobes the LEDs a specified color 
 
 
@@ -202,6 +203,10 @@ public class LEDs extends SubsystemBase {
 
         else if(animation == "greenstrobe"){
             candle.animate(greenstrobe);
+        }
+
+        else if(animation == "redstrobe"){
+            candle.animate(redstrobe);
         }
     }
 }

@@ -42,6 +42,7 @@ public class Pivot extends SubsystemBase {
     private double barPos;
 
     PIDController pivotPID = new PIDController(PivotConstants.pP, PivotConstants.pI, PivotConstants.pD);
+    PIDController pivotPIDSlow = new PIDController(PivotConstants.psP, PivotConstants.pI, PivotConstants.pD);
 
     public Pivot(){
         //config motor settings here
@@ -174,11 +175,11 @@ public class Pivot extends SubsystemBase {
 
     public void pivotWithBar(double setpoint){
         if(barPos >= 10 || barPos <= .5){
-            pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
-            pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+            pivotSparkMax.set(pivotPIDSlow.calculate(pivotRelativeEncoder.getPosition(), setpoint));
+            pivotSparkMax2.set(pivotPIDSlow.calculate(pivotRelativeEncoder.getPosition(), setpoint));
         }else{
-            pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
-            pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
+            pivotSparkMax.set(pivotPIDSlow.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
+            pivotSparkMax2.set(pivotPIDSlow.calculate(pivotRelativeEncoder.getPosition(), pivotRelativeEncoder.getPosition()));
         }
     }
 
