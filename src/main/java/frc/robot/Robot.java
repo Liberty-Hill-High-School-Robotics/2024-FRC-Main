@@ -17,8 +17,8 @@ import frc.robot.subsystems.LEDs;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
   private RobotContainer m_robotContainer;
+  private final LEDs m_leds = LEDs.getInstance();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    candleSetAnimation("colorflow");
+    m_leds.candleSetAnimation("colorflow");
   }
 
   @Override

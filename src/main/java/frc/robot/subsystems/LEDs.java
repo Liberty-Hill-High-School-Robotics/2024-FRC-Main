@@ -29,6 +29,15 @@ public class LEDs extends SubsystemBase {
         //red = 255, 0, 0
         //green = 0, 255, 0
 
+        private static LEDs m_instance;
+
+        public static LEDs getInstance() {
+            if (m_instance == null) {
+                m_instance = new LEDs();
+            }
+            return m_instance;
+        }
+
 
     CANdle candle = new CANdle(20);
     //create some animations for the LEDs, all are purple for now (with exceptions)
