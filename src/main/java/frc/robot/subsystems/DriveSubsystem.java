@@ -380,15 +380,17 @@ public class DriveSubsystem extends SubsystemBase {
       );
   }
 
-  public void setDriveRatio(double ratio){
-    DriveConstants.driveRatio = ratio;
-  }
-
   //see drive constants for details
   public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
     setModuleStates(
       DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
   }
+
+  public void setDriveRatio(double ratio){
+    DriveConstants.driveRatio = ratio;
+  }
+
+  
 
   public double turnPID(){
     double output = (turningPID.calculate(RobotContainer.getTx(), 0));

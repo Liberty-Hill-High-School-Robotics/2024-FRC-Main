@@ -1,6 +1,6 @@
-package frc.robot.commands.ElevatorCommands;
+package frc.robot.commands.LEDCommands.Colors;
 
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.LEDs;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class ElevatorUp extends Command {
+public class CandleDimPurple extends Command {
   // The subsystem the command runs on
-  private final Elevator m_elevator;
+  private final LEDs m_leds;
 
-  public ElevatorUp(Elevator subsystem) {
-    m_elevator = subsystem;
-    addRequirements(m_elevator);
+  public CandleDimPurple(LEDs subsystem) {
+    m_leds = subsystem;
+    addRequirements(m_leds);
   }
 
   @Override
@@ -24,16 +24,16 @@ public class ElevatorUp extends Command {
 
   @Override
   public void execute(){
-    m_elevator.elevatorUp();
+    m_leds.candleSetColor("dimpurple");
   }
 
-  @Override 
+  @Override
   public void end(boolean interrupted){
-    m_elevator.elevatorConstant();
-   }
+    m_leds.candleSetColor("stop");
+    }
 
   @Override
   public boolean isFinished() {
-    return m_elevator.elevatorAtForwardLimit();
+    return false;
   }
 }

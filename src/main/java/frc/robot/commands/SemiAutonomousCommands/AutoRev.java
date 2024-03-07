@@ -3,8 +3,6 @@ package frc.robot.commands.SemiAutonomousCommands;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.LEDCommands.Animations.CandleLarson;
-import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 import frc.robot.subsystems.Pivot;
@@ -28,13 +26,10 @@ public class AutoRev extends SequentialCommandGroup {
  
     addCommands(
         
-            new SequentialCommandGroup(
-                new ParallelCommandGroup(
+            new ParallelCommandGroup(
                 new AnglePivot(pivot).withTimeout(1.1),
-                new RevShooter(shooter).withTimeout(1.1),
-                new CandleStrobeRed(leds).withTimeout(1.1)
-                ),
-                new CandleLarson(leds)
+                new RevShooter(shooter).withTimeout(1.1)
+                //new CandleStrobeRed(leds).withTimeout(1.1).andThen(new CandleRainbow(leds))
                 
                 //new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)
                 //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)

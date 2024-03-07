@@ -125,6 +125,13 @@ public class LEDs extends SubsystemBase {
             b = ColorConstants.purple[2]; 
         }
 
+        if(color == "dimpurple"){
+            r = ColorConstants.purple[0]; 
+            g = ColorConstants.purple[1]; 
+            b = ColorConstants.purple[2];
+            candle.configBrightnessScalar(.4);
+        }
+
 
         else if(color == "gold"){
             r = ColorConstants.gold[0]; 

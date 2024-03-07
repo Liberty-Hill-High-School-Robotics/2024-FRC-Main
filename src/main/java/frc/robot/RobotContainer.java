@@ -112,12 +112,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
-    NamedCommands.registerCommand("FeedNote", new StorageRollersShooter(m_storage));
+    NamedCommands.registerCommand("FeedNote", new AutoFeedNote(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
     NamedCommands.registerCommand("CandleOff", new CandleOff(m_leds));
     NamedCommands.registerCommand("AutoShoot", new CandleRed(m_leds));
-    NamedCommands.registerCommand("FeedNote", new StorageRollersShooter(m_storage));
 
 
 
@@ -139,6 +138,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("TwoNoteMiddle", new PathPlannerAuto("TwoNoteMiddle"));
     SmartDashboard.putData("OneNoteAmp", new PathPlannerAuto("OneNoteAmp"));
     SmartDashboard.putData("OneNoteSource", new PathPlannerAuto("OneNoteSource"));
+    SmartDashboard.putData("Testing", new PathPlannerAuto("testing"));
 
     //SmartDashboard.putData("ThreeNoteMiddle", new PathPlannerAuto("ThreeNoteMiddle"));
 

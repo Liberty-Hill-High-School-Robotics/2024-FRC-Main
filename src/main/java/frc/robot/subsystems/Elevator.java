@@ -86,6 +86,11 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax2.set(-MotorSpeeds.elevatorSpeed);
     }
 
+    public void elevatorConstant(){
+        elevatorSparkMax.set(-.1);
+        elevatorSparkMax2.set(-.1);
+    }
+
     public void elevatorStop(){
         elevatorSparkMax.set(0);
         elevatorSparkMax2.set(0);

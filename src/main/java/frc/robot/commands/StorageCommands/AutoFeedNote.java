@@ -1,6 +1,7 @@
-package frc.robot.commands.ElevatorCommands;
+package frc.robot.commands.StorageCommands;
 
-import frc.robot.subsystems.Elevator;
+
+import frc.robot.subsystems.Storage;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -8,13 +9,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class ElevatorUp extends Command {
+public class AutoFeedNote extends Command {
   // The subsystem the command runs on
-  private final Elevator m_elevator;
+  private final Storage m_storage;
 
-  public ElevatorUp(Elevator subsystem) {
-    m_elevator = subsystem;
-    addRequirements(m_elevator);
+  public AutoFeedNote(Storage subsystem) {
+    m_storage = subsystem;
+    addRequirements(m_storage);
   }
 
   @Override
@@ -24,16 +25,16 @@ public class ElevatorUp extends Command {
 
   @Override
   public void execute(){
-    m_elevator.elevatorUp();
+    m_storage.storageRollerFeed();
   }
 
-  @Override 
+  @Override
   public void end(boolean interrupted){
-    m_elevator.elevatorConstant();
-   }
+    m_storage.storageRollerStop();
+  }
 
   @Override
   public boolean isFinished() {
-    return m_elevator.elevatorAtForwardLimit();
+    return Storage.throughSensorBrokeInvert();
   }
 }

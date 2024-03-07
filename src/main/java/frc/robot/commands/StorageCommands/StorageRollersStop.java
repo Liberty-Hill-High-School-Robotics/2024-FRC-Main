@@ -28,8 +28,6 @@ public class StorageRollersStop extends Command {
     m_storage.storageRollerStop();
   }
 
- 
-
   @Override
   public boolean isFinished() {
     return false;
