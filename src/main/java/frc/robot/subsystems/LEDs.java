@@ -55,14 +55,15 @@ public class LEDs extends SubsystemBase {
     //Animation that gradually lights the entire LED strip one LED at a time.
 
 
-    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .3, 10);
+    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .3, ColorConstants.numLEDs);
     //Animation that fades into and out of a specified color 
 
 
     StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, ColorConstants.numLEDs);
     StrobeAnimation greenstrobe = new StrobeAnimation                (0, 255, 0, 0, .5, ColorConstants.numLEDs);
-    StrobeAnimation redstrobe = new StrobeAnimation                (255, 0, 0, 0, .5, ColorConstants.numLEDs);
-    //Animation that strobes the LEDs a specified color 
+    StrobeAnimation redstrobe = new StrobeAnimation                  (255, 0, 0, 0, .5, ColorConstants.numLEDs);
+    StrobeAnimation bluestrobe = new StrobeAnimation                (0, 0, 0, 255, .5, ColorConstants.numLEDs);
+    //Animation that strobes the LEDs a specified color  
 
 
     TwinkleAnimation twinkleAnimation = new TwinkleAnimation         (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
@@ -216,6 +217,10 @@ public class LEDs extends SubsystemBase {
 
         else if(animation == "redstrobe"){
             candle.animate(redstrobe);
+        }
+
+        else if(animation == "bluestrobe"){
+            candle.animate(bluestrobe);
         }
     }
 }
