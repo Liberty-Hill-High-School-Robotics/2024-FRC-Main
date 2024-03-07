@@ -59,6 +59,7 @@ import javax.swing.plaf.TreeUI;
 
 
 public class DriveSubsystem extends SubsystemBase {
+  public static boolean boostmode;
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
@@ -402,5 +403,7 @@ public class DriveSubsystem extends SubsystemBase {
     //apply swerve module states
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
+
+  //public void set
 
 }

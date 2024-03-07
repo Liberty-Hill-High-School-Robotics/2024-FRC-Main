@@ -55,7 +55,7 @@ public class LEDs extends SubsystemBase {
     //Animation that gradually lights the entire LED strip one LED at a time.
 
 
-    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .3, 10);
     //Animation that fades into and out of a specified color 
 
 

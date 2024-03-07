@@ -51,7 +51,8 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    m_leds.candleSetAnimation("colorflow");
+    //candle animation that runs when the robot is disabled
+    m_leds.candleSetAnimation("singlefade");
   }
 
   @Override
@@ -73,6 +74,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_leds.candleSetAnimation("larson");
   }
 
   /** This function is called periodically during autonomous. */
@@ -88,6 +90,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_leds.candleSetColor("stop");
+    m_leds.candleSetColor("purple");
   }
 
   /** This function is called periodically during operator control. */
