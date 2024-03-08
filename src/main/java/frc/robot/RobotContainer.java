@@ -216,9 +216,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
      SmartDashboard.putData("AmpBack", new AmpBack(m_bar, m_shooter, m_pivot, m_storage));
      
+    double entryPivotSetpoint =  SmartDashboard.getNumber("entryPivotSetpoint",0);
+    double entryShooterSetpoint =  SmartDashboard.getNumber("entryShooterSetpoint",0);
 
-    SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, 35)); //m_pivot.calculateAngle()
-    SmartDashboard.putData("shooterSetpoint", new shooterSetpoint(m_shooter, .65));//m_shooter.calculateSpeed()
+    SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, entryPivotSetpoint)); //m_pivot.calculateAngle()
+    SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, entryShooterSetpoint));//m_shooter.calculateSpeed()
 
     
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
