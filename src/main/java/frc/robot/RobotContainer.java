@@ -231,6 +231,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
+    SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
+
 
 
 

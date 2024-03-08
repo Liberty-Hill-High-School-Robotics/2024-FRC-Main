@@ -27,8 +27,8 @@ public class AutoRev extends SequentialCommandGroup {
     addCommands(
         
             new ParallelCommandGroup(
-                new AnglePivot(pivot).withTimeout(1.1),
-                new RevShooter(shooter).withTimeout(1.1)
+                new AnglePivot(pivot).withTimeout(1),
+                new RevShooter(shooter).withTimeout(1)
                 //new CandleStrobeRed(leds).withTimeout(1.1).andThen(new CandleRainbow(leds))
                 
                 //new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)

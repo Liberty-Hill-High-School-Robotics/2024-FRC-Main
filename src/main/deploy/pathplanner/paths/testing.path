@@ -94,6 +94,23 @@
           ]
         }
       }
+    },
+    {
+      "name": "autointake",
+      "waypointRelativePos": 0.1,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoIntake"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "globalConstraints": {
