@@ -58,15 +58,13 @@ public class DriveBoostmode extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.setDriveRatio(1);
-      DriveConstants.kMaxSpeedMetersPerSecond = 5.8;
+      m_robotDrive.setBoost();
     }
 
 
     // Called once after isFinished returns true
     @Override
     public void end(boolean interrupted) {
-
     }
 
 

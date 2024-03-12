@@ -58,8 +58,7 @@ public class DriveNormal extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.setDriveRatio(1);
-      DriveConstants.kMaxSpeedMetersPerSecond = 4.8;
+      m_robotDrive.setNormal();
     }
 
 
