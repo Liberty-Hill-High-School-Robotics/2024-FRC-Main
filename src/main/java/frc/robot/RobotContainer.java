@@ -33,33 +33,70 @@ import frc.robot.Constants.OIConstants;
 //import frc.robot.Constants.ShooterConstants;
 //subsystem imports
 //import frc.robot.commands.AutoAimCommands.*;
-import frc.robot.commands.BarCommands.*;
-import frc.robot.commands.DriveAutonCommands.*;
+import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
+import frc.robot.commands.BarCommands.BarRotateBackward;
+import frc.robot.commands.BarCommands.BarRotateForward;
+import frc.robot.commands.BarCommands.BarRotateStop;
+import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
+import frc.robot.commands.DriveAutonCommands.DriveBoostmode;
+import frc.robot.commands.DriveAutonCommands.DriveNormal;
+import frc.robot.commands.DriveAutonCommands.DriveSlowmode;
+import frc.robot.commands.DriveAutonCommands.resetHeading;
+import frc.robot.commands.DriveAutonCommands.rightSnap;
+import frc.robot.commands.DriveAutonCommands.sDrive;
+import frc.robot.commands.DriveAutonCommands.xPattern;
 import frc.robot.commands.ElevatorCommands.ElevatorDown;
 import frc.robot.commands.ElevatorCommands.ElevatorStop;
 import frc.robot.commands.ElevatorCommands.ElevatorUp;
+import frc.robot.commands.IntakeCommands.IntakeTogether;
 //import frc.robot.commands.ElevatorCommands.*;
-import frc.robot.commands.IntakeCommands.IntakeRoller.*;
-import frc.robot.commands.LEDCommands.Animations.*;
-import frc.robot.commands.LEDCommands.Colors.*;
-import frc.robot.commands.PivotCommmands.Pivot.*;
-import frc.robot.commands.PivotCommmands.TRollers.*;
-import frc.robot.commands.ShooterCommands.*;
-import frc.robot.commands.StorageCommands.*;
-//special imports
-import frc.robot.commands.SemiAutonomousCommands.AutoIntake;
-import frc.robot.commands.SemiAutonomousCommands.IntakeOut;
-import frc.robot.commands.SemiAutonomousCommands.AutoIntakeTimeout;
-import frc.robot.commands.SemiAutonomousCommands.AutoRev;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeed;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeedTogeather;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
+import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerStop;
+//import frc.robot.commands.LEDCommands.CandleRainbow;
+import frc.robot.commands.LEDCommands.CandleOff;
+import frc.robot.commands.LEDCommands.Animations.CandleColorFlow;
+import frc.robot.commands.LEDCommands.Animations.CandleFire;
+import frc.robot.commands.LEDCommands.Animations.CandleLarson;
+import frc.robot.commands.LEDCommands.Animations.CandleRGBFade;
+import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
+import frc.robot.commands.LEDCommands.Animations.CandleSingleFade;
+import frc.robot.commands.LEDCommands.Animations.CandleStrobe;
+import frc.robot.commands.LEDCommands.Animations.CandleTwinkle;
+import frc.robot.commands.LEDCommands.Colors.CandleBlue;
+import frc.robot.commands.LEDCommands.Colors.CandleGold;
+import frc.robot.commands.LEDCommands.Colors.CandleGreen;
+import frc.robot.commands.LEDCommands.Colors.CandleOrange;
+import frc.robot.commands.LEDCommands.Colors.CandlePurple;
+import frc.robot.commands.LEDCommands.Colors.CandleRed;
+import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
+import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
+import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
+import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
+import frc.robot.commands.PivotCommmands.Pivot.PivotUp;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerBackFeed;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
+import frc.robot.commands.PivotCommmands.TRollers.TRollerStop;
 import frc.robot.commands.SemiAutonomousCommands.AimSub;
 import frc.robot.commands.SemiAutonomousCommands.AmpBack;
 import frc.robot.commands.SemiAutonomousCommands.AmpPrep;
-
 import frc.robot.commands.SemiAutonomousCommands.AutoAim;
-//import frc.robot.commands.LEDCommands.CandleRainbow;
-import frc.robot.commands.LEDCommands.CandleOff;
-import frc.robot.commands.IntakeCommands.*;
-
+//special imports
+import frc.robot.commands.SemiAutonomousCommands.AutoIntake;
+import frc.robot.commands.SemiAutonomousCommands.AutoIntakeTimeout;
+import frc.robot.commands.SemiAutonomousCommands.AutoRev;
+import frc.robot.commands.SemiAutonomousCommands.IntakeOut;
+import frc.robot.commands.ShooterCommands.RevShooter;
+import frc.robot.commands.ShooterCommands.ShooterBackFeed;
+import frc.robot.commands.ShooterCommands.ShooterFeed;
+import frc.robot.commands.ShooterCommands.ShooterStop;
+import frc.robot.commands.ShooterCommands.shooterSetpoint;
+import frc.robot.commands.StorageCommands.AutoFeedNote;
+import frc.robot.commands.StorageCommands.StorageRollersBackFeed;
+import frc.robot.commands.StorageCommands.StorageRollersFeed;
+import frc.robot.commands.StorageCommands.StorageRollersShooter;
+import frc.robot.commands.StorageCommands.StorageRollersStop;
 //subsystem and command imports
 import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.DriveSubsystem;
@@ -229,6 +266,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     SmartDashboard.putData("1/3speed", new DriveSlowmode(m_drivesubsystem));
     SmartDashboard.putData("normalspeed", new DriveNormal(m_drivesubsystem));
+    SmartDashboard.putData("boostedspeed", new DriveBoostmode(m_drivesubsystem));
 
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
@@ -303,6 +341,10 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
     SlowMode.whileTrue(new DriveSlowmode(m_drivesubsystem));
     SlowMode.whileFalse(new DriveNormal(m_drivesubsystem));
+
+    final Trigger BoostMode = new JoystickButton(m_driverController, 6);
+    BoostMode.whileTrue(new DriveBoostmode(m_drivesubsystem));
+    BoostMode.whileFalse(new DriveNormal(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);

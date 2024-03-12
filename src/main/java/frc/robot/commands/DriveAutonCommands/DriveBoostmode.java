@@ -1,6 +1,5 @@
 package frc.robot.commands.DriveAutonCommands;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriveConstants;
 /*
 unused imports
@@ -23,14 +22,15 @@ import frc.robot.Constants.DriveConstants;
 
 */
 import frc.robot.subsystems.DriveSubsystem;
+import edu.wpi.first.wpilibj2.command.Command;
 
 
-public class DriveNormal extends Command {
+public class DriveBoostmode extends Command {
    
      private final DriveSubsystem m_robotDrive;
 
 
-     public DriveNormal( DriveSubsystem subsystem
+     public DriveBoostmode( DriveSubsystem subsystem
 
     ) {
 
@@ -58,8 +58,7 @@ public class DriveNormal extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
-      m_robotDrive.setDriveRatio(1);
-      DriveConstants.kMaxSpeedMetersPerSecond = 4.8;
+      DriveConstants.kMaxSpeedMetersPerSecond = 5.5;
     }
 
 
