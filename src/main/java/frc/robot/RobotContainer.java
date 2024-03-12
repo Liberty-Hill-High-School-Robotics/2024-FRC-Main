@@ -222,7 +222,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, entryPivotSetpoint)); //m_pivot.calculateAngle()
     SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, entryShooterSetpoint));//m_shooter.calculateSpeed()
 
-    
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
     SmartDashboard.putNumber("increment", increment);
@@ -234,11 +233,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
     SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
-
-
-
-
-
     
     //double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
     //SmartDashboard.putData("revShooter", new revShooter(m_shooter));
