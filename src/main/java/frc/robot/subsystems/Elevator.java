@@ -61,6 +61,12 @@ public class Elevator extends SubsystemBase {
         SmartDashboard.putNumber("elevatorRelativeEncoder2.getPosition()", elevatorRelativeEncoder2.getPosition());
         SmartDashboard.putBoolean("elevatorAtForwardLimit", elevatorAtForwardLimit());
         SmartDashboard.putBoolean("elevatorAtReverseLimit", elevatorAtReverseLimit());
+
+        if(elevatorAtReverseLimit() == true){
+            elevatorRestRelativeEncoder();
+        }
+
+
     }
 
     @Override
@@ -108,8 +114,9 @@ public class Elevator extends SubsystemBase {
         return elevatorForwardLimit.isPressed();
     }
 
-   // public void barRotatorRestRelativeEncoder(){
-   //     barRotatorRelativeEncoder.setPosition(0);
-   // }
+    public void elevatorRestRelativeEncoder(){
+       elevatorRelativeEncoder.setPosition(0);
+       elevatorRelativeEncoder2.setPosition(0);
+    }
 
 }
