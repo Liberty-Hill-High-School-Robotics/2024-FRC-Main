@@ -33,9 +33,9 @@ public class Elevator extends SubsystemBase {
         //config motor settings here
         elevatorSparkMax = new CANSparkMax(CanIDs.elevatorMotorID, MotorType.kBrushless);
         elevatorSparkMax.restoreFactoryDefaults();
-        elevatorSparkMax.setInverted(true);
+        elevatorSparkMax.setInverted(false);
         elevatorSparkMax.setIdleMode(IdleMode.kBrake);
-        elevatorSparkMax.setSmartCurrentLimit(60);
+        elevatorSparkMax.setSmartCurrentLimit(40);
 
         elevatorReverseLimit = elevatorSparkMax.getReverseLimitSwitch(com.revrobotics.SparkLimitSwitch.Type.kNormallyOpen);
 
@@ -43,11 +43,13 @@ public class Elevator extends SubsystemBase {
         elevatorSparkMax2.restoreFactoryDefaults();
         elevatorSparkMax2.setInverted(true);
         elevatorSparkMax2.setIdleMode(IdleMode.kBrake);
-        elevatorSparkMax2.setSmartCurrentLimit(60);
+        elevatorSparkMax2.setSmartCurrentLimit(40);
 
         elevatorForwardLimit = elevatorSparkMax2.getForwardLimitSwitch(com.revrobotics.SparkLimitSwitch.Type.kNormallyOpen);
-
+        
         //elevatorRelativeEncoder.
+        elevatorRelativeEncoder = elevatorSparkMax.getEncoder();
+        elevatorRelativeEncoder2 = elevatorSparkMax2.getEncoder();
     }
 
   
@@ -55,6 +57,8 @@ public class Elevator extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putNumber("elevatorRelativeEncoder.getPosition()", elevatorRelativeEncoder.getPosition());
+        SmartDashboard.putNumber("elevatorRelativeEncoder2.getPosition()", elevatorRelativeEncoder2.getPosition());
         SmartDashboard.putBoolean("elevatorAtForwardLimit", elevatorAtForwardLimit());
         SmartDashboard.putBoolean("elevatorAtReverseLimit", elevatorAtReverseLimit());
     }
@@ -103,5 +107,9 @@ public class Elevator extends SubsystemBase {
     public boolean elevatorAtForwardLimit(){
         return elevatorForwardLimit.isPressed();
     }
+
+   // public void barRotatorRestRelativeEncoder(){
+   //     barRotatorRelativeEncoder.setPosition(0);
+   // }
 
 }
