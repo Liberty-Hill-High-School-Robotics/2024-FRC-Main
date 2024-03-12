@@ -30,7 +30,6 @@ public class StorageRollersFeed extends Command {
   @Override
   public void end(boolean interrupted){
     m_storage.storageRollerStop();
-    //m_storage.noteReady();
   }
 
   @Override
