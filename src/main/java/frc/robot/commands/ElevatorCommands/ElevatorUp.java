@@ -29,7 +29,7 @@ public class ElevatorUp extends Command {
 
   @Override 
   public void end(boolean interrupted){
-    m_elevator.elevatorConstant();
+    m_elevator.elevatorStop();
    }
 
   @Override
