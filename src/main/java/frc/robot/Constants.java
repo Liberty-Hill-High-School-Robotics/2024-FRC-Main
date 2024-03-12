@@ -113,9 +113,9 @@ public final class Constants {
     public static boolean driveScheme = true;
     public static double driveRatio = 1;
 
-    public static final double tP = 0.15;
+    public static final double tP = 0.1;
     public static final double tI = 0;
-    public static final double tD = 0;
+    public static final double tD = 0.02;
 
     
     // Driving Parameters - Note that these are not the maximum capable speeds of
