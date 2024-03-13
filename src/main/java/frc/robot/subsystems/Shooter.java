@@ -89,8 +89,8 @@ public class Shooter extends SubsystemBase {
     // here. Call these from Commands.
     
     public void revShooter(){
-        shooterVortex.set(calculateSpeed());
-        shooterVortex2.set(calculateSpeed());
+        shooterVortex.set(.6);
+        shooterVortex2.set(.6);
         //shooterVortex.set(setpoint);
         //shooterVortex2.set(setpoint);
     }
