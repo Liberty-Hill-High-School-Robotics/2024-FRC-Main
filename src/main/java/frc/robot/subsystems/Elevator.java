@@ -62,9 +62,9 @@ public class Elevator extends SubsystemBase {
         SmartDashboard.putBoolean("elevatorAtForwardLimit", elevatorAtForwardLimit());
         SmartDashboard.putBoolean("elevatorAtReverseLimit", elevatorAtReverseLimit());
 
-        if(elevatorAtReverseLimit() == true){
-            elevatorRestRelativeEncoder();
-        }
+        //if(elevatorAtReverseLimit() == true){
+          //  elevatorRestRelativeEncoder();
+        //}
 
 
     }
