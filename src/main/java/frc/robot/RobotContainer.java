@@ -170,7 +170,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     NamedCommands.registerCommand("IntakeEnd", new CandleStrobeRedEndCond(m_leds));
 
 
-    disabled().whileTrue(
+    disabled().onTrue(
     new InstantCommand(() -> { m_leds.candleClear(); }).ignoringDisable(true)
     .andThen(new InstantCommand(() -> { m_leds.candleSetAnimation("singlefade"); }).ignoringDisable(true)));
   
