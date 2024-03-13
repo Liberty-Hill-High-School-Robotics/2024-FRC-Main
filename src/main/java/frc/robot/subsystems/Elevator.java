@@ -33,7 +33,7 @@ public class Elevator extends SubsystemBase {
         //config motor settings here
         elevatorSparkMax = new CANSparkMax(CanIDs.elevatorMotorID, MotorType.kBrushless);
         elevatorSparkMax.restoreFactoryDefaults();
-        elevatorSparkMax.setInverted(false);
+        elevatorSparkMax.setInverted(true);
         elevatorSparkMax.setIdleMode(IdleMode.kBrake);
         elevatorSparkMax.setSmartCurrentLimit(40);
 
