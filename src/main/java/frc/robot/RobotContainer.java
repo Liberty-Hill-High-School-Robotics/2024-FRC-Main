@@ -23,12 +23,10 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -154,15 +152,11 @@ public class RobotContainer {
 
   //The container for the robot. Contains subsystems, OI devices, and commands.
 SendableChooser<Command> m_chooser = new SendableChooser<>();
-private static Trigger disabled() {
-  //enabledAlert.set(false);
-  return new Trigger(DriverStation::isDisabled);
-}
 
   public RobotContainer() {
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
-    NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
+    NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
     NamedCommands.registerCommand("FeedNote", new AutoFeedNote(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
@@ -174,10 +168,6 @@ private static Trigger disabled() {
   
 
     configureButtonBindings();
-    disabled().onTrue(new InstantCommand(() -> { m_leds.candleClear();})
-    .ignoringDisable(true)
-    .andThen(new InstantCommand(() -> { 
-    m_leds.candleSetAnimation("singlefade"); }).ignoringDisable(true)));
 
 
     //Pathplanner auto chooser
@@ -207,7 +197,7 @@ private static Trigger disabled() {
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
 
-    SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem, m_leds));
+    SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 
     SmartDashboard.putData("ShooterOut", new ShooterFeed(m_shooter));
     SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
@@ -233,7 +223,7 @@ private static Trigger disabled() {
     SmartDashboard.putData("PivotDown", new PivotDown(m_pivot));
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
     SmartDashboard.putData("autofeednote", new AutoFeedNote(m_storage));
-    SmartDashboard.putData("autorev", new AutoRev(m_shooter, m_pivot, m_leds));
+    SmartDashboard.putData("autorev", new AutoRev(m_shooter, m_pivot));
     
 
     //SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
@@ -367,7 +357,7 @@ private static Trigger disabled() {
     // Driver controller  buttons
 
     final Trigger AutoAim = new JoystickButton(m_driverController, 1);
-    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem, m_leds));
+    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 
     final Trigger SetX = new JoystickButton(m_driverController, 3); 
     SetX.whileTrue(new xPattern(m_drivesubsystem));
@@ -412,7 +402,7 @@ private static Trigger disabled() {
     PivotDown.whileTrue(new PivotSetpoint(m_pivot, 0));
 
     final Trigger IntakeOut = new JoystickButton(m_operatorController, 7);
-    IntakeOut.whileTrue(new IntakeOut(m_intake, m_storage, m_pivot, m_shooter));
+    IntakeOut.whileTrue(new IntakeOut(m_intake, m_storage, m_pivot));
 
     final Trigger IntakeBackFeed = new JoystickButton(m_operatorController, 9);
     IntakeBackFeed.whileTrue(new IntakeRollerBackFeedTogeather(m_intake));

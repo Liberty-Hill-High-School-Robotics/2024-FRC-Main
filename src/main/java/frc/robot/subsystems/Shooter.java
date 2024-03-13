@@ -91,8 +91,6 @@ public class Shooter extends SubsystemBase {
     public void revShooter(){
         shooterVortex.set(.6);
         shooterVortex2.set(.6);
-        //shooterVortex.set(setpoint);
-        //shooterVortex2.set(setpoint);
     }
 
 

@@ -2,12 +2,10 @@ package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
-import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 //import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
 
@@ -22,9 +20,7 @@ public class AutoAim extends ParallelRaceGroup {
     
         Shooter shooter,
         Pivot pivot,
-        DriveSubsystem drivesubsystem,
-        LEDs m_leds
-
+        DriveSubsystem drivesubsystem
     ){
  
     addCommands(
@@ -32,8 +28,7 @@ public class AutoAim extends ParallelRaceGroup {
             new ParallelRaceGroup(
                 new AnglePivot(pivot),
                 new RevShooter(shooter),
-                new AimWhileMoving(drivesubsystem),
-                new CandleStrobeRed(m_leds)
+                new AimWhileMoving(drivesubsystem)
             )     
     );
     }

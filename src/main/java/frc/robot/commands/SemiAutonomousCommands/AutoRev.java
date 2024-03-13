@@ -6,7 +6,6 @@ import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 import frc.robot.subsystems.Pivot;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.LEDs;
 
 
 /**
@@ -18,9 +17,7 @@ public class AutoRev extends ParallelCommandGroup {
     public AutoRev(
     
         Shooter shooter,
-        Pivot pivot,
-        LEDs leds
-
+        Pivot pivot
     ){
  
     addCommands(

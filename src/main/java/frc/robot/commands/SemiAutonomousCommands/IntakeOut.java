@@ -14,7 +14,6 @@ import frc.robot.commands.PivotCommmands.TRollers.TRollerBackFeed;
 import frc.robot.commands.StorageCommands.StorageRollersBackFeed;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Storage;
 
 /**
@@ -28,8 +27,7 @@ public class IntakeOut extends SequentialCommandGroup {
     public IntakeOut(
         Intake m_intake,
         Storage m_storage,
-        Pivot m_pivot,
-        Shooter m_shooter
+        Pivot m_pivot
     ){
     
         addCommands(
