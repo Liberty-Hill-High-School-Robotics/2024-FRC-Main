@@ -59,9 +59,6 @@ import javax.swing.plaf.TreeUI;
 
 
 public class DriveSubsystem extends SubsystemBase {
-  public static boolean boostmode;
-  public boolean isBoosting;
-  //public double maxSpeed = DriveConstants.kMaxSpeedMetersPerSecond; 
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
@@ -274,9 +271,6 @@ public class DriveSubsystem extends SubsystemBase {
     double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
-    xSpeedDelivered = xSpeedDelivered * DriveConstants.driveRatio;
-    ySpeedDelivered = ySpeedDelivered * DriveConstants.driveRatio;
-
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates( fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds
     (xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_gyro.getYaw().getValue())) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
@@ -388,12 +382,6 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds));
   }
 
-  public void setDriveRatio(double ratio){
-    DriveConstants.driveRatio = ratio;
-  }
-
-  
-
   public double turnPID(){
     double output = (turningPID.calculate(RobotContainer.getTx(), 0));
     SmartDashboard.putNumber("turningoutput", output);
@@ -407,6 +395,4 @@ public class DriveSubsystem extends SubsystemBase {
     //apply swerve module states
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
-
-  //public void set
 }

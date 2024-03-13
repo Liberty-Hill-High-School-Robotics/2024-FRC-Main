@@ -29,7 +29,7 @@ public final class Constants {
     public static int[] red    = new int[]{255, 0, 0}; 
     public static int[] green  = new int[]{0, 255, 0};
 
-    public static int numLEDs = 608;
+    public static int numLEDs = 254;
   }
 
   public static final class ShooterConstants{
@@ -111,7 +111,6 @@ public final class Constants {
   public static final class DriveConstants {
 
     public static boolean driveScheme = true;
-    public static double driveRatio = 1;
 
     public static final double tP = 0.1;
     public static final double tI = 0;
@@ -122,7 +121,6 @@ public final class Constants {
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 5.7; //5.7 max mechanical
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
-    public static final double kMaxSpeedBoostMetersPerSecond = 5.7;
 
     public static final double kDirectionSlewRate = 1.2; // radians per second // 1.2 
     public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%) 
