@@ -5,6 +5,7 @@
 package frc.robot;
 //import edu.wpi.first.wpilibj.PS4Controller.Button;
 
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -18,11 +19,14 @@ import com.pathplanner.lib.commands.FollowPathWithEvents;
 //import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.networktables.GenericEntry;
 //limelight imports
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -63,6 +67,7 @@ import frc.robot.commands.LEDCommands.Animations.CandleRGBFade;
 import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
 import frc.robot.commands.LEDCommands.Animations.CandleSingleFade;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobe;
+import frc.robot.commands.LEDCommands.Animations.CandleStrobeRedEndCond;
 import frc.robot.commands.LEDCommands.Animations.CandleTwinkle;
 import frc.robot.commands.LEDCommands.Colors.CandleBlue;
 import frc.robot.commands.LEDCommands.Colors.CandleGold;
@@ -129,6 +134,14 @@ public class RobotContainer {
   public final Shooter m_shooter = new Shooter();
   public final LEDs m_leds = new LEDs();
     
+  private ShuffleboardTab tab = Shuffleboard.getTab("testing");
+   private GenericEntry entryshooterSetpoint =
+      tab.add("entryshooterSetpoint", 0)
+         .getEntry();
+  
+   private GenericEntry entrypivotSetpoint =
+      tab.add("entrypivotSetpoint", 0)
+         .getEntry();
 
   public static int increment = 0;
 
@@ -154,8 +167,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
     NamedCommands.registerCommand("CandleOff", new CandleOff(m_leds));
     NamedCommands.registerCommand("AutoShoot", new CandleRed(m_leds));
+    NamedCommands.registerCommand("IntakeEnd", new CandleStrobeRedEndCond(m_leds));
 
 
+    
+    
 
 
     configureButtonBindings();
@@ -212,6 +228,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("PivotUp", new PivotUp(m_pivot));
     SmartDashboard.putData("PivotDown", new PivotDown(m_pivot));
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
+    SmartDashboard.putData("autofeednote", new AutoFeedNote(m_storage));
+    SmartDashboard.putData("autorev", new AutoRev(m_shooter, m_pivot, m_leds));
     
 
     //SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
@@ -252,12 +270,31 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putData("RevShooter", new RevShooter(m_shooter, .1));
     SmartDashboard.putData("AmpPrep", new AmpPrep(m_bar, m_shooter, m_pivot));
      SmartDashboard.putData("AmpBack", new AmpBack(m_bar, m_shooter, m_pivot, m_storage));
-     
-    double entryPivotSetpoint =  SmartDashboard.getNumber("entryPivotSetpoint",0);
-    double entryShooterSetpoint =  SmartDashboard.getNumber("entryShooterSetpoint",0);
 
-    SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, entryPivotSetpoint)); //m_pivot.calculateAngle()
-    SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, entryShooterSetpoint));//m_shooter.calculateSpeed()
+    //double entryPivotSetpoint =  SmartDashboard.getNumber("entryPivotSetpoint",0);
+    //double entryShooterSetpoint =  SmartDashboard.getNumber("entryShooterSetpoint",0);
+/*
+    var entryPivotSetpoint =
+    Shuffleboard.getTab("testing")
+    .add("pivotsetpoint", 0)
+    .withWidget(BuiltInWidgets.kNumberSlider)
+    .withProperties(Map.of("min", 0, "max", 0)) // specify widget properties here
+    .getEntry().getDouble(0);
+
+    var entryShooterSetpoint = Shuffleboard.getTab("testing")
+    .add("shootersetpoint", 0)
+    .withWidget(BuiltInWidgets.kNumberSlider)
+    .withProperties(Map.of("min", 0, "max", 6000))
+    .getEntry().getDouble(0); // specify widget properties here
+    */
+
+    SmartDashboard.putNumber("output", entryshooterSetpoint.getDouble(0));
+
+    //SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, entrypivotSetpoint.getDouble(0))); //m_pivot.calculateAngle()
+    //SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, entryshooterSetpoint.getDouble(0)));//m_shooter.calculateSpeed()
+    SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, 15)); //m_pivot.calculateAngle()
+    SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, .6));
+
 
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 

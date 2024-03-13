@@ -1448,7 +1448,7 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "4,1": {
+          "3,1": {
             "size": [
               1,
               1
@@ -1461,7 +1461,7 @@
               "_showGlyph": false
             }
           },
-          "4,2": {
+          "3,2": {
             "size": [
               1,
               1
@@ -1474,7 +1474,7 @@
               "_showGlyph": false
             }
           },
-          "4,3": {
+          "3,3": {
             "size": [
               1,
               1
@@ -1487,7 +1487,7 @@
               "_showGlyph": false
             }
           },
-          "6,4": {
+          "5,4": {
             "size": [
               2,
               1
@@ -1500,7 +1500,7 @@
               "_showGlyph": false
             }
           },
-          "5,1": {
+          "4,1": {
             "size": [
               1,
               1
@@ -1515,7 +1515,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "5,2": {
+          "4,2": {
             "size": [
               1,
               1
@@ -1530,7 +1530,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "7,3": {
+          "6,3": {
             "size": [
               1,
               1
@@ -1543,7 +1543,7 @@
               "_showGlyph": false
             }
           },
-          "8,3": {
+          "7,3": {
             "size": [
               2,
               1
@@ -1558,7 +1558,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "5,3": {
+          "4,3": {
             "size": [
               1,
               1
@@ -1571,7 +1571,7 @@
               "_showGlyph": false
             }
           },
-          "7,2": {
+          "6,2": {
             "size": [
               1,
               1
@@ -1584,7 +1584,7 @@
               "_showGlyph": false
             }
           },
-          "4,0": {
+          "3,0": {
             "size": [
               1,
               1
@@ -1597,7 +1597,7 @@
               "_showGlyph": false
             }
           },
-          "5,0": {
+          "4,0": {
             "size": [
               1,
               1
@@ -1610,7 +1610,7 @@
               "_showGlyph": false
             }
           },
-          "7,0": {
+          "6,0": {
             "size": [
               5,
               2
@@ -1625,7 +1625,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "10,2": {
+          "9,2": {
             "size": [
               1,
               1
@@ -1638,7 +1638,7 @@
               "_showGlyph": false
             }
           },
-          "10,3": {
+          "9,3": {
             "size": [
               1,
               1
@@ -1653,7 +1653,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "6,2": {
+          "5,2": {
             "size": [
               1,
               1
@@ -1668,7 +1668,7 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "6,1": {
+          "5,1": {
             "size": [
               1,
               1
@@ -1683,9 +1683,22 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "8,2": {
+          "11,2": {
             "size": [
-              2,
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/autointaketimeout",
+              "_title": "SmartDashboard/autointaketimeout",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "11,3": {
+            "size": [
+              1,
               1
             ],
             "content": {
@@ -1697,15 +1710,277 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "11,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/autorev",
+              "_title": "SmartDashboard/autorev",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "11,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/autorev/running",
+              "_title": "SmartDashboard/autorev/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "12,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/autofeednote",
+              "_title": "SmartDashboard/autofeednote",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "12,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/autofeednote/running",
+              "_title": "SmartDashboard/autofeednote/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "1,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/ShooterSetpoint",
+              "_title": "/SmartDashboard/ShooterSetpoint",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/PivotSetpoint",
+              "_title": "/SmartDashboard/PivotSetpoint",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/StorageRollersShooter",
+              "_title": "/SmartDashboard/StorageRollersShooter",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "1,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutoIntake",
+              "_title": "/SmartDashboard/AutoIntake",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/GetDistance",
+              "_title": "SmartDashboard/GetDistance",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Auton",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "4,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Testing",
+              "_title": "SmartDashboard/Testing",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "4,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Testing/running",
+              "_title": "SmartDashboard/Testing/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/autointaketimeout",
+              "_title": "SmartDashboard/autointaketimeout",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "8,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/autointaketimeout/running",
+              "_title": "SmartDashboard/autointaketimeout/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/autofeednote",
+              "_title": "SmartDashboard/autofeednote",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "8,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/autofeednote/running",
+              "_title": "SmartDashboard/autofeednote/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "7,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/autorev",
+              "_title": "SmartDashboard/autorev",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "7,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/autorev/running",
+              "_title": "SmartDashboard/autorev/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "4,3": {
+            "size": [
+              4,
+              2
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/throughSensorBroke()",
+              "_title": "SmartDashboard/throughSensorBroke()",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
     }
   ],
   "windowGeometry": {
-    "x": -2.0,
-    "y": 220.0,
-    "width": 1929.0,
-    "height": 819.0
+    "x": -8.0,
+    "y": -8.0,
+    "width": 1936.0,
+    "height": 1048.0
   }
 }

@@ -68,6 +68,10 @@ public class Storage extends SubsystemBase {
         return (!throughSensor.get());
     }
 
+    public boolean throughSensorBrokeS(){
+        return (!throughSensor.get());
+    }
+
     public static boolean throughSensorBrokeInvert(){
         return (throughSensor.get());
     }

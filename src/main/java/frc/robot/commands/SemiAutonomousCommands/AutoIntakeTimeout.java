@@ -1,6 +1,6 @@
 package frc.robot.commands.SemiAutonomousCommands;
 
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 /*
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotDown;
@@ -35,13 +35,12 @@ public class AutoIntakeTimeout extends SequentialCommandGroup {
     ){
     
         addCommands(
-            new ParallelDeadlineGroup(
+            new ParallelRaceGroup(
             //want to change this to a parallel deadline group, which ends once a certain command ends, but cant figure out the syntax for it yet
             //run all commands in parallel until the throughbeam == true
-            new StorageRollersFeed(m_storage)
-            .deadlineWith(
-            new IntakeTogether(m_intake),
-            new AngleAndFeed(m_pivot))
+            new StorageRollersFeed(m_storage).withTimeout(1),
+            new IntakeTogether(m_intake).withTimeout(1),
+            new AngleAndFeed(m_pivot).withTimeout(1)
             //new CandleStrobeBlue(m_leds).withTimeout(.65).andThen(new CandleRainbow(m_leds))
             )
 
