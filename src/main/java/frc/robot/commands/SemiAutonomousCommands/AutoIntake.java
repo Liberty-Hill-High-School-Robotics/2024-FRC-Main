@@ -8,15 +8,11 @@ import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
 import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 */
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
-import frc.robot.commands.LEDCommands.Colors.CandleDimPurple;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Storage;
 
 /**
@@ -24,15 +20,13 @@ import frc.robot.subsystems.Storage;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoIntake extends SequentialCommandGroup {
+public class AutoIntake extends ParallelCommandGroup {
 
 
     public AutoIntake(
         Intake m_intake,
         Storage m_storage,
-        Pivot m_pivot,
-        Shooter m_shooter,
-        LEDs m_leds
+        Pivot m_pivot
     ){
     
         addCommands(
@@ -41,8 +35,7 @@ public class AutoIntake extends SequentialCommandGroup {
             new ParallelCommandGroup(
             new IntakeTogether(m_intake),
             new AngleAndFeed(m_pivot),
-            new StorageRollersFeed(m_storage),
-            new CandleDimPurple(m_leds)
+            new StorageRollersFeed(m_storage)
             )
 
         );

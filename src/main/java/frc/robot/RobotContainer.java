@@ -23,10 +23,12 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -152,6 +154,10 @@ public class RobotContainer {
 
   //The container for the robot. Contains subsystems, OI devices, and commands.
 SendableChooser<Command> m_chooser = new SendableChooser<>();
+private static Trigger disabled() {
+  //enabledAlert.set(false);
+  return new Trigger(DriverStation::isDisabled);
+}
 
   public RobotContainer() {
     //named command stuff
@@ -165,12 +171,13 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     NamedCommands.registerCommand("IntakeEnd", new CandleStrobeRedEndCond(m_leds));
 
 
-    
-    
-
+  
 
     configureButtonBindings();
-
+    disabled().onTrue(new InstantCommand(() -> { m_leds.candleClear();})
+    .ignoringDisable(true)
+    .andThen(new InstantCommand(() -> { 
+    m_leds.candleSetAnimation("singlefade"); }).ignoringDisable(true)));
 
 
     //Pathplanner auto chooser
@@ -255,7 +262,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("singlefade", new CandleSingleFade(m_leds));
     SmartDashboard.putData("candletwinkle", new CandleTwinkle(m_leds));
 
-    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_shooter, m_leds));
+    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot));
     
     SmartDashboard.putData("BarRotateForward", new BarRotateForward(m_bar));
     SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));
@@ -381,7 +388,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
     final Trigger AutoIntake = new JoystickButton(m_operatorController, 3);
-    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_shooter, m_leds));
+    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot));
 
     final Trigger Fire = new JoystickButton(m_operatorController, 6);
     Fire.whileTrue(new StorageRollersShooter(m_storage));
