@@ -89,6 +89,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_leds.candleClear();
     m_leds.candleSetColor("purple");
   }
 
