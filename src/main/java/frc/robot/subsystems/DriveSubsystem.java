@@ -59,8 +59,7 @@ import javax.swing.plaf.TreeUI;
 
 
 public class DriveSubsystem extends SubsystemBase {
-  public static boolean boostmode;
-  public boolean isBoosting;
+  
   //public double maxSpeed = DriveConstants.kMaxSpeedMetersPerSecond; 
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
