@@ -61,7 +61,7 @@ import javax.swing.plaf.TreeUI;
 public class DriveSubsystem extends SubsystemBase {
   public static boolean boostmode;
   public boolean isBoosting;
-  public double maxSpeed = DriveConstants.kMaxSpeedMetersPerSecond; 
+  //public double maxSpeed = DriveConstants.kMaxSpeedMetersPerSecond; 
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
@@ -270,8 +270,8 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     // Convert the commanded speeds into the correct units for the drivetrain
-    double xSpeedDelivered = xSpeedCommanded * maxSpeed;
-    double ySpeedDelivered = ySpeedCommanded * maxSpeed;
+    double xSpeedDelivered = xSpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
+    double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
     xSpeedDelivered = xSpeedDelivered * DriveConstants.driveRatio;
@@ -409,10 +409,4 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   //public void set
-  public void setBoost(){
-    maxSpeed = DriveConstants.kMaxSpeedBoostMetersPerSecond;
-  }
-  public void setNormal(){
-    maxSpeed = DriveConstants.kMaxSpeedMetersPerSecond;
-  }
 }

@@ -53,15 +53,12 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     //candle animation that runs when the robot is disabled
-    //m_leds.candleSetAnimation("singlefade");
     m_leds.candleClear();
-
+    m_leds.candleSetAnimation("singlefade");
   }
 
   @Override
-  public void disabledPeriodic() {
-    m_leds.candleSetAnimation("singlefade");
-  }
+  public void disabledPeriodic() {}
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
@@ -80,13 +77,12 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     m_leds.candleClear();
+    m_leds.candleSetAnimation("rainbow");
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-    m_leds.candleSetAnimation("rainbow");
-  }
+  public void autonomousPeriodic() {  }
 
   @Override
   public void teleopInit() {
@@ -98,7 +94,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     m_leds.candleClear();
-    //m_leds.candleSetAnimation("larson");
+    m_leds.candleSetAnimation("larson");
   }
 
   /** This function is called periodically during operator control. */
@@ -107,8 +103,6 @@ public class Robot extends TimedRobot {
     if(Storage.throughSensorBroke()){
       //m_leds.candleSetAnimation("noteanimation");
     }
-    m_leds.candleClear();
-    m_leds.candleSetAnimation("larson");
   }
 
   @Override

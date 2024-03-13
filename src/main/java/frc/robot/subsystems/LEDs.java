@@ -48,14 +48,14 @@ public class LEDs extends SubsystemBase {
 
 
     //set color animations
-    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, 1, ColorConstants.numLEDs, BounceMode.Back, 2);
+    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .8, ColorConstants.numLEDs, BounceMode.Center, 10);
     //https://www.youtube.com/watch?v=Ns0f6jZIo9I
 
     ColorFlowAnimation colorFlowAnimation = new ColorFlowAnimation   (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that gradually lights the entire LED strip one LED at a time.
 
 
-    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .3, ColorConstants.numLEDs);
+    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .1, ColorConstants.numLEDs);
     //Animation that fades into and out of a specified color 
 
 

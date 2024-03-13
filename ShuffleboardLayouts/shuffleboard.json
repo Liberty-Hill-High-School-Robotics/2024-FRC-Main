@@ -1987,15 +1987,28 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "5,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/TwoNoteMiddle",
+              "_title": "SmartDashboard/TwoNoteMiddle",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
     }
   ],
   "windowGeometry": {
-    "x": 262.0,
-    "y": 281.0,
-    "width": 1404.0,
-    "height": 724.0
+    "x": -7.0,
+    "y": 226.0,
+    "width": 1932.0,
+    "height": 813.0
   }
 }

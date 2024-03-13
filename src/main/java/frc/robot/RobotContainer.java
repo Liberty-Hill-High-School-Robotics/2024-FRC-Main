@@ -39,9 +39,6 @@ import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
-import frc.robot.commands.DriveAutonCommands.DriveBoostmode;
-import frc.robot.commands.DriveAutonCommands.DriveNormal;
-import frc.robot.commands.DriveAutonCommands.DriveSlowmode;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.sDrive;
@@ -301,10 +298,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putNumber("increment", increment);
     SmartDashboard.putData("turnwhileaim", new AimWhileMoving(m_drivesubsystem));
 
-    SmartDashboard.putData("1/3speed", new DriveSlowmode(m_drivesubsystem));
-    SmartDashboard.putData("normalspeed", new DriveNormal(m_drivesubsystem));
-    SmartDashboard.putData("boostedspeed", new DriveBoostmode(m_drivesubsystem));
-
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
     SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
@@ -374,14 +367,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     
     final Trigger resetHeading = new JoystickButton(m_driverController, 4);
     resetHeading.onTrue(new resetHeading(m_drivesubsystem));
-
-    final Trigger SlowMode = new JoystickButton(m_driverController, 5);
-    SlowMode.whileTrue(new DriveSlowmode(m_drivesubsystem));
-    SlowMode.whileFalse(new DriveNormal(m_drivesubsystem));
-
-    final Trigger BoostMode = new JoystickButton(m_driverController, 6);
-    BoostMode.whileTrue(new DriveBoostmode(m_drivesubsystem));
-    BoostMode.whileFalse(new DriveNormal(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
