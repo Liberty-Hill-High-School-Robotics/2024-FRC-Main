@@ -182,6 +182,7 @@ public class LEDs extends SubsystemBase {
     public void candleSetAnimation(String animation){
         //set animation based on given string.=
         candle.configBrightnessScalar(1);
+        candle.clearAnimation(1);
         if(animation == "rainbow"){
            candle.animate(rainbowAnimation, 1);
         }
@@ -219,15 +220,15 @@ public class LEDs extends SubsystemBase {
         }
 
         else if(animation == "greenstrobe"){
-            candle.animate(greenstrobe);
+            candle.animate(greenstrobe, 1);
         }
 
         else if(animation == "redstrobe"){
-            candle.animate(redstrobe);
+            candle.animate(redstrobe, 1);
         }
 
         else if(animation == "bluestrobe"){
-            candle.animate(bluestrobe);
+            candle.animate(bluestrobe, 1);
         }
     }
 

@@ -1,14 +1,6 @@
 package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-/*
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.IntakeCommands.IntakePivot.IntakePivotDown;
-import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
-import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
-import frc.robot.commands.StorageCommands.StorageRollersFeed;
-*/
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
@@ -23,7 +15,7 @@ import frc.robot.subsystems.Storage;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoIntakeTimeout extends SequentialCommandGroup {
+public class AutoIntakeTimeout extends ParallelRaceGroup {
 
 
     public AutoIntakeTimeout(

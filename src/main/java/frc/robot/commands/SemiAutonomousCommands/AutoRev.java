@@ -2,7 +2,6 @@ package frc.robot.commands.SemiAutonomousCommands;
 
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 import frc.robot.subsystems.Pivot;
@@ -15,7 +14,7 @@ import frc.robot.subsystems.LEDs;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoRev extends SequentialCommandGroup {
+public class AutoRev extends ParallelCommandGroup {
     public AutoRev(
     
         Shooter shooter,
