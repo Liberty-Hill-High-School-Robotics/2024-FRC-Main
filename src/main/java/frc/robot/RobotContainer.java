@@ -19,14 +19,11 @@ import com.pathplanner.lib.commands.FollowPathWithEvents;
 //import com.pathplanner.lib.path.PathPlannerPath;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.networktables.GenericEntry;
 //limelight imports
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -67,6 +64,7 @@ import frc.robot.commands.LEDCommands.Animations.CandleRGBFade;
 import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
 import frc.robot.commands.LEDCommands.Animations.CandleSingleFade;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobe;
+import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobeRedEndCond;
 import frc.robot.commands.LEDCommands.Animations.CandleTwinkle;
 import frc.robot.commands.LEDCommands.Colors.CandleBlue;
@@ -133,7 +131,7 @@ public class RobotContainer {
   public final Pivot m_pivot = new Pivot();
   public final Shooter m_shooter = new Shooter();
   public final LEDs m_leds = new LEDs();
-    
+  /*  
   private ShuffleboardTab tab = Shuffleboard.getTab("testing");
    private GenericEntry entryshooterSetpoint =
       tab.add("entryshooterSetpoint", 0)
@@ -144,7 +142,7 @@ public class RobotContainer {
          .getEntry();
 
   public static int increment = 0;
-
+*/
 
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   public final SendableChooser<Command> autoChooser;
@@ -210,6 +208,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("ShooterOut", new ShooterFeed(m_shooter));
     SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
     SmartDashboard.putData("ShooterStop", new ShooterStop(m_shooter));
+    SmartDashboard.putData("RedStrobeLEDs", new CandleStrobeRed(m_leds));
+
     
     SmartDashboard.putData("ElevatorUp",new ElevatorUp(m_elevator));
     SmartDashboard.putData("ElevatorDown", new ElevatorDown(m_elevator));
@@ -288,7 +288,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     .getEntry().getDouble(0); // specify widget properties here
     */
 
-    SmartDashboard.putNumber("output", entryshooterSetpoint.getDouble(0));
+    //SmartDashboard.putNumber("output", entryshooterSetpoint.getDouble(0));
 
     //SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, entrypivotSetpoint.getDouble(0))); //m_pivot.calculateAngle()
     //SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, entryshooterSetpoint.getDouble(0)));//m_shooter.calculateSpeed()
@@ -298,7 +298,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
 
-    SmartDashboard.putNumber("increment", increment);
+    //SmartDashboard.putNumber("increment", increment);
     SmartDashboard.putData("turnwhileaim", new AimWhileMoving(m_drivesubsystem));
 
     SmartDashboard.putData("1/3speed", new DriveSlowmode(m_drivesubsystem));

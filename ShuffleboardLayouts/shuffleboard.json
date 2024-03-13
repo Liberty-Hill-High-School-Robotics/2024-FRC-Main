@@ -1831,6 +1831,21 @@
               "_glyph": 148,
               "_showGlyph": false
             }
+          },
+          "2,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/RedStrobeLEDs/running",
+              "_title": "SmartDashboard/RedStrobeLEDs/running",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -1978,9 +1993,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
-    "y": -8.0,
-    "width": 1936.0,
-    "height": 1048.0
+    "x": 262.0,
+    "y": 281.0,
+    "width": 1404.0,
+    "height": 724.0
   }
 }

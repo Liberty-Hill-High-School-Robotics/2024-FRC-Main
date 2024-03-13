@@ -230,4 +230,9 @@ public class LEDs extends SubsystemBase {
             candle.animate(bluestrobe);
         }
     }
+
+    public void candleClear(){
+        candle.clearAnimation(1);
+        candle.clearStickyFaults();
+    }
 }
