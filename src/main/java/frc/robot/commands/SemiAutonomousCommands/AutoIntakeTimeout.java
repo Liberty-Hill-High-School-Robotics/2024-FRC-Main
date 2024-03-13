@@ -5,9 +5,7 @@ import frc.robot.commands.IntakeCommands.IntakeTogether;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Storage;
 
 /**
@@ -21,9 +19,7 @@ public class AutoIntakeTimeout extends ParallelRaceGroup {
     public AutoIntakeTimeout(
         Intake m_intake,
         Storage m_storage,
-        Pivot m_pivot,
-        Shooter m_shooter,
-        LEDs m_leds
+        Pivot m_pivot
     ){
     
         addCommands(
