@@ -155,7 +155,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
     //named command stuff
-    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
+    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
     NamedCommands.registerCommand("FeedNote", new AutoFeedNote(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
@@ -300,7 +300,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
-    SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_shooter, m_leds));
+    SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
     
     //double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
     //SmartDashboard.putData("revShooter", new revShooter(m_shooter));

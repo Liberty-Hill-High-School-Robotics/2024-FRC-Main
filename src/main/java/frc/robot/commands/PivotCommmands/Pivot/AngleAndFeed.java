@@ -27,7 +27,7 @@ public class AngleAndFeed extends Command {
 
   @Override
   public void execute(){
-    m_pivot.anglePivot();
+    m_pivot.forceFeedAngle();
     m_pivot.tRollerFeed();
   }
 

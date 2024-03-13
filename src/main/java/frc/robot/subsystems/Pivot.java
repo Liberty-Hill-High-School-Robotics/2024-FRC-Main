@@ -168,6 +168,13 @@ public class Pivot extends SubsystemBase {
         pivotSparkMax2.set(temp);
     }
 
+    public void forceFeedAngle(){
+        double angle = 25;
+        double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), angle);
+        pivotSparkMax.set(temp);
+        pivotSparkMax2.set(temp);
+    }
+
     public void pivotSetpoint(double setpoint){
         pivotSparkMax.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
         pivotSparkMax2.set(pivotPID.calculate(pivotRelativeEncoder.getPosition(), setpoint));
