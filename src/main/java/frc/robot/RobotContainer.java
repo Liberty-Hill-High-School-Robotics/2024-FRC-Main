@@ -181,7 +181,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("TwoNoteMiddle", new PathPlannerAuto("TwoNoteMiddle"));
     SmartDashboard.putData("OneNoteAmp", new PathPlannerAuto("OneNoteAmp"));
     SmartDashboard.putData("OneNoteSource", new PathPlannerAuto("OneNoteSource"));
-    SmartDashboard.putData("Testing", new PathPlannerAuto("testing"));
+    SmartDashboard.putData("4.5NoteMiddle", new PathPlannerAuto("4.5NoteMiddle"));
 
     //SmartDashboard.putData("ThreeNoteMiddle", new PathPlannerAuto("ThreeNoteMiddle"));
 
