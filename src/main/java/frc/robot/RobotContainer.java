@@ -71,6 +71,7 @@ import frc.robot.commands.LEDCommands.Colors.CandleOrange;
 import frc.robot.commands.LEDCommands.Colors.CandlePurple;
 import frc.robot.commands.LEDCommands.Colors.CandleRed;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
+import frc.robot.commands.PivotCommmands.Pivot.AngleSub;
 import frc.robot.commands.PivotCommmands.Pivot.PivotDown;
 import frc.robot.commands.PivotCommmands.Pivot.PivotSetpoint;
 import frc.robot.commands.PivotCommmands.Pivot.PivotStop;
@@ -356,6 +357,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     final Trigger AutoAim = new JoystickButton(m_driverController, 1);
     AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
+
+    final Trigger PivotUp = new JoystickButton(m_driverController, 2);
+    PivotUp.whileTrue(new AngleSub(m_pivot));
 
     final Trigger SetX = new JoystickButton(m_driverController, 3); 
     SetX.whileTrue(new xPattern(m_drivesubsystem));
