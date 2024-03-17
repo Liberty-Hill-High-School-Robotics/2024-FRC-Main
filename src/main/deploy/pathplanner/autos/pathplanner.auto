@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.8047554350142251,
-      "y": 4.600511751359073
+      "x": 0.898044014334899,
+      "y": 6.549814316086593
     },
-    "rotation": -60.0
+    "rotation": 54.56528501750149
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "SourcePlayoffV2"
+            "pathName": "path"
           }
         }
       ]
