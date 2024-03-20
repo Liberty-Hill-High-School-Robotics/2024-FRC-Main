@@ -39,6 +39,8 @@ import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
+import frc.robot.commands.DriveAutonCommands.DriveFast;
+import frc.robot.commands.DriveAutonCommands.DriveNormal;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.sDrive;
@@ -196,6 +198,9 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
+    
+    SmartDashboard.putData("drivefast", new DriveFast(m_drivesubsystem));
+    SmartDashboard.putData("drivenormal", new DriveNormal(m_drivesubsystem));
 
     SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 

@@ -82,6 +82,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   public final Pigeon2 m_gyro = new Pigeon2(9);
+  public boolean BoostMode;
 
   public XboxController m_driverControllerLocal = new XboxController(OIConstants.kDriverControllerPort);
   PIDController turningPID = new PIDController(DriveConstants.tP, DriveConstants.tI, DriveConstants.tD);
@@ -267,10 +268,20 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     // Convert the commanded speeds into the correct units for the drivetrain
+
+    //if statements, in theory, should change max speed to "boost" speed when boolean true, and normal speed when boolean false
+    //set normal speeds
     double xSpeedDelivered = xSpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
+    //check if boostmode, if true, set maxspeed to 5.7m/s instead of 4.5m/s
+    if(BoostMode){
+      xSpeedDelivered = xSpeedCommanded * DriveConstants.kMaxSpeedBoostMPS;
+      ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedBoostMPS;
+      rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
+    }
+  
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates( fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds
     (xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_gyro.getYaw().getValue())) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
@@ -394,5 +405,9 @@ public class DriveSubsystem extends SubsystemBase {
                                    (-MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband) * DriveConstants.kMaxAngularSpeed), PIDValue);
     //apply swerve module states
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
+  }
+
+  public void setBoostMode(boolean onoff){
+    BoostMode = onoff;
   }
 }
