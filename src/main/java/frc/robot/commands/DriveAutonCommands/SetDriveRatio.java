@@ -36,7 +36,8 @@ public class SetDriveRatio extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    //THIS IS SUPPOSTED TO BE TRUE! DON'T CHANGE
+    return true;
   }
 
 

@@ -93,8 +93,6 @@ public class DriveSubsystem extends SubsystemBase {
   private double m_currentTranslationDir = 0.0;
   private double m_currentTranslationMag = 0.0;
 
-  public double speedRatio = 1;
-
   private SlewRateLimiter m_magLimiter = new SlewRateLimiter(DriveConstants.kMagnitudeSlewRate);
   private SlewRateLimiter m_rotLimiter = new SlewRateLimiter(DriveConstants.kRotationalSlewRate);
   private double m_prevTime = WPIUtilJNI.now() * 1e-6;
@@ -398,13 +396,13 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void turnChassis(double turnRate) {
-    var speeds = new ChassisSpeeds(((-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband) * speedRatio) * DriveConstants.kMaxAngularSpeed),
-                                   ((-MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband) * speedRatio) * DriveConstants.kMaxAngularSpeed), turnRate);
+    var speeds = new ChassisSpeeds((-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband) * DriveConstants.kMaxAngularSpeed),
+                                   (-MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband) * DriveConstants.kMaxAngularSpeed), turnRate);
     //apply swerve module states
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
 
   public void setSpeedRatio(double ratio){
-    speedRatio = ratio;
+    DriveConstants.kMaxSpeedMetersPerSecond = ratio;
   }
 }
