@@ -8,7 +8,7 @@ import frc.robot.commands.ShooterCommands.RevShooterSub;
 //import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.driveSystem;
 
 
 /**
@@ -19,7 +19,7 @@ import frc.robot.subsystems.Shooter;
 public class AimSub extends SequentialCommandGroup {
     public AimSub(
     
-        Shooter shooter,
+        driveSystem shooter,
         Pivot pivot,
         DriveSubsystem drivesubsystem
 

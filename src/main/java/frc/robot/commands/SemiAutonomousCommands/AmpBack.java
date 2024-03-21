@@ -6,7 +6,7 @@ import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.PivotCommmands.Pivot.PivotWithBar;
 import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.driveSystem;
 import frc.robot.subsystems.Storage;
 
 
@@ -18,7 +18,7 @@ import frc.robot.subsystems.Storage;
 public class AmpBack extends SequentialCommandGroup {
     public AmpBack(
         Bar bar,
-        Shooter shooter,
+        driveSystem shooter,
         Pivot pivot,
         Storage storage
         

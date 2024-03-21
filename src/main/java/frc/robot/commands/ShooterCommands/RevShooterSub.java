@@ -1,6 +1,6 @@
 package frc.robot.commands.ShooterCommands;
 
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.driveSystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RevShooterSub extends Command {
   // The subsystem the command runs on
-  private final Shooter m_shooter;
+  private final driveSystem m_shooter;
   //private final double m_setpoint;
 
-  public RevShooterSub(Shooter subsystem) {
+  public RevShooterSub(driveSystem subsystem) {
     m_shooter = subsystem;
     addRequirements(m_shooter);
     //m_setpoint = setpoint;

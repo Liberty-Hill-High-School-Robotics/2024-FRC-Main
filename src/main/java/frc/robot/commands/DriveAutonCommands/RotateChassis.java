@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class shooterSetpoint extends Command {
   // The subsystem the command runs on
-  private final driveSystem m_shooter;
+  private final driveSystem m_driveSubsystem;
   private final double m_setpoint;
 
   public shooterSetpoint(driveSystem subsystem, double setpoint) {
-    m_shooter = subsystem;
-    addRequirements(m_shooter);
+    m_driveSubsystem = subsystem;
+    addRequirements(m_driveSubsystem);
     m_setpoint = setpoint;
    // m_degree = degree;
   }
@@ -27,13 +27,13 @@ public class shooterSetpoint extends Command {
 
   @Override
   public void execute(){
-    m_shooter.shooterSetpoint(m_setpoint);
+    m_driveSubsystem.shooterSetpoint(m_setpoint);
   }
 
   @Override
   public void end(boolean interrupted){
    //m_pivot.pivotDown();
-   m_shooter.shooterStop();
+   m_driveSubsystem.shooterStop();
   }
 
   @Override
