@@ -391,9 +391,15 @@ public class DriveSubsystem extends SubsystemBase {
 }
 
   public void aimWhileMovingv2(double PIDValue) {
-    //TODO: test this, make sure that the command is fine with the joystick values when it wants translation in m/s
     var speeds = new ChassisSpeeds((-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband) * DriveConstants.kMaxAngularSpeed),
                                    (-MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband) * DriveConstants.kMaxAngularSpeed), PIDValue);
+    //apply swerve module states
+    setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
+  }
+
+  public void turnChassis(double turnRate) {
+    var speeds = new ChassisSpeeds(((-MathUtil.applyDeadband(m_driverControllerLocal.getLeftY(), OIConstants.kDriveDeadband) * speedRatio) * DriveConstants.kMaxAngularSpeed),
+                                   ((-MathUtil.applyDeadband(m_driverControllerLocal.getLeftX(), OIConstants.kDriveDeadband) * speedRatio) * DriveConstants.kMaxAngularSpeed), turnRate);
     //apply swerve module states
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
