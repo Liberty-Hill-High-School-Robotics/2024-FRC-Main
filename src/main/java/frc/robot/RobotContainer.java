@@ -137,7 +137,8 @@ public class RobotContainer {
 
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   public final SendableChooser<Command> autoChooser;
-  public double speedRatio = 0.8;
+  public double leftJoystickValue = 0;
+  public double rightJoystickValue = 0;
   
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -149,7 +150,8 @@ public class RobotContainer {
 SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
   public RobotContainer() {
-    speedRatio = m_drivesubsystem.speedRatio;
+    leftJoystickValue = m_driverController.getRightTriggerAxis();
+    rightJoystickValue = m_driverController.getLeftTriggerAxis();
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
@@ -305,8 +307,8 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_drivesubsystem.drive(
-                (-MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband) * speedRatio),
-                (-MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband) * speedRatio),
+                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true, true), //drivescheme sets either field centric or not
             m_drivesubsystem));
