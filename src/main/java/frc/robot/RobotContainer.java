@@ -31,30 +31,23 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
-//import frc.robot.Constants.ShooterConstants;
-//subsystem imports
-//import frc.robot.commands.AutoAimCommands.*;
 import frc.robot.commands.BarCommands.AngleBarRotatorPivot;
 import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
-import frc.robot.commands.DriveAutonCommands.DriveFast;
-import frc.robot.commands.DriveAutonCommands.DriveNormal;
+import frc.robot.commands.DriveAutonCommands.SetDriveRatio;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
-import frc.robot.commands.DriveAutonCommands.sDrive;
 import frc.robot.commands.DriveAutonCommands.xPattern;
 import frc.robot.commands.ElevatorCommands.ElevatorDown;
 import frc.robot.commands.ElevatorCommands.ElevatorStop;
 import frc.robot.commands.ElevatorCommands.ElevatorUp;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
-//import frc.robot.commands.ElevatorCommands.*;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeed;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerBackFeedTogeather;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerFeed;
 import frc.robot.commands.IntakeCommands.IntakeRoller.IntakeRollerStop;
-//import frc.robot.commands.LEDCommands.CandleRainbow;
 import frc.robot.commands.LEDCommands.CandleOff;
 import frc.robot.commands.LEDCommands.Animations.CandleColorFlow;
 import frc.robot.commands.LEDCommands.Animations.CandleFire;
@@ -85,7 +78,6 @@ import frc.robot.commands.SemiAutonomousCommands.AimSub;
 import frc.robot.commands.SemiAutonomousCommands.AmpBack;
 import frc.robot.commands.SemiAutonomousCommands.AmpPrep;
 import frc.robot.commands.SemiAutonomousCommands.AutoAim;
-//special imports
 import frc.robot.commands.SemiAutonomousCommands.AutoIntake;
 import frc.robot.commands.SemiAutonomousCommands.AutoIntakeTimeout;
 import frc.robot.commands.SemiAutonomousCommands.AutoRev;
@@ -100,7 +92,6 @@ import frc.robot.commands.StorageCommands.StorageRollersBackFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.commands.StorageCommands.StorageRollersShooter;
 import frc.robot.commands.StorageCommands.StorageRollersStop;
-//subsystem and command imports
 import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Elevator;
@@ -146,6 +137,7 @@ public class RobotContainer {
 
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   public final SendableChooser<Command> autoChooser;
+  public double speedRatio = 0.8;
   
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -154,9 +146,10 @@ public class RobotContainer {
 
 
   //The container for the robot. Contains subsystems, OI devices, and commands.
-SendableChooser<Command> m_chooser = new SendableChooser<>();
+SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
   public RobotContainer() {
+    speedRatio = m_drivesubsystem.speedRatio;
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
@@ -194,13 +187,11 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     //SmartDashboard.putData("4NoteAuto", new PathPlannerAuto("4NoteAuto"));
     //SmartDashboard.putData("testAuto", new PathPlannerAuto("CommandTest"));
 
-    SmartDashboard.putData("AutonMode", m_chooser);
+    SmartDashboard.putData("AutonMode", m_chooser2);
     SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
     
-    SmartDashboard.putData("drivefast", new DriveFast(m_drivesubsystem));
-    SmartDashboard.putData("drivenormal", new DriveNormal(m_drivesubsystem));
 
     SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 
@@ -294,9 +285,6 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     SmartDashboard.putData("PivotSetpoint", new PivotSetpoint(m_pivot, 15)); //m_pivot.calculateAngle()
     SmartDashboard.putData("ShooterSetpoint", new shooterSetpoint(m_shooter, .6));
 
-
-    m_chooser.addOption("sDrive", new sDrive(m_drivesubsystem));
-
     //SmartDashboard.putNumber("increment", increment);
     SmartDashboard.putData("turnwhileaim", new AimWhileMoving(m_drivesubsystem));
 
@@ -317,8 +305,8 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_drivesubsystem.drive(
-                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                (-MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband) * speedRatio),
+                (-MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband) * speedRatio),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true, true), //drivescheme sets either field centric or not
             m_drivesubsystem));
@@ -370,8 +358,12 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
     final Trigger SetX = new JoystickButton(m_driverController, 3); 
     SetX.whileTrue(new xPattern(m_drivesubsystem));
     
-    final Trigger resetHeading = new JoystickButton(m_driverController, 4);
+    final Trigger resetHeading = new JoystickButton(m_driverController, 6);
     resetHeading.onTrue(new resetHeading(m_drivesubsystem));
+
+    final Trigger boostMode = new JoystickButton(m_driverController, 4);
+    boostMode.onTrue(new SetDriveRatio(m_drivesubsystem, 1));
+    boostMode.onFalse(new SetDriveRatio(m_drivesubsystem, .8));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
@@ -446,6 +438,7 @@ SendableChooser<Command> m_chooser = new SendableChooser<>();
    NetworkTableEntry tv = table.getEntry("tv");
    return tv.getBoolean(false);
    }
+
    
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

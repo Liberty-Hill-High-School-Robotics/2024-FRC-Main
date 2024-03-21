@@ -30,7 +30,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-//import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.utils.SwerveUtils;
 
@@ -82,7 +81,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   public final Pigeon2 m_gyro = new Pigeon2(9);
-  public boolean BoostMode;
 
   public XboxController m_driverControllerLocal = new XboxController(OIConstants.kDriverControllerPort);
   PIDController turningPID = new PIDController(DriveConstants.tP, DriveConstants.tI, DriveConstants.tD);
@@ -94,6 +92,8 @@ public class DriveSubsystem extends SubsystemBase {
   private double m_currentRotation = 0.0;
   private double m_currentTranslationDir = 0.0;
   private double m_currentTranslationMag = 0.0;
+
+  public double speedRatio = 1;
 
   private SlewRateLimiter m_magLimiter = new SlewRateLimiter(DriveConstants.kMagnitudeSlewRate);
   private SlewRateLimiter m_rotLimiter = new SlewRateLimiter(DriveConstants.kRotationalSlewRate);
@@ -268,20 +268,11 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     // Convert the commanded speeds into the correct units for the drivetrain
-
-    //if statements, in theory, should change max speed to "boost" speed when boolean true, and normal speed when boolean false
     //set normal speeds
     double xSpeedDelivered = xSpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
-    //check if boostmode, if true, set maxspeed to 5.7m/s instead of 4.5m/s
-    if(BoostMode){
-      xSpeedDelivered = xSpeedCommanded * DriveConstants.kMaxSpeedBoostMPS;
-      ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedBoostMPS;
-      rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
-    }
-  
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates( fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds
     (xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_gyro.getYaw().getValue())) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
@@ -407,7 +398,7 @@ public class DriveSubsystem extends SubsystemBase {
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
 
-  public void setBoostMode(boolean onoff){
-    BoostMode = onoff;
+  public void setSpeedRatio(double ratio){
+    speedRatio = ratio;
   }
 }
