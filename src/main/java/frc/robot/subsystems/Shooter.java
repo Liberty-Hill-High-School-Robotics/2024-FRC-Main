@@ -16,7 +16,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 
 
-public class driveSystem extends SubsystemBase {
+public class Shooter extends SubsystemBase {
 
     //motors & variables here
     private CANSparkFlex shooterVortex;
@@ -32,7 +32,7 @@ public class driveSystem extends SubsystemBase {
 
 
 
-    public driveSystem(){
+    public Shooter(){
         //config motor settings here
         shooterVortex = new CANSparkFlex(CanIDs.shooterMotorID, MotorType.kBrushless);
         shooterVortex.restoreFactoryDefaults();

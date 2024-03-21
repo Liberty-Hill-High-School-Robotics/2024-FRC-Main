@@ -1,6 +1,6 @@
 package frc.robot.commands.ShooterCommands;
 
-import frc.robot.subsystems.driveSystem;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class ShooterStop extends Command {
   // The subsystem the command runs on
-  private final driveSystem m_shooter;
+  private final Shooter m_shooter;
 
-  public ShooterStop(driveSystem subsystem) {
+  public ShooterStop(Shooter subsystem) {
     m_shooter = subsystem;
     addRequirements(m_shooter);
   }

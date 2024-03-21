@@ -7,7 +7,7 @@ import frc.robot.commands.PivotCommmands.Pivot.PivotWithBar;
 import frc.robot.commands.ShooterCommands.shooterSetpoint;
 import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.driveSystem;
+import frc.robot.subsystems.Shooter;
 
 
 /**
@@ -18,7 +18,7 @@ import frc.robot.subsystems.driveSystem;
 public class AmpPrep extends SequentialCommandGroup {
     public AmpPrep(
         Bar bar,
-        driveSystem shooter,
+        Shooter shooter,
         Pivot pivot
         
     ){

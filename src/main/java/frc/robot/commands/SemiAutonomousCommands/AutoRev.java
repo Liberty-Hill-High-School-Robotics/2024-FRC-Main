@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.driveSystem;
+import frc.robot.subsystems.Shooter;
 
 
 /**
@@ -16,7 +16,7 @@ import frc.robot.subsystems.driveSystem;
 public class AutoRev extends ParallelCommandGroup {
     public AutoRev(
     
-        driveSystem shooter,
+        Shooter shooter,
         Pivot pivot
     ){
  

@@ -99,7 +99,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.driveSystem;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Storage;
 
 
@@ -120,7 +120,7 @@ public class RobotContainer {
   public final Limelight m_limelight = new Limelight();
   public final Storage m_storage = new Storage();
   public final Pivot m_pivot = new Pivot();
-  public final driveSystem m_shooter = new driveSystem();
+  public final Shooter m_shooter = new Shooter();
   public final LEDs m_leds = new LEDs();
   /*  
   private ShuffleboardTab tab = Shuffleboard.getTab("testing");
@@ -138,8 +138,6 @@ public class RobotContainer {
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   public final SendableChooser<Command> autoChooser;
   public double speedRatio = 0.8;
-  public double leftJoystickValue = 0;
-  public double rightJoystickValue = 0;
   
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -152,8 +150,6 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
   public RobotContainer() {
     speedRatio = m_drivesubsystem.speedRatio;
-    leftJoystickValue = m_driverController.getRightTriggerAxis();
-    rightJoystickValue = m_driverController.getLeftTriggerAxis();
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
@@ -368,6 +364,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     final Trigger boostMode = new JoystickButton(m_driverController, 4);
     boostMode.onTrue(new SetDriveRatio(m_drivesubsystem, 1));
     boostMode.onFalse(new SetDriveRatio(m_drivesubsystem, .8));
+
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
     SlowMode.whileTrue(new SlowMode(m_drivesubsystem));*/

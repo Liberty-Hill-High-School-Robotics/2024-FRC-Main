@@ -7,7 +7,7 @@ import frc.robot.commands.ShooterCommands.RevShooter;
 //import frc.robot.subsystems.Bar;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Pivot;
-import frc.robot.subsystems.driveSystem;
+import frc.robot.subsystems.Shooter;
 
 
 /**
@@ -18,7 +18,7 @@ import frc.robot.subsystems.driveSystem;
 public class AutoAim extends ParallelRaceGroup {
     public AutoAim(
     
-        driveSystem shooter,
+        Shooter shooter,
         Pivot pivot,
         DriveSubsystem drivesubsystem
     ){
