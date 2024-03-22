@@ -24,11 +24,11 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
@@ -38,6 +38,7 @@ import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
 import frc.robot.commands.DriveAutonCommands.SetDriveRatio;
+import frc.robot.commands.DriveAutonCommands.TriggerTurn;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.xPattern;
@@ -142,9 +143,9 @@ public class RobotContainer {
   public double rightJoystickValue = 0;
   
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
   // The operator's controller
-  XboxController m_operatorController = new XboxController(OIConstants.kOperatorControllerPort);
+  CommandXboxController m_operatorController = new CommandXboxController(OIConstants.kOperatorControllerPort);
 
 
   //The container for the robot. Contains subsystems, OI devices, and commands.
@@ -355,22 +356,30 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
     // Driver controller  buttons
 
-    final Trigger AutoAim = new JoystickButton(m_driverController, 1);
+    final Trigger AutoAim = m_driverController.a();
     AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 
-    final Trigger PivotUp = new JoystickButton(m_driverController, 2);
+    final Trigger PivotUp = m_driverController.b();
     PivotUp.whileTrue(new AngleSub(m_pivot));
 
-    final Trigger SetX = new JoystickButton(m_driverController, 3); 
+    final Trigger SetX = m_driverController.x(); 
     SetX.whileTrue(new xPattern(m_drivesubsystem));
     
-    final Trigger resetHeading = new JoystickButton(m_driverController, 6);
+    final Trigger resetHeading = m_driverController.y();
     resetHeading.onTrue(new resetHeading(m_drivesubsystem));
 
-    final Trigger boostMode = new JoystickButton(m_driverController, 4);
+
+    final Trigger boostMode = m_driverController.rightBumper();
     boostMode.whileTrue(new SetDriveRatio(m_drivesubsystem, 5.7));
 
-    //final Trigger turningtrigger = new
+    final Trigger slowMode = m_driverController.leftBumper();
+
+
+    final Trigger turnWithAxis = m_driverController.axisGreaterThan(3, .2);
+    turnWithAxis.whileTrue(new TriggerTurn(m_drivesubsystem));
+
+    final Trigger turnWithAxis2 = m_driverController.axisGreaterThan(2, .2);
+    turnWithAxis2.whileTrue(new TriggerTurn(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
@@ -384,34 +393,35 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     // Operator Controller button
 
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
-    final Trigger AutoIntake = new JoystickButton(m_operatorController, 3);
+    //
+    final Trigger AutoIntake = m_operatorController.x();
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot));
 
-    final Trigger Fire = new JoystickButton(m_operatorController, 6);
+    final Trigger Fire = m_operatorController.rightBumper();
     Fire.whileTrue(new StorageRollersShooter(m_storage));
     Fire.whileFalse(new StorageRollersStop(m_storage));
 
-    final Trigger SubwooferOverride = new JoystickButton(m_operatorController, 2);
+    final Trigger SubwooferOverride = m_operatorController.b();
     SubwooferOverride.whileTrue(new AimSub(m_shooter, m_pivot, m_drivesubsystem));
 
-    final Trigger Amp = new JoystickButton(m_operatorController, 5);
+    final Trigger Amp = m_operatorController.leftBumper();
     Amp.toggleOnTrue(new AmpPrep(m_bar, m_shooter, m_pivot));
     Amp.toggleOnFalse(new AmpBack(m_bar, m_shooter, m_pivot, m_storage));
     
 
-    final Trigger EleUp = new JoystickButton(m_operatorController, 4);
+    final Trigger EleUp = m_operatorController.y();
     EleUp.whileTrue(new ElevatorUp(m_elevator));
 
-    final Trigger EleDown = new JoystickButton(m_operatorController, 1);
+    final Trigger EleDown = m_operatorController.a();
     EleDown.whileTrue(new ElevatorDown(m_elevator));
 
-    final Trigger PivotDown = new JoystickButton(m_operatorController, 8);
+    final Trigger PivotDown = m_operatorController.start();
     PivotDown.whileTrue(new PivotSetpoint(m_pivot, 0));
 
-    final Trigger IntakeOut = new JoystickButton(m_operatorController, 7);
+    final Trigger IntakeOut = m_operatorController.back();
     IntakeOut.whileTrue(new IntakeOut(m_intake, m_storage, m_pivot));
 
-    final Trigger IntakeBackFeed = new JoystickButton(m_operatorController, 9);
+    final Trigger IntakeBackFeed = m_operatorController.leftStick();
     IntakeBackFeed.whileTrue(new IntakeRollerBackFeedTogeather(m_intake));
   
   }
