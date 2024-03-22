@@ -37,7 +37,6 @@ import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
-import frc.robot.commands.DriveAutonCommands.TriggerTurn;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.xPattern;
@@ -138,8 +137,6 @@ public class RobotContainer {
 
   private final DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   public final SendableChooser<Command> autoChooser;
-  public double leftJoystickValue = 0;
-  public double rightJoystickValue = 0;
   
   // The driver's controller
   CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
@@ -151,8 +148,7 @@ public class RobotContainer {
 SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
   public RobotContainer() {
-    leftJoystickValue = m_driverController.getRightTriggerAxis();
-    rightJoystickValue = m_driverController.getLeftTriggerAxis();
+
     //named command stuff
     NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
     NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
@@ -194,6 +190,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
+    SmartDashboard.putNumber("rightjoystickx", m_driverController.getLeftX());
   
 
     SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
@@ -266,20 +263,6 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
     //double entryPivotSetpoint =  SmartDashboard.getNumber("entryPivotSetpoint",0);
     //double entryShooterSetpoint =  SmartDashboard.getNumber("entryShooterSetpoint",0);
-/*
-    var entryPivotSetpoint =
-    Shuffleboard.getTab("testing")
-    .add("pivotsetpoint", 0)
-    .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", 0, "max", 0)) // specify widget properties here
-    .getEntry().getDouble(0);
-
-    var entryShooterSetpoint = Shuffleboard.getTab("testing")
-    .add("shootersetpoint", 0)
-    .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", 0, "max", 6000))
-    .getEntry().getDouble(0); // specify widget properties here
-    */
 
     //SmartDashboard.putNumber("output", entryshooterSetpoint.getDouble(0));
 
@@ -364,18 +347,6 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     
     final Trigger resetHeading = m_driverController.y();
     resetHeading.onTrue(new resetHeading(m_drivesubsystem));
-
-
-    final Trigger boostMode = m_driverController.rightBumper();
-
-    final Trigger slowMode = m_driverController.leftBumper();
-
-
-    final Trigger turnWithAxis = m_driverController.axisGreaterThan(3, .2);
-    turnWithAxis.whileTrue(new TriggerTurn(m_drivesubsystem));
-
-    final Trigger turnWithAxis2 = m_driverController.axisGreaterThan(2, .2);
-    turnWithAxis2.whileTrue(new TriggerTurn(m_drivesubsystem));
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);
