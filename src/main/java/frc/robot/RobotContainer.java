@@ -24,6 +24,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.simulation.JoystickSim;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -193,6 +194,9 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
+    SmartDashboard.putData("maxspeed", new SetDriveRatio(m_drivesubsystem, 5.7));
+    SmartDashboard.putData("normalspeed", new SetDriveRatio(m_drivesubsystem, 4.5));
+
     
 
     SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
@@ -364,8 +368,9 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     resetHeading.onTrue(new resetHeading(m_drivesubsystem));
 
     final Trigger boostMode = new JoystickButton(m_driverController, 4);
-    boostMode.onTrue(new SetDriveRatio(m_drivesubsystem, 1));
-    boostMode.onFalse(new SetDriveRatio(m_drivesubsystem, .8));
+    boostMode.whileTrue(new SetDriveRatio(m_drivesubsystem, 5.7));
+
+    //final Trigger turningtrigger = new
 
     /*Makes chassis top speed lower
     final Trigger SlowMode = new JoystickButton(m_driverController, 5);

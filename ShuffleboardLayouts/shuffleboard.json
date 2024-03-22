@@ -1434,47 +1434,6 @@
               "_showGlyph": false
             }
           },
-          "6,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/boost",
-              "_title": "SmartDashboard/boost",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "4,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/setratio1",
-              "_title": "SmartDashboard/setratio1",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "5,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/setratio0.8",
-              "_title": "SmartDashboard/setratio0.8",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
           "6,0": {
             "size": [
               1,
@@ -1488,6 +1447,58 @@
               "_showGlyph": false
             }
           },
+          "8,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/righttrigger",
+              "_title": "SmartDashboard/righttrigger",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "7,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/lefttrigger",
+              "_title": "SmartDashboard/lefttrigger",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/maxspeed",
+              "_title": "SmartDashboard/maxspeed",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/normalspeed",
+              "_title": "SmartDashboard/normalspeed",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
           "4,1": {
             "size": [
               1,
@@ -1495,8 +1506,8 @@
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/setratio1/running",
-              "_title": "/SmartDashboard/setratio1/running",
+              "_source0": "network_table:///SmartDashboard/normalspeed/running",
+              "_title": "SmartDashboard/normalspeed/running",
               "_glyph": 148,
               "_showGlyph": false,
               "Colors/Color when true": "#7CFC00FF",
@@ -1510,8 +1521,8 @@
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/setratio0.8/running",
-              "_title": "/SmartDashboard/setratio0.8/running",
+              "_source0": "network_table:///SmartDashboard/maxspeed/running",
+              "_title": "SmartDashboard/maxspeed/running",
               "_glyph": 148,
               "_showGlyph": false,
               "Colors/Color when true": "#7CFC00FF",

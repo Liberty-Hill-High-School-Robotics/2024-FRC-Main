@@ -97,6 +97,9 @@ public class DriveSubsystem extends SubsystemBase {
   private SlewRateLimiter m_rotLimiter = new SlewRateLimiter(DriveConstants.kRotationalSlewRate);
   private double m_prevTime = WPIUtilJNI.now() * 1e-6;
 
+  private double leftTrigger = 0;
+  private double rightTrigger = 0;
+
   // Odometry class for tracking robot pose
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
@@ -149,6 +152,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    rightTrigger = m_driverControllerLocal.getRightTriggerAxis();
+    leftTrigger = m_driverControllerLocal.getLeftTriggerAxis();
 
     // Update the odometry in the periodic block
     m_odometry.update(
@@ -174,6 +179,10 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("RearRightDriveEncoder", m_rearRight.m_drivingEncoder.getPosition());
 
     SmartDashboard.putNumber("rot", m_currentRotation);
+    SmartDashboard.putNumber("lefttrigger", leftTrigger);
+    SmartDashboard.putNumber("righttrigger", rightTrigger);
+    SmartDashboard.putNumber("combined value", rightTrigger - leftTrigger);
+
   }
 
   /**
@@ -404,5 +413,11 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void setSpeedRatio(double ratio){
     DriveConstants.kMaxSpeedMetersPerSecond = ratio;
+  }
+
+  public double getJoystickCombinedValuesInRadians(){
+    double output = rightTrigger - leftTrigger;
+    output = output * (4 * (Math.PI));
+    return output;
   }
 }
