@@ -411,10 +411,6 @@ public class DriveSubsystem extends SubsystemBase {
     setModuleStates(DriveConstants.KINEMATICS.toSwerveModuleStates(speeds));
   }
 
-  public void setSpeedRatio(double ratio){
-    DriveConstants.kMaxSpeedMetersPerSecond = ratio;
-  }
-
   public double getJoystickCombinedValuesInRadians(){
     double output = rightTrigger - leftTrigger;
     output = output * (4 * (Math.PI));

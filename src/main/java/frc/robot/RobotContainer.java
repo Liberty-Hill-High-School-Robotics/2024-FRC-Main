@@ -37,7 +37,6 @@ import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
-import frc.robot.commands.DriveAutonCommands.SetDriveRatio;
 import frc.robot.commands.DriveAutonCommands.TriggerTurn;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
@@ -195,10 +194,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putData("RightSnap", new rightSnap(m_drivesubsystem));
     SmartDashboard.putData("Drive", m_drivesubsystem);
     SmartDashboard.putBoolean("DriveState", true);
-    SmartDashboard.putData("maxspeed", new SetDriveRatio(m_drivesubsystem, 5.7));
-    SmartDashboard.putData("normalspeed", new SetDriveRatio(m_drivesubsystem, 4.5));
-
-    
+  
 
     SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
 
@@ -307,16 +303,17 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
    
     
     // Configure default commands
-    m_drivesubsystem.setDefaultCommand(
-        // The left stick controls translation of the robot.
-        // Turning is controlled by the X axis of the right stick.
-        new RunCommand(
-            () -> m_drivesubsystem.drive(
-                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true), //drivescheme sets either field centric or not
-            m_drivesubsystem));
+    new RunCommand(
+        () -> {
+          // Go full speed is "boost mode", go .8 speed in normal mode
+          var boostRatio = m_driverController.getHID().getRightBumper() ? 1 : .8;
+          m_drivesubsystem.drive(
+              -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband) * boostRatio,
+              -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband) * boostRatio,
+              -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
+              true, true); // drivescheme sets either field centric or not
+        },
+        m_drivesubsystem);
 
   }
 
@@ -370,7 +367,6 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
 
     final Trigger boostMode = m_driverController.rightBumper();
-    boostMode.whileTrue(new SetDriveRatio(m_drivesubsystem, 5.7));
 
     final Trigger slowMode = m_driverController.leftBumper();
 
