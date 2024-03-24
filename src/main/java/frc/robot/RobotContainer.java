@@ -286,6 +286,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
    
     
     // Configure default commands
+    m_drivesubsystem.setDefaultCommand(
     new RunCommand(
         () -> {
           // Go full speed is "boost mode", go .8 speed in normal mode
@@ -296,7 +297,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
               -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
               true, true); // drivescheme sets either field centric or not
         },
-        m_drivesubsystem);
+        m_drivesubsystem));
 
   }
 
