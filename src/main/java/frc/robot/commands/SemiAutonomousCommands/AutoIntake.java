@@ -2,6 +2,7 @@ package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
+import frc.robot.commands.LEDCommands.Animations.CandleLarson;
 import frc.robot.commands.LEDCommands.Colors.CandleDimPurple;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
@@ -30,7 +31,7 @@ public class AutoIntake extends ParallelCommandGroup {
             new IntakeTogether(m_intake),
             new AngleAndFeed(m_pivot),
             new StorageRollersFeed(m_storage),
-            new CandleDimPurple(m_leds)
+            new CandleDimPurple(m_leds).andThen(new CandleLarson(m_leds))
             );
 
         }

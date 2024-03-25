@@ -2,6 +2,7 @@ package frc.robot.commands.SemiAutonomousCommands;
 
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
@@ -28,7 +29,7 @@ public class AutoRev extends ParallelCommandGroup {
             new ParallelCommandGroup(
                 new AnglePivot(pivot).withTimeout(1),
                 new RevShooter(shooter).withTimeout(1),
-                new CandleStrobeRed(leds).withTimeout(1)
+                new CandleStrobeRed(leds).withTimeout(1).andThen(new CandleRainbow(leds))
                 //new CandleStrobeRed(leds).withTimeout(1.1).andThen(new CandleRainbow(leds))
                 
                 //new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)

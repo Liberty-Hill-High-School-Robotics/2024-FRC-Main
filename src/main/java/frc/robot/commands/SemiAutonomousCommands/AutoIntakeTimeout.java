@@ -2,6 +2,7 @@ package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
+import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobeBlue;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
@@ -32,7 +33,7 @@ public class AutoIntakeTimeout extends ParallelRaceGroup {
             new StorageRollersFeed(m_storage).withTimeout(2),
             new IntakeTogether(m_intake).withTimeout(2),
             new AngleAndFeed(m_pivot).withTimeout(2),
-            new CandleStrobeBlue(m_leds).withTimeout(2)
+            new CandleStrobeBlue(m_leds).withTimeout(2).andThen(new CandleRainbow(m_leds))
             //new CandleStrobeBlue(m_leds).withTimeout(.65).andThen(new CandleRainbow(m_leds))
             )
 
