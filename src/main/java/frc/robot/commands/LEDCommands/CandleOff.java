@@ -19,12 +19,11 @@ public class CandleOff extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleClear();
   }
 
   @Override
   public void execute(){
-    m_leds.candleClear();
   }
 
   @Override

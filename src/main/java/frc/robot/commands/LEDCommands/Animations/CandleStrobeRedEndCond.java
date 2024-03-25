@@ -20,12 +20,11 @@ public class CandleStrobeRedEndCond extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleSetAnimation("redstrobe");
   }
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("redstrobe");
   }
 
   @Override

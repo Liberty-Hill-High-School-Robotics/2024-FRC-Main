@@ -19,12 +19,11 @@ public class CandleLarson extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleSetAnimation("larson");
   }
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("larson");
   }
 
   @Override

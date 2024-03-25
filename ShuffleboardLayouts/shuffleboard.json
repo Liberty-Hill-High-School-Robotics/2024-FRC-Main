@@ -2085,10 +2085,184 @@
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/greenvalue()",
-              "_title": "SmartDashboard/greenvalue()",
+              "_source0": "network_table:///SmartDashboard/redvalue()",
+              "_title": "/SmartDashboard/redvalue()",
               "_glyph": 148,
               "_showGlyph": false
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/greenvalue()",
+              "_title": "/SmartDashboard/greenvalue()",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/bluevalue()",
+              "_title": "/SmartDashboard/bluevalue()",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "6,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/maxanimationcount",
+              "_title": "/SmartDashboard/maxanimationcount",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "7,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/ledSTOP",
+              "_title": "/SmartDashboard/ledSTOP",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,1": {
+            "size": [
+              5,
+              3
+            ],
+            "content": {
+              "_type": "Grid Layout",
+              "_title": "Grid Layout",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Number of columns": 3,
+              "Layout/Number of rows": 5,
+              "Layout/Label position": "BOTTOM",
+              "_children": {
+                "0,0": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/LEDred",
+                  "_title": "/SmartDashboard/LEDred",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,1": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/LEDorange",
+                  "_title": "/SmartDashboard/LEDorange",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,2": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/singlefade",
+                  "_title": "/SmartDashboard/singlefade",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,0": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/ColorFlowanimation",
+                  "_title": "/SmartDashboard/ColorFlowanimation",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,1": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/larsonanimation",
+                  "_title": "/SmartDashboard/larsonanimation",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,2": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/LEDgrreeeeen",
+                  "_title": "/SmartDashboard/LEDgrreeeeen",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,0": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/RedStrobeLEDs",
+                  "_title": "/SmartDashboard/RedStrobeLEDs",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,1": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/LEDgold",
+                  "_title": "/SmartDashboard/LEDgold",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,2": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/rainbowanimation",
+                  "_title": "/SmartDashboard/rainbowanimation",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,3": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/candletwinkle",
+                  "_title": "/SmartDashboard/candletwinkle",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,3": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/rgbfade",
+                  "_title": "/SmartDashboard/rgbfade",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,3": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/fireanimation",
+                  "_title": "/SmartDashboard/fireanimation",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,4": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/LEDbule",
+                  "_title": "/SmartDashboard/LEDbule",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,4": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/ledstrobe",
+                  "_title": "/SmartDashboard/ledstrobe",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,4": {
+                  "_type": "Command",
+                  "_source0": "network_table:///SmartDashboard/LEDpurple",
+                  "_title": "/SmartDashboard/LEDpurple",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              }
             }
           }
         }

@@ -19,12 +19,11 @@ public class CandleDimPurple extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleSetColor("dimpurple");
   }
 
   @Override
   public void execute(){
-    m_leds.candleSetColor("dimpurple");
   }
 
   @Override

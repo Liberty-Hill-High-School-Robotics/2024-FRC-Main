@@ -19,12 +19,11 @@ public class CandleColorFlow extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleSetAnimation("colorflow");
   }
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("colorflow");
   }
 
   @Override

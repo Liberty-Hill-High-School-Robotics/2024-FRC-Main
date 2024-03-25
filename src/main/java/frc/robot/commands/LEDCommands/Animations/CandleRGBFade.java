@@ -19,12 +19,11 @@ public class CandleRGBFade extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleSetAnimation("rgbfade");
   }
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("rgbfade");
   }
 
   @Override

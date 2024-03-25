@@ -19,12 +19,11 @@ public class CandleSingleFade extends Command {
 
   @Override
   public void initialize() {
-   
+    m_leds.candleSetAnimation("singlefade");
   }
 
   @Override
   public void execute(){
-    m_leds.candleSetAnimation("singlefade");
   }
 
   @Override
