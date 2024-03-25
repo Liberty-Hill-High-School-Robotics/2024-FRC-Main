@@ -24,7 +24,7 @@ public class CandleOff extends Command {
 
   @Override
   public void execute(){
-    m_leds.candleSetColor("stop");
+    m_leds.candleClear();
   }
 
   @Override

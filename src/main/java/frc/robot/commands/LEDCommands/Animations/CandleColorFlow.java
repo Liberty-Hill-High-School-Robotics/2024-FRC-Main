@@ -29,17 +29,11 @@ public class CandleColorFlow extends Command {
 
   @Override
   public void end(boolean interrupted){
-    m_leds.candleSetColor("stop");
+    m_leds.candleClear();
     }
 
   @Override
   public boolean isFinished() {
     return false;
   }
-
-  @Override
-    public boolean runsWhenDisabled()
-    {
-      return true;
-    }
 }

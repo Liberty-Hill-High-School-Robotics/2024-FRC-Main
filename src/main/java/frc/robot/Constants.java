@@ -22,6 +22,13 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
   public static final class ColorConstants{
+    //CANdle colors
+        //purple = 80, 45, 127
+        //gold = 255, 200, 46
+        //orange = 255, 145, 0
+        //blue = 0, 0, 255
+        //red = 255, 0, 0
+        //green = 0, 255, 0
     public static int[] purple = new int[]{80, 3, 143}; 
     public static int[] gold   = new int[]{255, 145, 0}; 
     public static int[] orange = new int[]{255, 145, 0}; 

@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 //CANdle has yet to be ported to Phoenix6, so for now use the Phoenix5 imports and libraries
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
-import com.ctre.phoenix.led.CANdle.VBatOutputMode;
 import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 import com.ctre.phoenix.led.CANdleConfiguration;
 import com.ctre.phoenix.led.ColorFlowAnimation;
@@ -14,38 +13,26 @@ import com.ctre.phoenix.led.SingleFadeAnimation;
 import com.ctre.phoenix.led.StrobeAnimation;
 import com.ctre.phoenix.led.TwinkleAnimation;
 import com.ctre.phoenix.led.TwinkleOffAnimation;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ColorConstants;
 
 
 public class LEDs extends SubsystemBase {
-    //CANdle colors
-        //purple = 80, 45, 127
-        //gold = 255, 200, 46
-        //orange = 255, 145, 0
-        //blue = 0, 0, 255
-        //red = 255, 0, 0
-        //green = 0, 255, 0
-
-        private static LEDs m_instance;
-
-        public static LEDs getInstance() {
-            if (m_instance == null) {
-                m_instance = new LEDs();
-            }
-            return m_instance;
-        }
-
 
     CANdle candle = new CANdle(20);
+
+    private int r;
+    private int g;
+    private int b;
+
     //create some animations for the LEDs, all are purple for now (with exceptions)
     //rainbow/set color animations
     RainbowAnimation rainbowAnimation = new RainbowAnimation(1, .5, ColorConstants.numLEDs);
-    FireAnimation fireAnimation = new FireAnimation();
-    RgbFadeAnimation rgbFadeAnimation = new RgbFadeAnimation();
 
+    FireAnimation fireAnimation = new FireAnimation();
+
+    RgbFadeAnimation rgbFadeAnimation = new RgbFadeAnimation();
 
     //set color animations
     LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .8, ColorConstants.numLEDs, BounceMode.Center, 10);
@@ -54,10 +41,8 @@ public class LEDs extends SubsystemBase {
     ColorFlowAnimation colorFlowAnimation = new ColorFlowAnimation   (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that gradually lights the entire LED strip one LED at a time.
 
-
     SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .1, ColorConstants.numLEDs);
     //Animation that fades into and out of a specified color 
-
 
     StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, ColorConstants.numLEDs);
     StrobeAnimation greenstrobe = new StrobeAnimation                (0, 255, 0, 0, .5, ColorConstants.numLEDs);
@@ -65,18 +50,11 @@ public class LEDs extends SubsystemBase {
     StrobeAnimation bluestrobe = new StrobeAnimation                (0, 0, 0, 255, .5, ColorConstants.numLEDs);
     //Animation that strobes the LEDs a specified color  
 
-
     TwinkleAnimation twinkleAnimation = new TwinkleAnimation         (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that randomly turns LEDs on and off to a certain color
 
-
     TwinkleOffAnimation twinkleOffAnimation = new TwinkleOffAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that randomly turns on LEDs, until it reaches the maximum count and turns them all off 
-
-    private int r;
-    private int g;
-    private int b;
-
 
     public LEDs() {
         //
@@ -90,23 +68,21 @@ public class LEDs extends SubsystemBase {
         configAll.statusLedOffWhenActive = true;
         configAll.disableWhenLOS = false;
         configAll.stripType = LEDStripType.RGB;
-        configAll.brightnessScalar = 1;
-        configAll.vBatOutputMode = VBatOutputMode.On;
-        candle.configAllSettings(configAll, 100);
+        candle.configAllSettings(configAll);
 
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putNumber("redvalue()", r);
+        SmartDashboard.putNumber("greenvalue()", g);
+        SmartDashboard.putNumber("bluevalue()", b);
     }
 
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run when in simulation
-        SmartDashboard.putNumber("redvalue()", r);
-        SmartDashboard.putNumber("greenvalue()", g);
-        SmartDashboard.putNumber("bluevalue()", b);
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -166,7 +142,6 @@ public class LEDs extends SubsystemBase {
         }     
 
         else {
-            candle.clearAnimation(1);
             candle.configBrightnessScalar(0);
             r = 255;
             g = 255;
@@ -183,6 +158,7 @@ public class LEDs extends SubsystemBase {
         //set animation based on given string.=
         candle.configBrightnessScalar(1);
         candle.clearAnimation(1);
+
         if(animation == "rainbow"){
            candle.animate(rainbowAnimation, 1);
         }
@@ -232,8 +208,9 @@ public class LEDs extends SubsystemBase {
         }
     }
 
+
     public void candleClear(){
         candle.clearAnimation(1);
-        candle.clearStickyFaults();
+        candle.configBrightnessScalar(0);
     }
 }
