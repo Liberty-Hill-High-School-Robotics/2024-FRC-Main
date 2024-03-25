@@ -28,32 +28,47 @@ public class LEDs extends SubsystemBase {
 
     //create some animations for the LEDs, all are purple for now (with exceptions)
     //rainbow/set color animations
-    RainbowAnimation rainbowAnimation = new RainbowAnimation(1, .5, ColorConstants.numLEDs);
+    RainbowAnimation rainbowAnimation = 
+    new RainbowAnimation(1, .5, ColorConstants.numLEDs);
 
-    FireAnimation fireAnimation = new FireAnimation();
+    FireAnimation fireAnimation = 
+    new FireAnimation();
 
-    RgbFadeAnimation rgbFadeAnimation = new RgbFadeAnimation();
+    RgbFadeAnimation rgbFadeAnimation = 
+    new RgbFadeAnimation();
 
     //set color animations
-    LarsonAnimation larsonAnimation = new LarsonAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .8, ColorConstants.numLEDs, BounceMode.Center, 10);
+    LarsonAnimation larsonAnimation = 
+    new LarsonAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .8, ColorConstants.numLEDs, BounceMode.Center, 7);
     //https://www.youtube.com/watch?v=Ns0f6jZIo9I
 
-    ColorFlowAnimation colorFlowAnimation = new ColorFlowAnimation   (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    ColorFlowAnimation colorFlowAnimation = 
+    new ColorFlowAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that gradually lights the entire LED strip one LED at a time.
 
-    SingleFadeAnimation singleFadeAnimation = new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .1, ColorConstants.numLEDs);
+    SingleFadeAnimation singleFadeAnimation = 
+    new SingleFadeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .1, ColorConstants.numLEDs);
     //Animation that fades into and out of a specified color 
 
-    StrobeAnimation strobeAnimation = new StrobeAnimation            (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, ColorConstants.numLEDs);
-    StrobeAnimation greenstrobe = new StrobeAnimation                (0, 255, 0, 0, .5, ColorConstants.numLEDs);
-    StrobeAnimation redstrobe = new StrobeAnimation                  (255, 0, 0, 0, .5, ColorConstants.numLEDs);
-    StrobeAnimation bluestrobe = new StrobeAnimation                (0, 0, 0, 255, .5, ColorConstants.numLEDs);
+    StrobeAnimation strobeAnimation = 
+    new StrobeAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .5, ColorConstants.numLEDs);
+
+    StrobeAnimation greenstrobe = 
+    new StrobeAnimation(0, 255, 0, 0, .5, ColorConstants.numLEDs);
+
+    StrobeAnimation redstrobe = 
+    new StrobeAnimation(255, 0, 0, 0, .5, ColorConstants.numLEDs);
+    
+    StrobeAnimation bluestrobe = 
+    new StrobeAnimation(0, 0, 0, 255, .5, ColorConstants.numLEDs);
     //Animation that strobes the LEDs a specified color  
 
-    TwinkleAnimation twinkleAnimation = new TwinkleAnimation         (ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    TwinkleAnimation twinkleAnimation = 
+    new TwinkleAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that randomly turns LEDs on and off to a certain color
 
-    TwinkleOffAnimation twinkleOffAnimation = new TwinkleOffAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
+    TwinkleOffAnimation twinkleOffAnimation = 
+    new TwinkleOffAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2]);
     //Animation that randomly turns on LEDs, until it reaches the maximum count and turns them all off 
 
     public LEDs() {
@@ -78,6 +93,8 @@ public class LEDs extends SubsystemBase {
         SmartDashboard.putNumber("redvalue()", r);
         SmartDashboard.putNumber("greenvalue()", g);
         SmartDashboard.putNumber("bluevalue()", b);
+
+        SmartDashboard.putNumber("maxanimationcount", candle.getMaxSimultaneousAnimationCount());
     }
 
     @Override
@@ -92,7 +109,7 @@ public class LEDs extends SubsystemBase {
     public void candleSetColor(String color){
         //set brightness
         candle.configBrightnessScalar(1);
-        candle.clearAnimation(1);
+        candle.clearAnimation(0);
 
         //switch statement
         if(color == "purple"){
@@ -101,13 +118,12 @@ public class LEDs extends SubsystemBase {
             b = ColorConstants.purple[2]; 
         }
 
-        if(color == "dimpurple"){
+        else if(color == "dimpurple"){
             r = ColorConstants.purple[0]; 
             g = ColorConstants.purple[1]; 
             b = ColorConstants.purple[2];
             candle.configBrightnessScalar(.4);
         }
-
 
         else if(color == "gold"){
             r = ColorConstants.gold[0]; 
@@ -157,60 +173,63 @@ public class LEDs extends SubsystemBase {
     public void candleSetAnimation(String animation){
         //set animation based on given string.=
         candle.configBrightnessScalar(1);
-        candle.clearAnimation(1);
+        candle.clearAnimation(0);
 
         if(animation == "rainbow"){
-           candle.animate(rainbowAnimation, 1);
+           candle.animate(rainbowAnimation);
         }
 
         else if(animation == "fire"){
-           candle.animate(fireAnimation, 1);
+           candle.animate(fireAnimation);
         }
 
         else if(animation == "rgbfade"){
-           candle.animate(rgbFadeAnimation, 1);
+           candle.animate(rgbFadeAnimation);
         }
 
         else if(animation == "larson"){
-           candle.animate(larsonAnimation, 1);
+           candle.animate(larsonAnimation);
         }
 
         else if(animation == "colorflow"){
-           candle.animate(colorFlowAnimation, 1);
+           candle.animate(colorFlowAnimation);
         }
 
         else if(animation == "singlefade"){
-           candle.animate(singleFadeAnimation, 1);
+           candle.animate(singleFadeAnimation);
         }
 
         else if(animation == "strobe"){
-           candle.animate(strobeAnimation, 1);
+           candle.animate(strobeAnimation);
         }
 
         else if(animation == "twinkle"){
-           candle.animate(twinkleAnimation, 1);
+           candle.animate(twinkleAnimation);
         }
 
         else if(animation == "twinkleoff"){
-           candle.animate(twinkleOffAnimation, 1);
+           candle.animate(twinkleOffAnimation);
         }
 
         else if(animation == "greenstrobe"){
-            candle.animate(greenstrobe, 1);
+            candle.animate(greenstrobe);
         }
 
         else if(animation == "redstrobe"){
-            candle.animate(redstrobe, 1);
+            candle.animate(redstrobe);
         }
 
         else if(animation == "bluestrobe"){
-            candle.animate(bluestrobe, 1);
+            candle.animate(bluestrobe);
         }
     }
 
 
     public void candleClear(){
-        candle.clearAnimation(1);
+        candle.clearAnimation(0);
         candle.configBrightnessScalar(0);
+        r = 0;
+        g = 0;
+        b = 0;
     }
 }

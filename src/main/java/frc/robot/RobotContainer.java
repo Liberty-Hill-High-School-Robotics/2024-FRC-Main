@@ -224,11 +224,6 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
     SmartDashboard.putData("autofeednote", new AutoFeedNote(m_storage));
     SmartDashboard.putData("autorev", new AutoRev(m_shooter, m_pivot));
-    
-
-    //SmartDashboard.putData("IntakePivotUp", new IntakePivotUp(m_intake));
-    //SmartDashboard.putData("IntakePivotDown", new IntakePivotDown(m_intake));
-    //SmartDashboard.putData("IntakePivotStop", new IntakePivotStop(m_intake));
 
     SmartDashboard.putData("IntakeRollerFeed", new IntakeRollerFeed(m_intake));
     SmartDashboard.putData("IntakeRollerBackFeed", new IntakeRollerBackFeed(m_intake));
