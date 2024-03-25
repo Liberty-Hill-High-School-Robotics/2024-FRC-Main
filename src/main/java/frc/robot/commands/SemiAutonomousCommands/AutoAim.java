@@ -1,6 +1,7 @@
 package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
 import frc.robot.commands.LEDCommands.Animations.CandleLarson;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
@@ -17,7 +18,7 @@ import frc.robot.subsystems.Shooter;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoAim extends ParallelCommandGroup {
+public class AutoAim extends SequentialCommandGroup {
     public AutoAim(
     
         Shooter shooter,
@@ -27,11 +28,14 @@ public class AutoAim extends ParallelCommandGroup {
     ){
  
     addCommands(
-        
+
+                new ParallelCommandGroup(
                 new AnglePivot(pivot),
                 new RevShooter(shooter),
                 new AimWhileMoving(drivesubsystem),
-                new CandleStrobeRed(m_leds).andThen(new CandleLarson(m_leds))
+                new CandleStrobeRed(m_leds)
+                ),
+                new CandleLarson(m_leds)
     );
     }
     

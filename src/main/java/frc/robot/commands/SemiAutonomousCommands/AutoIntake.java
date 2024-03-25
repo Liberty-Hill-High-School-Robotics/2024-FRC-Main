@@ -1,9 +1,11 @@
 package frc.robot.commands.SemiAutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
 import frc.robot.commands.LEDCommands.Animations.CandleLarson;
 import frc.robot.commands.LEDCommands.Colors.CandleDimPurple;
+import frc.robot.commands.LEDCommands.Colors.CandleGreen;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
@@ -16,7 +18,7 @@ import frc.robot.subsystems.LEDs;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoIntake extends ParallelCommandGroup {
+public class AutoIntake extends SequentialCommandGroup {
 
 
     public AutoIntake(
@@ -28,10 +30,13 @@ public class AutoIntake extends ParallelCommandGroup {
     
         addCommands(
             //run all commands in parallel until the throughbeam == true
+            new ParallelCommandGroup(
             new IntakeTogether(m_intake),
             new AngleAndFeed(m_pivot),
             new StorageRollersFeed(m_storage),
-            new CandleDimPurple(m_leds).andThen(new CandleLarson(m_leds))
+            new CandleDimPurple(m_leds)
+            ),
+            new CandleGreen(m_leds)
             );
 
         }

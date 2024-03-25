@@ -2,6 +2,7 @@ package frc.robot.commands.SemiAutonomousCommands;
 
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
@@ -16,7 +17,7 @@ import frc.robot.subsystems.Shooter;
  * pedagogical purposes. Actual code should inline a command this simple with {@link
  * edu.wpi.first.wpilibj2.command.InstantCommand}.
  */
-public class AutoRev extends ParallelCommandGroup {
+public class AutoRev extends SequentialCommandGroup {
     public AutoRev(
     
         Shooter shooter,
@@ -29,14 +30,10 @@ public class AutoRev extends ParallelCommandGroup {
             new ParallelCommandGroup(
                 new AnglePivot(pivot).withTimeout(1),
                 new RevShooter(shooter).withTimeout(1),
-                new CandleStrobeRed(leds).withTimeout(1).andThen(new CandleRainbow(leds))
-                //new CandleStrobeRed(leds).withTimeout(1.1).andThen(new CandleRainbow(leds))
-                
-                //new FeedNoteAuto(storage).onlyIf(shooter::atSpeed)
-                //also try .onlyWhile(()->{return Shooter.isatspeed;} (uses a boolean instead)
-            )    
-        
-    );
+                new CandleStrobeRed(leds).withTimeout(1)
+                ),
+                new CandleRainbow(leds) 
+            );
     }
     
     @Override
