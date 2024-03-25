@@ -68,8 +68,8 @@
         "y": 5.755836238945205
       },
       "prevControl": {
-        "x": 6.587719139952994,
-        "y": 5.963472056317261
+        "x": 7.393354423072482,
+        "y": 7.295079317431362
       },
       "nextControl": null,
       "isLocked": false,
@@ -94,7 +94,7 @@
     },
     {
       "waypointRelativePos": 4,
-      "rotationDegrees": 0,
+      "rotationDegrees": -27.699472808055084,
       "rotateFast": false
     }
   ],
@@ -124,7 +124,7 @@
   ],
   "eventMarkers": [
     {
-      "name": "rev",
+      "name": "shoot",
       "waypointRelativePos": 0,
       "command": {
         "type": "parallel",
@@ -133,24 +133,26 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoRev"
+                "name": "subshot2"
               }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "feed",
-      "waypointRelativePos": 0.2,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
+            },
             {
-              "type": "named",
+              "type": "sequential",
               "data": {
-                "name": "FeedNote"
+                "commands": [
+                  {
+                    "type": "wait",
+                    "data": {
+                      "waitTime": 0.6
+                    }
+                  },
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "FeedNote"
+                    }
+                  }
+                ]
               }
             }
           ]
@@ -175,8 +177,8 @@
       }
     },
     {
-      "name": "rev]",
-      "waypointRelativePos": 2.85,
+      "name": "shoot",
+      "waypointRelativePos": 2.9,
       "command": {
         "type": "parallel",
         "data": {
@@ -184,24 +186,26 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoRev"
+                "name": "subshot2"
               }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "feed",
-      "waypointRelativePos": 3.1,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
+            },
             {
-              "type": "named",
+              "type": "sequential",
               "data": {
-                "name": "FeedNote"
+                "commands": [
+                  {
+                    "type": "wait",
+                    "data": {
+                      "waitTime": 0.6
+                    }
+                  },
+                  {
+                    "type": "named",
+                    "data": {
+                      "name": "FeedNote"
+                    }
+                  }
+                ]
               }
             }
           ]
@@ -234,7 +238,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 1.4320961841645496,
+    "rotation": -26.56505117707799,
     "rotateFast": false
   },
   "reversed": false,

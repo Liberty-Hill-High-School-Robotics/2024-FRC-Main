@@ -26,9 +26,9 @@ public class AutoIntakeTimeout extends ParallelRaceGroup {
             new ParallelRaceGroup(
             //want to change this to a parallel deadline group, which ends once a certain command ends, but cant figure out the syntax for it yet
             //run all commands in parallel until the throughbeam == true
-            new StorageRollersFeed(m_storage).withTimeout(1),
-            new IntakeTogether(m_intake).withTimeout(1),
-            new AngleAndFeed(m_pivot).withTimeout(1)
+            new StorageRollersFeed(m_storage).withTimeout(2),
+            new IntakeTogether(m_intake).withTimeout(2),
+            new AngleAndFeed(m_pivot).withTimeout(2)
             //new CandleStrobeBlue(m_leds).withTimeout(.65).andThen(new CandleRainbow(m_leds))
             )
 

@@ -413,7 +413,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double getJoystickCombinedValuesInRadians(){
     double output = rightTrigger - leftTrigger;
-    output = output * (4 * (Math.PI));
+    output = output * (2 * (Math.PI));
     return output;
   }
 }

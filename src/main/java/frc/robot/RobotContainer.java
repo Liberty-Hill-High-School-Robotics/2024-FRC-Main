@@ -37,6 +37,7 @@ import frc.robot.commands.BarCommands.BarRotateBackward;
 import frc.robot.commands.BarCommands.BarRotateForward;
 import frc.robot.commands.BarCommands.BarRotateStop;
 import frc.robot.commands.DriveAutonCommands.AimWhileMoving;
+import frc.robot.commands.DriveAutonCommands.TriggerTurn;
 import frc.robot.commands.DriveAutonCommands.resetHeading;
 import frc.robot.commands.DriveAutonCommands.rightSnap;
 import frc.robot.commands.DriveAutonCommands.xPattern;
@@ -75,6 +76,7 @@ import frc.robot.commands.PivotCommmands.TRollers.TRollerBackFeed;
 import frc.robot.commands.PivotCommmands.TRollers.TRollerFeed;
 import frc.robot.commands.PivotCommmands.TRollers.TRollerStop;
 import frc.robot.commands.SemiAutonomousCommands.AimSub;
+import frc.robot.commands.SemiAutonomousCommands.AimSub2;
 import frc.robot.commands.SemiAutonomousCommands.AmpBack;
 import frc.robot.commands.SemiAutonomousCommands.AmpPrep;
 import frc.robot.commands.SemiAutonomousCommands.AutoAim;
@@ -158,6 +160,8 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     NamedCommands.registerCommand("CandleOff", new CandleOff(m_leds));
     NamedCommands.registerCommand("AutoShoot", new CandleRed(m_leds));
     NamedCommands.registerCommand("IntakeEnd", new CandleStrobeRedEndCond(m_leds));
+    NamedCommands.registerCommand("subshot2", new AimSub2(m_shooter, m_pivot));
+
   
 
     configureButtonBindings();
@@ -290,7 +294,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     new RunCommand(
         () -> {
           // Go full speed is "boost mode", go .8 speed in normal mode
-          var boostRatio = m_driverController.getHID().getRightBumper() ? 1 : .8;
+          var boostRatio = m_driverController.getHID().getLeftBumper() ? 1 : .8;
           m_drivesubsystem.drive(
               -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband) * boostRatio,
               -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband) * boostRatio,
@@ -349,13 +353,11 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     final Trigger resetHeading = m_driverController.y();
     resetHeading.onTrue(new resetHeading(m_drivesubsystem));
 
-    /*Makes chassis top speed lower
-    final Trigger SlowMode = new JoystickButton(m_driverController, 5);
-    SlowMode.whileTrue(new SlowMode(m_drivesubsystem));*/
+    final Trigger triggerTurn2 = m_driverController.leftTrigger(.1);
+    triggerTurn2.whileTrue(new TriggerTurn(m_drivesubsystem));
 
-    /*makes chassis top speed higher 
-    final Trigger BoostMode = new JoystickButton(m_driverController, 6);
-    BoostMode.whileTrue(new BoostMode());*/
+    final Trigger triggerTurn3 = m_driverController.rightTrigger(.1);
+    triggerTurn3.whileTrue(new TriggerTurn(m_drivesubsystem));
 
 
     // Operator Controller button
