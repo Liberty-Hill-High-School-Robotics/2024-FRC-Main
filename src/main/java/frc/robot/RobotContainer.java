@@ -152,8 +152,8 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
   public RobotContainer() {
 
     //named command stuff
-    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
-    NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot));
+    NamedCommands.registerCommand("AutoIntake", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_leds));
+    NamedCommands.registerCommand("AutoRev", new AutoRev(m_shooter, m_pivot, m_leds));
     NamedCommands.registerCommand("FeedNote", new AutoFeedNote(m_storage));
     NamedCommands.registerCommand("CandleBlue", new CandleBlue(m_leds));
     NamedCommands.registerCommand("CandleRed", new CandleRed(m_leds));
@@ -197,7 +197,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putNumber("rightjoystickx", m_driverController.getLeftX());
   
 
-    SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
+    SmartDashboard.putData("AutoAim", new AutoAim(m_shooter, m_pivot, m_drivesubsystem, m_leds));
 
     SmartDashboard.putData("ShooterOut", new ShooterFeed(m_shooter));
     SmartDashboard.putData("ShooterIn", new ShooterBackFeed(m_shooter));
@@ -223,7 +223,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putData("PivotDown", new PivotDown(m_pivot));
     SmartDashboard.putData("PivotStop", new PivotStop(m_pivot));
     SmartDashboard.putData("autofeednote", new AutoFeedNote(m_storage));
-    SmartDashboard.putData("autorev", new AutoRev(m_shooter, m_pivot));
+    SmartDashboard.putData("autorev", new AutoRev(m_shooter, m_pivot, m_leds));
 
     SmartDashboard.putData("IntakeRollerFeed", new IntakeRollerFeed(m_intake));
     SmartDashboard.putData("IntakeRollerBackFeed", new IntakeRollerBackFeed(m_intake));
@@ -247,7 +247,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     SmartDashboard.putData("singlefade", new CandleSingleFade(m_leds));
     SmartDashboard.putData("candletwinkle", new CandleTwinkle(m_leds));
 
-    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot));
+    SmartDashboard.putData("AutoIntake", new AutoIntake(m_intake, m_storage, m_pivot, m_leds));
     
     SmartDashboard.putData("BarRotateForward", new BarRotateForward(m_bar));
     SmartDashboard.putData("BarRotateBackward", new BarRotateBackward(m_bar));
@@ -275,7 +275,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
 
     SmartDashboard.putNumber("Pigeon2Heading", m_drivesubsystem.getHeading());
 
-    SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot));
+    SmartDashboard.putData("autointaketimeout", new AutoIntakeTimeout(m_intake, m_storage, m_pivot, m_leds));
     
     //double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
     //SmartDashboard.putData("revShooter", new revShooter(m_shooter));
@@ -337,7 +337,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     // Driver controller  buttons
 
     final Trigger AutoAim = m_driverController.a();
-    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem));
+    AutoAim.toggleOnTrue(new AutoAim(m_shooter, m_pivot, m_drivesubsystem, m_leds));
 
     final Trigger PivotUp = m_driverController.b();
     PivotUp.whileTrue(new AngleSub(m_pivot));
@@ -360,7 +360,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     //Deploys Intake, Runs the Intake rollers, Stops rollers when game piece is detected in through beam sensor, and retracts
     //
     final Trigger AutoIntake = m_operatorController.x();
-    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot));
+    AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_leds));
 
     final Trigger Fire = m_operatorController.rightBumper();
     Fire.whileTrue(new StorageRollersShooter(m_storage));

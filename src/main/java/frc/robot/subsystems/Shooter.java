@@ -24,6 +24,7 @@ public class Shooter extends SubsystemBase {
     private RelativeEncoder shooterVortexRelativeEncoder;
     private RelativeEncoder shooterVortex2RelativeEncoder;
     public static boolean isatspeed;
+    public static boolean shooterOn;
 
     private double speedCalc;
 
@@ -72,6 +73,15 @@ public class Shooter extends SubsystemBase {
         else{
             isatspeed = false;
         }
+
+        if(shooterVortex.get() == 0 && shooterVortex2.get() == 0){
+            shooterOn = false;
+        }
+        else{
+            shooterOn = true;
+        }
+
+
 
     }
 
@@ -131,5 +141,13 @@ public class Shooter extends SubsystemBase {
         shooterVortex.stopMotor();
         shooterVortex2.stopMotor();
         //m_leds.candleSetColor("off");
+    }
+
+    public boolean shooterIsAtSpeed(){
+        return isatspeed;
+    }
+
+    public boolean shooterOff(){
+        return shooterOn;
     }
 }

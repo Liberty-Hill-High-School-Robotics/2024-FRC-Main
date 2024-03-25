@@ -7,6 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.LEDs;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Storage;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,6 +20,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+
+  private final LEDs m_leds = LEDs.getInstance();
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -46,11 +52,20 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     
+    if(Shooter.isatspeed){
+      m_leds.candleSetColor("green");
+    }
+
+    if(Storage.noteInTB){
+      m_leds.candleSetColor("orange");
+    }
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
+    m_leds.candleSetAnimation("singlefade");
   }
 
   @Override
@@ -72,11 +87,17 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_leds.candleSetAnimation("rainbowAnimation");
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {  }
+  public void autonomousPeriodic() { 
+    if(!Shooter.shooterOn && !Storage.noteInTB){
+      m_leds.candleSetAnimation("rainbowAnimation");
+    }
+
+   }
 
   @Override
   public void teleopInit() {
@@ -87,11 +108,16 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_leds.candleSetAnimation("larson");
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+
+    if(!Shooter.shooterOn && !Storage.noteInTB){
+      m_leds.candleSetAnimation("larson");
+    }
   }
 
   @Override

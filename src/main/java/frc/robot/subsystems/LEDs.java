@@ -21,10 +21,18 @@ import frc.robot.Constants.ColorConstants;
 public class LEDs extends SubsystemBase {
 
     CANdle candle = new CANdle(20);
+    private static LEDs m_instance;
 
     private int r;
     private int g;
     private int b;
+
+    public static LEDs getInstance() {
+        if (m_instance == null) {
+            m_instance = new LEDs();
+        }
+        return m_instance;
+    }
 
     //create some animations for the LEDs, all are purple for now (with exceptions)
     //rainbow/set color animations
