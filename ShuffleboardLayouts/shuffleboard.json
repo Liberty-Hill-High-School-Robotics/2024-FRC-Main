@@ -2264,6 +2264,32 @@
                 }
               }
             }
+          },
+          "9,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutoAim",
+              "_title": "/SmartDashboard/AutoAim",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "9,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutoIntake",
+              "_title": "/SmartDashboard/AutoIntake",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
