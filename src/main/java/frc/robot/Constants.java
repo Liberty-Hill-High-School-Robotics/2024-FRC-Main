@@ -49,7 +49,7 @@ public final class Constants {
 
     public static final double Slope = .05;
 
-    public static final double ApTagHeight = 53.5; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
+    public static final double ApTagHeight = 51.875; //height of the BOTTOM of the apriltags from the ground (speaker tags) in inches
     public static final double CamHeight = 21.00; //in inches
     public static final double CamAngle = 35.00; //in degrees
 

@@ -64,32 +64,32 @@
     },
     {
       "anchor": {
-        "x": 1.9453667998249502,
-        "y": 4.2539081441838045
+        "x": 1.8427505945920983,
+        "y": 5.541275082550166
       },
       "prevControl": {
-        "x": 1.7665156002675189,
-        "y": 4.334391183984648
+        "x": 1.7919726638398488,
+        "y": 5.730713391841706
       },
       "nextControl": {
-        "x": 2.131941718429333,
-        "y": 4.169949430811832
+        "x": 2.1636136193020437,
+        "y": 4.34422455263016
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.85,
-        "y": 4.104648209296419
+        "x": 2.6151249223246498,
+        "y": 4.243474096583793
       },
       "prevControl": {
-        "x": 2.829784443400537,
-        "y": 3.9189242671626303
+        "x": 2.5641380677561445,
+        "y": 4.063745434229813
       },
       "nextControl": {
-        "x": 2.887570138776641,
-        "y": 4.449811808714527
+        "x": 2.764384857208156,
+        "y": 4.769615367048154
       },
       "isLocked": false,
       "linkedName": null
@@ -189,14 +189,14 @@
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 4.2,
-      "rotationDegrees": -42.397437797500196,
+      "waypointRelativePos": 4.0,
+      "rotationDegrees": 0.0,
       "rotateFast": true
     },
     {
       "waypointRelativePos": 5,
-      "rotationDegrees": 0,
-      "rotateFast": true
+      "rotationDegrees": -25.61548432064199,
+      "rotateFast": false
     },
     {
       "waypointRelativePos": 10.0,
@@ -244,8 +244,8 @@
     },
     {
       "name": "3rd shot",
-      "minWaypointRelativePos": 3.8500000000000005,
-      "maxWaypointRelativePos": 4.3,
+      "minWaypointRelativePos": 3.8,
+      "maxWaypointRelativePos": 4.0,
       "constraints": {
         "maxVelocity": 0.3,
         "maxAcceleration": 3.0,
@@ -332,7 +332,7 @@
     },
     {
       "name": "2nd shot",
-      "waypointRelativePos": 1.7999999999999998,
+      "waypointRelativePos": 1.75,
       "command": {
         "type": "parallel",
         "data": {
@@ -385,7 +385,7 @@
     },
     {
       "name": "3rd shot",
-      "waypointRelativePos": 3.75,
+      "waypointRelativePos": 3.8,
       "command": {
         "type": "parallel",
         "data": {
@@ -421,7 +421,7 @@
     },
     {
       "name": "intake",
-      "waypointRelativePos": 4.8,
+      "waypointRelativePos": 4.45,
       "command": {
         "type": "parallel",
         "data": {
@@ -491,7 +491,7 @@
     },
     {
       "name": "5th shot",
-      "waypointRelativePos": 9.9,
+      "waypointRelativePos": 9.95,
       "command": {
         "type": "parallel",
         "data": {
