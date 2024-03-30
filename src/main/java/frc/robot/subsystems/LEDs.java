@@ -47,7 +47,7 @@ public class LEDs extends SubsystemBase {
 
     //set color animations
     LarsonAnimation larsonAnimation = 
-    new LarsonAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .8, ColorConstants.numLEDs, BounceMode.Center, 7);
+    new LarsonAnimation(ColorConstants.purple[0], ColorConstants.purple[1], ColorConstants.purple[2], 0, .2, ColorConstants.numLEDs, BounceMode.Center, 2);
     //https://www.youtube.com/watch?v=Ns0f6jZIo9I
 
     ColorFlowAnimation colorFlowAnimation = 

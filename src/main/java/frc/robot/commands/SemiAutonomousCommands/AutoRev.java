@@ -3,7 +3,6 @@ package frc.robot.commands.SemiAutonomousCommands;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.LEDCommands.Animations.CandleRainbow;
 import frc.robot.commands.LEDCommands.Animations.CandleStrobeRed;
 import frc.robot.commands.PivotCommmands.Pivot.AnglePivot;
 import frc.robot.commands.ShooterCommands.RevShooter;
@@ -31,8 +30,7 @@ public class AutoRev extends SequentialCommandGroup {
                 new AnglePivot(pivot).withTimeout(1),
                 new RevShooter(shooter).withTimeout(1),
                 new CandleStrobeRed(leds).withTimeout(1)
-                ),
-                new CandleRainbow(leds) 
+                )
             );
     }
     
