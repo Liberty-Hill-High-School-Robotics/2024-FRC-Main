@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.IntakeCommands.IntakeTogether;
 import frc.robot.commands.LEDCommands.Colors.CandleDimPurple;
-import frc.robot.commands.LEDCommands.Colors.CandleGreen;
 import frc.robot.commands.PivotCommmands.Pivot.AngleAndFeed;
 import frc.robot.commands.StorageCommands.StorageRollersFeed;
 import frc.robot.subsystems.Intake;
@@ -33,11 +32,8 @@ public class AutoIntake extends SequentialCommandGroup {
             new IntakeTogether(m_intake),
             new AngleAndFeed(m_pivot),
             new StorageRollersFeed(m_storage),
-            new CandleDimPurple(m_leds)
-            ),
-            new CandleGreen(m_leds)
+            new CandleDimPurple(m_leds))
             );
-
         }
 
 

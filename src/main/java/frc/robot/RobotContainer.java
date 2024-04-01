@@ -294,7 +294,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
               -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband) * boostRatio,
               -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband) * boostRatio,
               -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-              true, true); // drivescheme sets either field centric or not
+              true, true);
         },
         m_drivesubsystem));
 
@@ -361,6 +361,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     //
     final Trigger AutoIntake = m_operatorController.x();
     AutoIntake.whileTrue(new AutoIntake(m_intake, m_storage, m_pivot, m_leds));
+    AutoIntake.onFalse(new PivotDown(m_pivot));
 
     final Trigger Fire = m_operatorController.rightBumper();
     Fire.whileTrue(new StorageRollersShooter(m_storage));
