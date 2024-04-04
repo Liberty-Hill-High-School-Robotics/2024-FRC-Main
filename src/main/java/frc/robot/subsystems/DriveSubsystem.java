@@ -417,4 +417,9 @@ public class DriveSubsystem extends SubsystemBase {
     output = output * (2 * (Math.PI));
     return output;
   }
+
+  public double getGyroRotRate(){
+    double output = m_gyro.getRate();
+    return output;
+  }
 }
