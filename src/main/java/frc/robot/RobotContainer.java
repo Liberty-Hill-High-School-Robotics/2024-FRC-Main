@@ -9,20 +9,7 @@ package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
-//import com.pathplanner.lib.commands.PathPlannerAuto;
-/*
-import com.pathplanner.lib.path.PathPlannerTrajectory;
-import com.pathplanner.lib.path.EventMarker;
-import com.pathplanner.lib.path.PathPlannerPath;
-import com.pathplanner.lib.commands.FollowPathWithEvents;
-*/
-//import com.pathplanner.lib.path.PathPlannerPath;
-
 import edu.wpi.first.math.MathUtil;
-//limelight imports
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -148,6 +135,7 @@ public class RobotContainer {
 
   //The container for the robot. Contains subsystems, OI devices, and commands.
 SendableChooser<Command> m_chooser2 = new SendableChooser<>();
+
 
   public RobotContainer() {
 
@@ -279,7 +267,7 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     
     //double shooterSetSetPoint = SmartDashboard.getNumber("shooterSetSetPoint", getTa());
     //SmartDashboard.putData("revShooter", new revShooter(m_shooter));
-
+    LimelightHelpers.getTV(null);
 
 
    
@@ -399,29 +387,6 @@ SendableChooser<Command> m_chooser2 = new SendableChooser<>();
     final Trigger buttonResetIAccum = new JoystickButton(driverJoystick, 8);
     buttonResetIAccum.onTrue(new ResetIAccum(m_drive));
    */
-
-   static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-
-   public static double getTx() {
-   NetworkTableEntry tx = table.getEntry("tx");
-   return tx.getDouble(0.0);
-   }
-
-   public static double getTy() {
-   NetworkTableEntry ty = table.getEntry("ty");
-   return ty.getDouble(0.0);
-   }
-
-   public static double getTa() {
-   NetworkTableEntry ta = table.getEntry("ta");
-   return ta.getDouble(0.0);
-   }
-
-   public static boolean getTv() {
-   NetworkTableEntry tv = table.getEntry("tv");
-   return tv.getBoolean(false);
-   }
-
    
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

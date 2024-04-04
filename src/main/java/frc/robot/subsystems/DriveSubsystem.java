@@ -30,7 +30,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.RobotContainer;
+import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 import frc.utils.SwerveUtils;
 
  
@@ -392,7 +393,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double turnPID(){
-    double output = (turningPID.calculate(RobotContainer.getTx(), 0));
+    double output = (turningPID.calculate(LimelightHelpers.getTX(Constants.LLName), 0));
     SmartDashboard.putNumber("turningoutput", output);
     return output;
 }

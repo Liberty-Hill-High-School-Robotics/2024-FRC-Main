@@ -2,7 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
-import frc.robot.RobotContainer;
+import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 import static java.lang.Math.*;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -19,9 +20,10 @@ public class Limelight extends SubsystemBase {
     @Override
     public void periodic() {
         //read values periodically
-        double x = RobotContainer.getTx();
-        double y = RobotContainer.getTy();
-        double area = RobotContainer.getTa();
+        double x = LimelightHelpers.getTX(Constants.LLName);
+        double y = LimelightHelpers.getTY(Constants.LLName);
+        double area = LimelightHelpers.getTA(Constants.LLName);
+
         if(area == 0){
             canSee = false;
         }
@@ -58,8 +60,8 @@ public class Limelight extends SubsystemBase {
     //https://docs.wpilib.org/en/latest/docs/software/vision-processing/introduction/identifying-and-processing-the-targets.html#distance
     //uses this equation ^
     //distance = (targetheight - cameraheight) / tan(cameraangle + Ty)
-        var y = table.getEntry("ty");
-        double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + (y.getDouble(0))) * (Math.PI/180));
+        var y = LimelightHelpers.getTY(Constants.LLName);
+        double distance = (ShooterConstants.ApTagHeight - ShooterConstants.CamHeight) / Math.tan((ShooterConstants.CamAngle + (y)) * (Math.PI/180));
         return distance;
    }
 }
