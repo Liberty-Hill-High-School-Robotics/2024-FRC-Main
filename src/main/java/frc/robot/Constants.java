@@ -68,7 +68,7 @@ public final class Constants {
 
     public static final double pCalcC = 2500;
     public static final double pCalucP = -1.06;
-    public static final double pCaluK = 0;
+    public static final double pCaluK = 1.2;
 
   }
   public static final class BarConstants{
