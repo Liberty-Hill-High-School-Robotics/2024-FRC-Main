@@ -162,7 +162,7 @@ public class Pivot extends SubsystemBase {
 
 
     public void forceSubAngle(){
-        double angle = 40;
+        double angle = 43;
         double temp = pivotPID.calculate(pivotRelativeEncoder.getPosition(), angle);
         pivotSparkMax.set(temp);
         pivotSparkMax2.set(temp);
