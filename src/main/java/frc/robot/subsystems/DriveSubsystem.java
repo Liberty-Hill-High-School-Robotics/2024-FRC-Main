@@ -13,7 +13,9 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -30,7 +32,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.RobotContainer;
+import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 import frc.utils.SwerveUtils;
 
  
@@ -101,7 +104,7 @@ public class DriveSubsystem extends SubsystemBase {
   private double rightTrigger = 0;
 
   // Odometry class for tracking robot pose
-  SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
+  SwerveDrivePoseEstimator m_odometry = new SwerveDrivePoseEstimator(
       DriveConstants.kDriveKinematics,
 
       //we are using .getangle because it returns the correct boolean, it SHOULD be the same as .getyaw, it was replaced for all instances
@@ -152,11 +155,29 @@ public class DriveSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    LimelightHelpers.SetRobotOrientation("limelight", m_poseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
+      LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
+      if(Math.abs(m_gyro.getRate()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
+      {
+        doRejectUpdate = true;
+      }
+      if(mt2.tagCount == 0)
+      {
+        doRejectUpdate = true;
+      }
+      if(!doRejectUpdate)
+      {
+        m_poseEstimator.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
+        m_poseEstimator.addVisionMeasurement(
+            mt2.pose,
+            mt2.timestampSeconds);
+    }
+
     rightTrigger = m_driverControllerLocal.getRightTriggerAxis();
     leftTrigger = m_driverControllerLocal.getLeftTriggerAxis();
 
     // Update the odometry in the periodic block
-    m_odometry.update(
+    SwerveDrivePoseEstimator.update(
         Rotation2d.fromDegrees(m_gyro.getYaw().getValue()),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
@@ -392,7 +413,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double turnPID(){
-    double output = (turningPID.calculate(RobotContainer.getTx(), 0));
+    double output = (turningPID.calculate(LimelightHelpers.getTX(Constants.LLName), 0));
     SmartDashboard.putNumber("turningoutput", output);
     return output;
 }
@@ -414,6 +435,11 @@ public class DriveSubsystem extends SubsystemBase {
   public double getJoystickCombinedValuesInRadians(){
     double output = rightTrigger - leftTrigger;
     output = output * (2 * (Math.PI));
+    return output;
+  }
+
+  public double getGyroRotRate(){
+    double output = m_gyro.getRate();
     return output;
   }
 }

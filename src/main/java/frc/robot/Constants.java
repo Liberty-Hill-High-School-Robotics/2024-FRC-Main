@@ -20,6 +20,8 @@ import edu.wpi.first.math.util.Units;
 
 
 public final class Constants {
+  //define LL name for use with LLHelpers
+  public static final String LLName = "limelight";
 
   public static final class ColorConstants{
     //CANdle colors
